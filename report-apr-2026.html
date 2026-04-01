@@ -24,7 +24,6 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
 
   body {
@@ -36,7 +35,6 @@
     min-height: 100vh;
   }
 
-  /* ── Layout ── */
   .layout { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
 
   /* ── Sidebar ── */
@@ -65,14 +63,7 @@
   }
   .sidebar-brand span { display: block; font-size: 11px; font-family: 'DM Sans', sans-serif; font-weight: 400; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px; }
 
-  .sidebar-label {
-    font-size: 10px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--text-faint);
-    font-weight: 600;
-    margin-bottom: 10px;
-  }
+  .sidebar-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-faint); font-weight: 600; margin-bottom: 10px; }
 
   .sidebar-links { list-style: none; display: flex; flex-direction: column; gap: 2px; }
   .sidebar-links a {
@@ -89,6 +80,9 @@
   }
   .sidebar-links a:hover { color: var(--text); background: var(--surface2); border-left-color: var(--gold); }
   .sidebar-links a .num { color: var(--text-faint); font-family: 'DM Mono', monospace; font-size: 11px; }
+  .sidebar-links a.locked { color: var(--text-faint); cursor: default; pointer-events: none; }
+  .sidebar-links a.locked:hover { background: none; border-left-color: transparent; }
+  .lock-icon { margin-left: auto; font-size: 11px; color: var(--gold); opacity: 0.7; }
 
   .macro-card {
     background: var(--gold-dim);
@@ -159,7 +153,6 @@
     letter-spacing: 0.04em;
     margin-bottom: 28px;
   }
-  .hero-meta span { display: flex; align-items: center; gap: 6px; }
 
   .hero-summary {
     max-width: 760px;
@@ -170,20 +163,8 @@
     padding-left: 20px;
   }
 
-  .hero-pills {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-top: 28px;
-  }
-  .pill {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    color: var(--text-muted);
-    font-size: 12px;
-    padding: 5px 12px;
-    border-radius: 20px;
-  }
+  .hero-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 28px; }
+  .pill { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); font-size: 12px; padding: 5px 12px; border-radius: 20px; }
   .pill.green { border-color: rgba(62,207,142,0.3); color: var(--green); background: rgba(62,207,142,0.08); }
   .pill.gold { border-color: rgba(201,168,76,0.3); color: var(--gold); background: var(--gold-dim); }
 
@@ -212,24 +193,8 @@
     border-radius: 4px;
     white-space: nowrap;
   }
-  h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 26px;
-    font-weight: 700;
-    color: #fff;
-    line-height: 1.2;
-  }
-
-  h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--gold-light);
-    margin: 32px 0 14px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
+  h2 { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 700; color: #fff; line-height: 1.2; }
+  h3 { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; color: var(--gold-light); margin: 32px 0 14px; display: flex; align-items: center; gap: 10px; }
   h3::before { content: ''; display: block; width: 20px; height: 2px; background: var(--gold); flex-shrink: 0; }
 
   p { color: var(--text-muted); margin-bottom: 14px; }
@@ -239,21 +204,11 @@
   ul li { padding-left: 20px; position: relative; color: var(--text-muted); }
   ul li::before { content: '›'; position: absolute; left: 0; color: var(--gold); font-size: 16px; line-height: 1.75; }
 
-  /* ── Tables ── */
+  /* Tables */
   .table-wrap { overflow-x: auto; margin: 8px 0 24px; border-radius: 10px; border: 1px solid var(--border); }
   table { width: 100%; border-collapse: collapse; font-size: 13px; }
   thead tr { background: var(--surface2); }
-  thead th {
-    padding: 12px 14px;
-    text-align: left;
-    font-size: 10.5px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    font-weight: 600;
-    white-space: nowrap;
-    border-bottom: 1px solid var(--border);
-  }
+  thead th { padding: 12px 14px; text-align: left; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); font-weight: 600; white-space: nowrap; border-bottom: 1px solid var(--border); }
   tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
   tbody tr:last-child { border-bottom: none; }
   tbody tr:hover { background: var(--surface2); }
@@ -268,163 +223,228 @@
   .risk-high { background: rgba(240,106,106,0.15); color: var(--red); font-size: 11px; padding: 2px 8px; border-radius: 12px; display: inline-block; white-space: nowrap; }
   .price { font-family: 'DM Mono', monospace; font-size: 13px; color: var(--text); }
   .fv { font-family: 'DM Mono', monospace; font-size: 13px; color: var(--green); }
-
   .table-caption { font-size: 12px; color: var(--text-faint); margin-top: 10px; font-style: italic; }
 
-  /* ── Conviction Cards ── */
-  .conviction-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-bottom: 28px; }
+  blockquote { border-left: 3px solid var(--gold); padding: 14px 20px; background: var(--gold-dim); border-radius: 0 8px 8px 0; color: var(--text-muted); font-size: 14px; font-style: italic; margin: 16px 0; }
 
-  .conv-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
+  /* ── FREE BADGE ── */
+  .free-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(62,207,142,0.12);
+    border: 1px solid rgba(62,207,142,0.3);
+    color: var(--green);
+    font-size: 11px;
+    padding: 3px 10px;
     border-radius: 12px;
-    padding: 24px;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.2s, transform 0.2s;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    margin-left: 10px;
+    vertical-align: middle;
   }
-  .conv-card:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-2px); }
-  .conv-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--gold), var(--gold-light)); }
 
-  .conv-ticker { font-family: 'DM Mono', monospace; font-size: 18px; color: var(--gold); font-weight: 500; }
-  .conv-name { font-size: 13px; color: var(--text-muted); margin-top: 2px; margin-bottom: 14px; }
-  .conv-stat-row { display: flex; gap: 16px; margin-bottom: 12px; flex-wrap: wrap; }
-  .conv-stat { }
-  .conv-stat .cs-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-faint); }
-  .conv-stat .cs-val { font-family: 'DM Mono', monospace; font-size: 14px; color: var(--text); font-weight: 500; margin-top: 2px; }
-  .conv-stat .cs-val.up { color: var(--green); }
-  .conv-insight { font-size: 12.5px; color: var(--text-muted); line-height: 1.65; border-top: 1px solid var(--border); padding-top: 12px; margin-top: 4px; }
-
-  /* Moonshot */
-  .moonshot-card {
-    background: linear-gradient(135deg, #12141f, #1a1026);
-    border: 1px solid rgba(92,156,245,0.3);
-    border-radius: 14px;
-    padding: 32px;
+  /* ── TEASER (blurred preview) ── */
+  .teaser-section {
     position: relative;
-    overflow: hidden;
-  }
-  .moonshot-card::before {
-    content: '';
-    position: absolute;
-    top: -60px; right: -60px;
-    width: 240px; height: 240px;
-    background: radial-gradient(circle, rgba(92,156,245,0.08) 0%, transparent 70%);
+    margin-bottom: 0;
+    user-select: none;
     pointer-events: none;
   }
-  .moonshot-badge {
-    display: inline-flex; align-items: center; gap: 6px;
-    background: rgba(92,156,245,0.12); border: 1px solid rgba(92,156,245,0.3);
-    color: var(--accent); font-size: 11px; padding: 4px 12px; border-radius: 4px;
-    letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; margin-bottom: 14px;
+  .teaser-content {
+    filter: blur(5px);
+    opacity: 0.45;
+    overflow: hidden;
+    max-height: 320px;
   }
-  .moonshot-card h3 { color: var(--accent); font-size: 22px; margin: 0 0 8px; }
-  .moonshot-card h3::before { background: var(--accent); }
-  .moonshot-sub { font-size: 18px; color: #fff; margin-bottom: 16px; font-family: 'Cormorant Garamond', serif; }
 
-  /* Barbell */
-  .barbell {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 16px;
-    margin: 24px 0;
+  /* ── PAYWALL WALL ── */
+  .paywall-wall {
+    position: relative;
+    z-index: 10;
+    margin: -80px 0 0;
+    background: linear-gradient(to bottom, transparent 0%, var(--bg) 30%);
+    padding: 80px 60px 0;
   }
-  .bb-segment {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 20px;
+
+  .paywall-block {
+    background: linear-gradient(135deg, #0f1220, #12101e);
+    border: 1px solid rgba(201,168,76,0.35);
+    border-radius: 20px;
+    padding: 56px 48px;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 80px rgba(201,168,76,0.07), 0 24px 60px rgba(0,0,0,0.4);
   }
-  .bb-segment .bb-pct { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 700; color: var(--gold); }
-  .bb-segment .bb-label { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
-  .bb-segment .bb-items { font-size: 12px; color: var(--text-faint); margin-top: 8px; }
-
-  /* Instrument / Factor grids */
-  .instr-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; margin: 16px 0; }
-  .instr-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 14px 16px;
-    font-size: 13px;
-  }
-  .instr-card .ic-name { color: var(--text); font-weight: 600; margin-bottom: 6px; font-family: 'DM Mono', monospace; font-size: 12px; }
-  .instr-card .ic-items { color: var(--text-faint); font-size: 12px; line-height: 1.6; }
-
-  /* Entry table */
-  .entry-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
-  .entry-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 16px;
-  }
-  .entry-card .ec-ticker { font-family: 'DM Mono', monospace; font-size: 16px; color: var(--gold); }
-  .entry-card .ec-row { display: flex; justify-content: space-between; font-size: 12px; margin-top: 6px; }
-  .entry-card .ec-row .ek { color: var(--text-faint); }
-  .entry-card .ec-row .ev { font-family: 'DM Mono', monospace; color: var(--text-muted); }
-  .entry-card .ec-row .ev.target { color: var(--green); }
-
-  /* Scenario badges */
-  .scenario-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 20px 0; }
-  .sc-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px; }
-  .sc-card.bull { border-top: 3px solid var(--green); }
-  .sc-card.base { border-top: 3px solid var(--gold); }
-  .sc-card.bear { border-top: 3px solid var(--red); }
-  .sc-title { font-weight: 600; font-size: 14px; margin-bottom: 10px; }
-  .sc-card.bull .sc-title { color: var(--green); }
-  .sc-card.base .sc-title { color: var(--gold); }
-  .sc-card.bear .sc-title { color: var(--red); }
-  .sc-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
-
-  /* Factor scores */
-  .factor-scores { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
-  .fs-item { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; min-width: 100px; }
-  .fs-ticker { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--gold); margin-bottom: 6px; }
-  .fs-bar-bg { background: var(--border); border-radius: 4px; height: 6px; overflow: hidden; }
-  .fs-bar { height: 6px; border-radius: 4px; background: linear-gradient(90deg, var(--gold), var(--green)); }
-  .fs-score { font-family: 'DM Mono', monospace; font-size: 13px; color: var(--text); margin-top: 6px; }
-
-  /* Mermaid */
-  .mermaid-wrap {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 28px;
-    margin: 20px 0;
-    overflow-x: auto;
+  .paywall-block::before {
+    content: '';
+    position: absolute;
+    top: -100px; left: 50%;
+    transform: translateX(-50%);
+    width: 500px; height: 400px;
+    background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 60%);
+    pointer-events: none;
   }
 
-  /* Blockquote */
-  blockquote {
-    border-left: 3px solid var(--gold);
-    padding: 14px 20px;
-    background: var(--gold-dim);
-    border-radius: 0 8px 8px 0;
+  .pw-lock-icon {
+    font-size: 40px;
+    margin-bottom: 16px;
+    display: block;
+    filter: drop-shadow(0 0 16px rgba(201,168,76,0.4));
+  }
+
+  .paywall-block h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .paywall-block .pw-sub {
     color: var(--text-muted);
-    font-size: 14px;
-    font-style: italic;
-    margin: 16px 0;
+    font-size: 15px;
+    max-width: 480px;
+    margin: 0 auto 36px;
+    line-height: 1.7;
   }
 
-  /* Sources */
-  .sources-list { display: flex; flex-direction: column; gap: 8px; }
-  .source-item { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; font-size: 13px; color: var(--text-muted); }
+  .pw-locked-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 40px;
+  }
+  .pw-item {
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.18);
+    color: var(--text-muted);
+    font-size: 12px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .pw-item::before { content: '🔒'; font-size: 10px; }
 
-  /* Responsive */
+  /* Pricing tiers */
+  .pricing-tiers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    max-width: 760px;
+    margin: 0 auto 36px;
+  }
+
+  .tier {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 20px;
+    text-align: center;
+    position: relative;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: pointer;
+  }
+  .tier:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-3px); }
+
+  .tier.featured {
+    border-color: rgba(201,168,76,0.5);
+    background: linear-gradient(160deg, #161428, #131828);
+    box-shadow: 0 0 40px rgba(201,168,76,0.1);
+  }
+  .tier-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: #0d0f14;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .tier-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-faint); font-weight: 600; margin-bottom: 10px; }
+  .tier-price { font-family: 'Cormorant Garamond', serif; font-size: 38px; font-weight: 700; color: #fff; line-height: 1; margin-bottom: 4px; }
+  .tier-price sub { font-size: 16px; color: var(--gold); vertical-align: super; font-family: 'DM Sans', sans-serif; font-weight: 400; }
+  .tier-period { font-size: 11px; color: var(--text-faint); margin-bottom: 18px; }
+
+  .tier-features { list-style: none; text-align: left; display: flex; flex-direction: column; gap: 7px; margin-bottom: 22px; }
+  .tier-features li { font-size: 12.5px; color: var(--text-muted); display: flex; align-items: flex-start; gap: 8px; padding-left: 0; }
+  .tier-features li::before { content: none; }
+  .tier-features li .tf-check { color: var(--green); flex-shrink: 0; margin-top: 2px; font-size: 12px; }
+
+  .btn-tier {
+    display: block;
+    width: 100%;
+    padding: 11px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-tier-primary { background: var(--gold); color: #0d0f14; }
+  .btn-tier-primary:hover { background: var(--gold-light); }
+  .btn-tier-secondary { background: var(--surface2); color: var(--text-muted); border: 1px solid var(--border); }
+  .btn-tier-secondary:hover { color: var(--text); border-color: var(--gold); }
+
+  .pw-note {
+    font-size: 12px;
+    color: var(--text-faint);
+    margin-top: 20px;
+  }
+  .pw-note a { color: var(--gold); text-decoration: none; }
+  .pw-note a:hover { text-decoration: underline; }
+
+  /* PayFast badge */
+  .pf-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 12px;
+    color: var(--text-faint);
+    margin-top: 20px;
+  }
+  .pf-methods { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-top: 10px; }
+  .pf-method {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-faint);
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 6px;
+  }
+
+  /* ── Scrollbar ── */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
   @media (max-width: 900px) {
     .layout { grid-template-columns: 1fr; }
     nav.sidebar { display: none; }
     .hero, .content { padding: 36px 24px; }
-    .barbell { grid-template-columns: 1fr; }
-    .scenario-grid { grid-template-columns: 1fr; }
+    .paywall-wall { padding: 80px 24px 0; }
+    .paywall-block { padding: 40px 24px; }
+    .pricing-tiers { grid-template-columns: 1fr; }
   }
-
-  /* Scrollbar */
-  ::-webkit-scrollbar { width: 6px; height: 6px; }
-  ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 </style>
 </head>
 <body>
@@ -442,16 +462,19 @@
     <ul class="sidebar-links">
       <li><a href="#s1"><span class="num">01</span> Top 10 Undervalued Stocks</a></li>
       <li><a href="#s2"><span class="num">02</span> Screening Methodology</a></li>
-      <li><a href="#s3"><span class="num">03</span> High-Conviction Bets</a></li>
-      <li><a href="#s4"><span class="num">04</span> Moonshot Idea</a></li>
-      <li><a href="#s5"><span class="num">05</span> Execution & Instruments</a></li>
-      <li><a href="#s6"><span class="num">06</span> Broker Overview</a></li>
-      <li><a href="#s7"><span class="num">07</span> Portfolio Construction</a></li>
-      <li><a href="#s8"><span class="num">08</span> Risk Analysis</a></li>
-      <li><a href="#s9"><span class="num">09</span> Factor Scoring</a></li>
-      <li><a href="#s10"><span class="num">10</span> Entry Guidelines</a></li>
-      <li><a href="#sources"><span class="num">—</span> Sources</a></li>
+      <li><a href="#paywall" class="locked"><span class="num">03</span> High-Conviction Bets <span class="lock-icon">🔒</span></a></li>
+      <li><a href="#paywall" class="locked"><span class="num">04</span> Moonshot Idea <span class="lock-icon">🔒</span></a></li>
+      <li><a href="#paywall" class="locked"><span class="num">05</span> Execution & Instruments <span class="lock-icon">🔒</span></a></li>
+      <li><a href="#paywall" class="locked"><span class="num">06</span> Broker Overview <span class="lock-icon">🔒</span></a></li>
+      <li><a href="#paywall" class="locked"><span class="num">07</span> Portfolio Construction <span class="lock-icon">🔒</span></a></li>
+      <li><a href="#paywall" class="locked"><span class="num">08</span> Risk Analysis <span class="lock-icon">🔒</span></a></li>
+      <li><a href="#paywall" class="locked"><span class="num">09</span> Factor Scoring <span class="lock-icon">🔒</span></a></li>
+      <li><a href="#paywall" class="locked"><span class="num">10</span> Entry Guidelines <span class="lock-icon">🔒</span></a></li>
     </ul>
+  </div>
+
+  <div style="margin-top:12px;">
+    <a href="#paywall" style="display:block;background:var(--gold);color:#0d0f14;text-align:center;padding:10px;border-radius:8px;text-decoration:none;font-weight:600;font-size:13px;">🔓 Unlock Full Report</a>
   </div>
 
   <div class="macro-card">
@@ -494,158 +517,90 @@
   <!-- Content -->
   <div class="content">
 
-    <!-- Section 1 -->
+    <!-- ═══ FREE SECTION 1 ═══ -->
     <section id="s1">
       <div class="section-header">
         <span class="section-num">01</span>
-        <h2>Top 10 Undervalued Stocks (3–12m Horizon)</h2>
+        <h2>Top 10 Undervalued Stocks (3–12m Horizon) <span class="free-badge">✓ Free Preview</span></h2>
       </div>
       <div class="table-wrap">
         <table>
           <thead>
             <tr>
-              <th>Company</th>
-              <th>Ticker</th>
-              <th>Exch</th>
-              <th>Sector</th>
-              <th>Price (ZAR)</th>
-              <th>Fair Value</th>
-              <th>Upside</th>
-              <th>Horizon</th>
-              <th>Risk</th>
-              <th>Thesis &amp; Catalysts</th>
-              <th>Access</th>
+              <th>Company</th><th>Ticker</th><th>Exch</th><th>Sector</th>
+              <th>Price (ZAR)</th><th>Fair Value</th><th>Upside</th>
+              <th>Horizon</th><th>Risk</th><th>Thesis &amp; Catalysts</th><th>Access</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><strong>Standard Bank</strong></td>
-              <td><span class="ticker">SBK</span></td>
-              <td>JSE/A2X</td>
-              <td>Banking</td>
-              <td><span class="price">~R300</span></td>
-              <td><span class="fv">~R350–360</span></td>
-              <td><span class="upside-green">+17–20%</span></td>
-              <td>12m</td>
-              <td><span class="risk-low">Low</span></td>
+              <td><strong>Standard Bank</strong></td><td><span class="ticker">SBK</span></td><td>JSE/A2X</td><td>Banking</td>
+              <td><span class="price">~R300</span></td><td><span class="fv">~R350–360</span></td><td><span class="upside-green">+17–20%</span></td>
+              <td>12m</td><td><span class="risk-low">Low</span></td>
               <td>Africa growth undervalued; ROE ~18%; trades at 0.9× book. Catalysts: rate cuts, infrastructure lending.</td>
               <td>Shares, SSFs, CFDs, ETFs</td>
             </tr>
             <tr>
-              <td><strong>FirstRand</strong></td>
-              <td><span class="ticker">FSR</span></td>
-              <td>JSE/A2X</td>
-              <td>Banking/FinServ</td>
-              <td><span class="price">~R86</span></td>
-              <td><span class="fv">~R100–105</span></td>
-              <td><span class="upside-green">+16–22%</span></td>
-              <td>12m</td>
-              <td><span class="risk-low">Low</span></td>
+              <td><strong>FirstRand</strong></td><td><span class="ticker">FSR</span></td><td>JSE/A2X</td><td>Banking/FinServ</td>
+              <td><span class="price">~R86</span></td><td><span class="fv">~R100–105</span></td><td><span class="upside-green">+16–22%</span></td>
+              <td>12m</td><td><span class="risk-low">Low</span></td>
               <td>Strong net interest income on easing rates; diversifying FinTech (RMB + WesBank). Catalyst: SA loan growth recovery.</td>
               <td>Shares, SSFs, CFDs</td>
             </tr>
             <tr>
-              <td><strong>Naspers (Prosus)</strong></td>
-              <td><span class="ticker">NPN</span></td>
-              <td>JSE/A2X</td>
-              <td>Tech/Media</td>
-              <td><span class="price">~R862</span></td>
-              <td><span class="fv">~R1,050</span></td>
-              <td><span class="upside-green">+20–25%</span></td>
-              <td>6–12m</td>
-              <td><span class="risk-med">Medium</span></td>
+              <td><strong>Naspers (Prosus)</strong></td><td><span class="ticker">NPN</span></td><td>JSE/A2X</td><td>Tech/Media</td>
+              <td><span class="price">~R862</span></td><td><span class="fv">~R1,050</span></td><td><span class="upside-green">+20–25%</span></td>
+              <td>6–12m</td><td><span class="risk-med">Medium</span></td>
               <td>Deep NAV discount; largely a Tencent proxy. Catalysts: Tencent recovery, share buybacks, divestment.</td>
               <td>Shares, SSFs, ADRs, ETFs</td>
             </tr>
             <tr>
-              <td><strong>MTN Group</strong></td>
-              <td><span class="ticker">MTN</span></td>
-              <td>JSE/A2X</td>
-              <td>Telecom</td>
-              <td><span class="price">~R19.50</span></td>
-              <td><span class="fv">~R25–26</span></td>
-              <td><span class="upside-green">+28–33%</span></td>
-              <td>6–12m</td>
-              <td><span class="risk-med">Medium</span></td>
+              <td><strong>MTN Group</strong></td><td><span class="ticker">MTN</span></td><td>JSE/A2X</td><td>Telecom</td>
+              <td><span class="price">~R19.50</span></td><td><span class="fv">~R25–26</span></td><td><span class="upside-green">+28–33%</span></td>
+              <td>6–12m</td><td><span class="risk-med">Medium</span></td>
               <td>Fintech arm (MoMo) + African subscriber growth; 5G deal. Catalysts: mobile money expansion, tower IPO speculation.</td>
               <td>Shares, SSFs, ETFs, CFDs</td>
             </tr>
             <tr>
-              <td><strong>Shoprite</strong></td>
-              <td><span class="ticker">SHP</span></td>
-              <td>JSE/A2X</td>
-              <td>Retail/Consumer</td>
-              <td><span class="price">~R267</span></td>
-              <td><span class="fv">~R300–310</span></td>
-              <td><span class="upside-green">+12–16%</span></td>
-              <td>12m</td>
-              <td><span class="risk-low">Low–Med</span></td>
+              <td><strong>Shoprite</strong></td><td><span class="ticker">SHP</span></td><td>JSE/A2X</td><td>Retail/Consumer</td>
+              <td><span class="price">~R267</span></td><td><span class="fv">~R300–310</span></td><td><span class="upside-green">+12–16%</span></td>
+              <td>12m</td><td><span class="risk-low">Low–Med</span></td>
               <td>Core Africa business undervalued; resilient earnings; ATM/convenience expansion. Catalyst: weaker rand easing costs, store rollouts.</td>
               <td>Shares, Consumer ETFs, CFDs</td>
             </tr>
             <tr>
-              <td><strong>Growthpoint</strong></td>
-              <td><span class="ticker">GRT</span></td>
-              <td>JSE/A2X</td>
-              <td>REIT</td>
-              <td><span class="price">~R16.20</span></td>
-              <td><span class="fv">~R19–20</span></td>
-              <td><span class="upside-yellow">+17–23%</span></td>
-              <td>12m</td>
-              <td><span class="risk-med">Medium</span></td>
+              <td><strong>Growthpoint</strong></td><td><span class="ticker">GRT</span></td><td>JSE/A2X</td><td>REIT</td>
+              <td><span class="price">~R16.20</span></td><td><span class="fv">~R19–20</span></td><td><span class="upside-yellow">+17–23%</span></td>
+              <td>12m</td><td><span class="risk-med">Medium</span></td>
               <td>Trades at ~0.88× NAV; 8%+ yield. Catalysts: SARB rate cuts, retail reopening, diversified portfolio.</td>
               <td>Shares, SSFs, REIT ETFs</td>
             </tr>
             <tr>
-              <td><strong>JSE Ltd</strong></td>
-              <td><span class="ticker">JSE</span></td>
-              <td>JSE/A2X</td>
-              <td>Exchange/Financial</td>
-              <td><span class="price">~R158</span></td>
-              <td><span class="fv">~R190–200</span></td>
-              <td><span class="upside-green">+20–27%</span></td>
-              <td>12m</td>
-              <td><span class="risk-low">Low</span></td>
+              <td><strong>JSE Ltd</strong></td><td><span class="ticker">JSE</span></td><td>JSE/A2X</td><td>Exchange/Financial</td>
+              <td><span class="price">~R158</span></td><td><span class="fv">~R190–200</span></td><td><span class="upside-green">+20–27%</span></td>
+              <td>12m</td><td><span class="risk-low">Low</span></td>
               <td>Monopoly exchange undervalued; growing derivatives revenues (SSF, ETF). Catalysts: higher trading fees, Africa expansion.</td>
               <td>Shares, ETFs, SSFs</td>
             </tr>
             <tr>
-              <td><strong>iOCO</strong></td>
-              <td><span class="ticker">IOC</span></td>
-              <td>JSE (AltX)</td>
-              <td>IT Services</td>
-              <td><span class="price">~R3.90</span></td>
-              <td><span class="fv">~R5.00–6.00</span></td>
-              <td><span class="upside-green">+28–54%</span></td>
-              <td>6–12m</td>
-              <td><span class="risk-high">High</span></td>
+              <td><strong>iOCO</strong></td><td><span class="ticker">IOC</span></td><td>JSE (AltX)</td><td>IT Services</td>
+              <td><span class="price">~R3.90</span></td><td><span class="fv">~R5.00–6.00</span></td><td><span class="upside-green">+28–54%</span></td>
+              <td>6–12m</td><td><span class="risk-high">High</span></td>
               <td>Turnaround IT group; ~50% recurring revenues, cloud/SaaS contracts. Catalysts: SAP/Microsoft cloud wins, margin recovery.</td>
               <td>Shares, small-cap warrants</td>
             </tr>
             <tr>
-              <td><strong>4Sight</strong></td>
-              <td><span class="ticker">4SI</span></td>
-              <td>JSE (AltX)</td>
-              <td>IT Consulting</td>
-              <td><span class="price">~R0.70</span></td>
-              <td><span class="fv">~R1.10–1.20</span></td>
-              <td><span class="upside-green">+57–71%</span></td>
-              <td>6–12m</td>
-              <td><span class="risk-high">High</span></td>
+              <td><strong>4Sight</strong></td><td><span class="ticker">4SI</span></td><td>JSE (AltX)</td><td>IT Consulting</td>
+              <td><span class="price">~R0.70</span></td><td><span class="fv">~R1.10–1.20</span></td><td><span class="upside-green">+57–71%</span></td>
+              <td>6–12m</td><td><span class="risk-high">High</span></td>
               <td>P/E ~7.9× vs peers ~10.9×; high-growth AI/tech biz with lagging share price. Catalysts: cloud adoption, strong order book.</td>
               <td>Shares (illiquid)</td>
             </tr>
             <tr>
-              <td><strong>Pan African Res.</strong></td>
-              <td><span class="ticker">PAN</span></td>
-              <td>JSE/A2X</td>
-              <td>Gold Mining</td>
-              <td><span class="price">~R38.00</span></td>
-              <td><span class="fv">~R50.00</span></td>
-              <td><span class="upside-green">+32%</span></td>
-              <td>3–6m</td>
-              <td><span class="risk-med">Medium</span></td>
-              <td>H1'26 gold output +51% to 128k oz; net-debt-free. Efficient operations + rising gold price. Catalysts: gold >$1,850/oz, new mine ramp-up.</td>
+              <td><strong>Pan African Res.</strong></td><td><span class="ticker">PAN</span></td><td>JSE/A2X</td><td>Gold Mining</td>
+              <td><span class="price">~R38.00</span></td><td><span class="fv">~R50.00</span></td><td><span class="upside-green">+32%</span></td>
+              <td>3–6m</td><td><span class="risk-med">Medium</span></td>
+              <td>H1'26 gold output +51% to 128k oz; net-debt-free. Efficient operations + rising gold price. Catalysts: gold &gt;$1,850/oz, new mine ramp-up.</td>
               <td>Shares, mining ETFs, SSFs</td>
             </tr>
           </tbody>
@@ -654,11 +609,11 @@
       <p class="table-caption">Table 1: Top 10 undervalued SA stocks – prices as of Mar 31, 2026. Fair values based on factor models, dividends, and global comps. Macro context: ALSI +30% y/y; CPI 3.0%; repo 6.75%.</p>
     </section>
 
-    <!-- Section 2 -->
+    <!-- ═══ FREE SECTION 2 ═══ -->
     <section id="s2">
       <div class="section-header">
         <span class="section-num">02</span>
-        <h2>Screening Methodology</h2>
+        <h2>Screening Methodology <span class="free-badge">✓ Free Preview</span></h2>
       </div>
       <p>We use a <strong>Barbell factor model</strong> combining value, quality, momentum, and catalysts. Academic evidence for predictive factors guides our screen. All candidate stocks must clear the following criteria:</p>
       <ul>
@@ -667,312 +622,168 @@
         <li><strong>Momentum/Technical:</strong> Upward price trends, RSI/MA signals, volume surges. We require at least moderate positive 3–6m momentum.</li>
         <li><strong>Catalysts (required):</strong> Each pick needs ≥1 clear catalyst in 3–12m: rate cuts, commodity upcycles, regulatory change, M&amp;A, or earnings turnarounds.</li>
         <li><strong>Macro Overlay:</strong> SARB policy, rand FX, inflation, load-shedding. We favor cyclical longs if rates ease, and gold/miners if inflation stays low.</li>
-        <li><strong>Liquidity:</strong> Minimum avg vol thresholds (&gt;0.5m/day). Actual avg vol and bid-ask spread listed per pick. E.g. IOC ~0.87m vs 4Sight ~0.15m.</li>
-        <li><strong>Other Signals:</strong> Insider buys/sells, institutional ownership, short interest (qualitative; data is sparse in SA).</li>
+        <li><strong>Liquidity:</strong> Minimum avg vol thresholds (&gt;0.5m/day). E.g. IOC ~0.87m vs 4Sight ~0.15m.</li>
+        <li><strong>Other Signals:</strong> Insider buys/sells, institutional ownership, short interest (qualitative).</li>
       </ul>
-      <p><strong>Scoring Rubric (0–100):</strong> Each stock scored on (Value, Quality, Momentum, Liquidity, Catalysts), weighted to prefer undervalued + high catalyst probability. Examples: 4Sight scores high on value but low on liquidity; iOCO is balanced (value 7, growth 7).</p>
+      <p><strong>Scoring Rubric (0–100):</strong> Each stock scored on (Value, Quality, Momentum, Liquidity, Catalysts), weighted to prefer undervalued + high catalyst probability.</p>
     </section>
 
-    <!-- Section 3 -->
-    <section id="s3">
-      <div class="section-header">
-        <span class="section-num">03</span>
-        <h2>High-Conviction Asymmetric Bets</h2>
-      </div>
-      <p>These <strong>3 picks</strong> represent the portfolio's alpha core — each with a contrarian hidden truth insight, entry range, and risk/return framing.</p>
-
-      <div class="conviction-grid">
-        <!-- SBK -->
-        <div class="conv-card">
-          <div class="conv-ticker">SBK.JO</div>
-          <div class="conv-name">Standard Bank — "Africa Compounding Undervalued"</div>
-          <div class="conv-stat-row">
-            <div class="conv-stat"><div class="cs-label">Entry</div><div class="cs-val">R290–305</div></div>
-            <div class="conv-stat"><div class="cs-label">Target</div><div class="cs-val up">~R360</div></div>
-            <div class="conv-stat"><div class="cs-label">Return</div><div class="cs-val up">+20%</div></div>
-            <div class="conv-stat"><div class="cs-label">Stop</div><div class="cs-val">R260</div></div>
-          </div>
-          <div class="conv-insight">
-            <strong>Hidden Truth:</strong> Africa growth engines in Nigeria, Ghana etc. that the market underestimates. Trades at ~0.9× book despite 18% ROE. SARB easing will spur loan growth; credit provisions will be released. Digital pivot underway (TymeBank spin-out). Sizing: 15–20% of portfolio.
-          </div>
+    <!-- ═══ BLURRED TEASER — Section 3 preview ═══ -->
+    <div class="teaser-section" aria-hidden="true">
+      <div class="teaser-content">
+        <div style="margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid var(--border);display:flex;gap:14px;align-items:baseline;">
+          <span style="font-family:DM Mono,monospace;font-size:12px;color:var(--gold);background:var(--gold-dim);border:1px solid rgba(201,168,76,0.25);padding:3px 8px;border-radius:4px;">03</span>
+          <span style="font-family:Cormorant Garamond,serif;font-size:26px;font-weight:700;color:#fff;">High-Conviction Asymmetric Bets</span>
         </div>
-        <!-- IOC -->
-        <div class="conv-card">
-          <div class="conv-ticker">IOC.JO</div>
-          <div class="conv-name">iOCO Ltd — "Digital Turnaround Hidden Value"</div>
-          <div class="conv-stat-row">
-            <div class="conv-stat"><div class="cs-label">Entry</div><div class="cs-val">R3.70–3.90</div></div>
-            <div class="conv-stat"><div class="cs-label">Target</div><div class="cs-val up">~R5.50</div></div>
-            <div class="conv-stat"><div class="cs-label">Return</div><div class="cs-val up">+40%</div></div>
-            <div class="conv-stat"><div class="cs-label">Stop</div><div class="cs-val">~R3.00</div></div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;">
+            <div style="font-family:DM Mono,monospace;font-size:18px;color:var(--gold);">SBK.JO</div>
+            <div style="font-size:13px;color:var(--text-muted);margin:4px 0 16px;">"Africa Compounding Undervalued"</div>
+            <div style="display:flex;gap:16px;margin-bottom:12px;">
+              <div><div style="font-size:10px;color:var(--text-faint);text-transform:uppercase;">Entry</div><div style="font-family:DM Mono,monospace;font-size:14px;">R290–305</div></div>
+              <div><div style="font-size:10px;color:var(--text-faint);text-transform:uppercase;">Target</div><div style="font-family:DM Mono,monospace;font-size:14px;color:var(--green);">~R360</div></div>
+              <div><div style="font-size:10px;color:var(--text-faint);text-transform:uppercase;">Return</div><div style="font-family:DM Mono,monospace;font-size:14px;color:var(--green);">+20%</div></div>
+            </div>
+            <div style="font-size:12.5px;color:var(--text-muted);border-top:1px solid var(--border);padding-top:12px;">Hidden Truth: Africa growth engines in Nigeria, Ghana etc. that the market underestimates...</div>
           </div>
-          <div class="conv-insight">
-            <strong>Hidden Truth:</strong> ~50% recurring revenues and high-margin cloud contracts; +46% profit growth (EPS 49→72c). P/E ~8 vs peers at ~10×. SaaS momentum deeply undervalued. Sizing: 5–10% of portfolio.
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;">
+            <div style="font-family:DM Mono,monospace;font-size:18px;color:var(--gold);">IOC.JO</div>
+            <div style="font-size:13px;color:var(--text-muted);margin:4px 0 16px;">"Digital Turnaround Hidden Value"</div>
+            <div style="display:flex;gap:16px;margin-bottom:12px;">
+              <div><div style="font-size:10px;color:var(--text-faint);text-transform:uppercase;">Entry</div><div style="font-family:DM Mono,monospace;font-size:14px;">R3.70–3.90</div></div>
+              <div><div style="font-size:10px;color:var(--text-faint);text-transform:uppercase;">Target</div><div style="font-family:DM Mono,monospace;font-size:14px;color:var(--green);">~R5.50</div></div>
+              <div><div style="font-size:10px;color:var(--text-faint);text-transform:uppercase;">Return</div><div style="font-family:DM Mono,monospace;font-size:14px;color:var(--green);">+40%</div></div>
+            </div>
+            <div style="font-size:12.5px;color:var(--text-muted);border-top:1px solid var(--border);padding-top:12px;">Hidden Truth: ~50% recurring revenues and high-margin cloud contracts; +46% profit growth...</div>
           </div>
-        </div>
-        <!-- PAN -->
-        <div class="conv-card">
-          <div class="conv-ticker">PAN.JO</div>
-          <div class="conv-name">Pan African Resources — "Gold Reset, No Debt"</div>
-          <div class="conv-stat-row">
-            <div class="conv-stat"><div class="cs-label">Entry</div><div class="cs-val">R36–40</div></div>
-            <div class="conv-stat"><div class="cs-label">Target</div><div class="cs-val up">~R50–55</div></div>
-            <div class="conv-stat"><div class="cs-label">Return</div><div class="cs-val up">+25–40%</div></div>
-            <div class="conv-stat"><div class="cs-label">Stop</div><div class="cs-val">~R30</div></div>
-          </div>
-          <div class="conv-insight">
-            <strong>Hidden Truth:</strong> H1FY26 gold output +51% to 128k oz; net debt now zero. Trades at &lt;7× P/E. Any gold price uptick to $2,000+ could send PAN well above fair value. Interim dividend of ZAc12 started. Sizing: 5% of portfolio.
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;">
+            <div style="font-family:DM Mono,monospace;font-size:18px;color:var(--gold);">PAN.JO</div>
+            <div style="font-size:13px;color:var(--text-muted);margin:4px 0 16px;">"Gold Reset, No Debt"</div>
+            <div style="display:flex;gap:16px;margin-bottom:12px;">
+              <div><div style="font-size:10px;color:var(--text-faint);text-transform:uppercase;">Entry</div><div style="font-family:DM Mono,monospace;font-size:14px;">R36–40</div></div>
+              <div><div style="font-size:10px;color:var(--text-faint);text-transform:uppercase;">Target</div><div style="font-family:DM Mono,monospace;font-size:14px;color:var(--green);">~R50–55</div></div>
+              <div><div style="font-size:10px;color:var(--text-faint);text-transform:uppercase;">Return</div><div style="font-family:DM Mono,monospace;font-size:14px;color:var(--green);">+40%</div></div>
+            </div>
+            <div style="font-size:12.5px;color:var(--text-muted);border-top:1px solid var(--border);padding-top:12px;">Hidden Truth: H1FY26 gold output +51% to 128k oz; net debt now zero. Trades at &lt;7× P/E...</div>
           </div>
         </div>
       </div>
-      <blockquote>All entries assume SA market liquidity. Ladder orders to avoid market impact. Use limit buys and scale-in if needed.</blockquote>
-    </section>
+    </div>
 
-    <!-- Section 4 -->
-    <section id="s4">
-      <div class="section-header">
-        <span class="section-num">04</span>
-        <h2>Moonshot Idea (5×–10× Upside)</h2>
-      </div>
-      <div class="moonshot-card">
-        <div class="moonshot-badge">🚀 Moonshot — High Risk / Asymmetric</div>
-        <h3>W2J — Weaver Fintech</h3>
-        <div class="moonshot-sub">"Fintech under Disguise"</div>
-        <p style="color:var(--text-muted);margin-bottom:16px;">A small-cap housing both Buy-Now-Pay-Later (BNPL) and fintech assets, Weaver is misunderstood. Its fintech arm (PayJustNow/FinChoice) now generates <strong>98% of profits</strong>, yet the market still prices it like a stagnant retailer. Current P/E ~11 with a 5% yield — extreme value for a fintech growth platform.</p>
-        <p style="color:var(--gold-light);font-style:italic;font-family:'Cormorant Garamond',serif;font-size:18px;margin-bottom:16px;">"Market has not yet realized: Weaver Fintech is a cash machine, not a retailer."</p>
-        <div class="conv-stat-row" style="margin-bottom:0;">
-          <div class="conv-stat"><div class="cs-label">Entry</div><div class="cs-val">R24–26</div></div>
-          <div class="conv-stat"><div class="cs-label">Target (3yr)</div><div class="cs-val up">~R120 (5×)</div></div>
-          <div class="conv-stat"><div class="cs-label">Downside</div><div class="cs-val" style="color:var(--red)">–50% (worst)</div></div>
-          <div class="conv-stat"><div class="cs-label">Catalyst</div><div class="cs-val">BNPL adoption</div></div>
+    <!-- ═══ PAYWALL BLOCK ═══ -->
+    <div class="paywall-wall" id="paywall">
+      <div class="paywall-block">
+        <span class="pw-lock-icon">🔒</span>
+        <h2>Premium Intelligence Locked</h2>
+        <p class="pw-sub">You've seen the overview and the screening logic. The real edge — <em>exact entries, stop-losses, conviction theses, and portfolio construction</em> — is behind the paywall.</p>
+
+        <div class="pw-locked-items">
+          <span class="pw-item">03 · High-Conviction Bets</span>
+          <span class="pw-item">04 · Moonshot 5–10× Idea</span>
+          <span class="pw-item">05 · Execution & Instruments</span>
+          <span class="pw-item">06 · Broker Matrix</span>
+          <span class="pw-item">07 · Portfolio Construction</span>
+          <span class="pw-item">08 · Risk Analysis</span>
+          <span class="pw-item">09 · Factor Scoring</span>
+          <span class="pw-item">10 · Entry Guidelines</span>
         </div>
-      </div>
-    </section>
 
-    <!-- Section 5 -->
-    <section id="s5">
-      <div class="section-header">
-        <span class="section-num">05</span>
-        <h2>Execution &amp; Instruments</h2>
-      </div>
-      <div class="instr-grid">
-        <div class="instr-card"><div class="ic-name">Equity Shares</div><div class="ic-items">SBK, FSR, SHP, MTN, GRT, JSE. Default vehicles for core picks. Use limit buy orders.</div></div>
-        <div class="instr-card"><div class="ic-name">SSFs</div><div class="ic-items">Single-Stock Futures for leverage on large-caps. E.g. SBK, FSR, GRT, MTN, JSE SSFs on JSE. ~2× exposure.</div></div>
-        <div class="instr-card"><div class="ic-name">Call Options</div><div class="ic-items">Where available on blue-chips for leveraged upside with defined risk. E.g. SBK call strike ~320, Jun/Dec exp.</div></div>
-        <div class="instr-card"><div class="ic-name">CFDs</div><div class="ic-items">For short-term tactical positions. Especially gold theme via CFDs on gold ETFs (SGL).</div></div>
-        <div class="instr-card"><div class="ic-name">ETFs &amp; Funds</div><div class="ic-items">STXFIN (banks), STXREIT (property), GOLJ (gold miners), JSE/Top40 ETFs for core and hedging.</div></div>
-        <div class="instr-card"><div class="ic-name">NPN Special</div><div class="ic-items">Shares only (no SSF). Offshore listing: Prosus P2P or NPN ADRs for global exposure.</div></div>
-        <div class="instr-card"><div class="ic-name">iOCO / 4Sight</div><div class="ic-items">Shares only — no listed derivatives. AltX liquidity ~0.8m/day (IOC), ~0.15m/day (4SI).</div></div>
-        <div class="instr-card"><div class="ic-name">PAN Miners</div><div class="ic-items">Shares, NewGold ETF (GOLJ.JO), resource indices. Gold mining SSF if available.</div></div>
-      </div>
-    </section>
+        <!-- Pricing Tiers -->
+        <div class="pricing-tiers">
 
-    <!-- Section 6 -->
-    <section id="s6">
-      <div class="section-header">
-        <span class="section-num">06</span>
-        <h2>Broker &amp; Platform Overview</h2>
-      </div>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Broker / Platform</th>
-              <th>Markets</th>
-              <th>Instruments</th>
-              <th>Client Type</th>
-              <th>Fees / Notes</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td><strong>EasyEquities</strong></td><td>JSE (via ABSA)</td><td>Shares, FSRs (fractional), some CFDs</td><td>Retail / Novices</td><td>Brokerage ~0.25% (R0.01 min); no A2X; no SSFs/Derivatives.</td></tr>
-            <tr><td><strong>FNB Share Investing</strong></td><td>JSE (via Absa CIB)</td><td>Shares, SSFs, CFDs, Futures</td><td>Retail / Private</td><td>Flat ~R25–R50; SSFs and CFDs (limited); calls/warrants.</td></tr>
-            <tr><td><strong>Standard Bank OST</strong></td><td>JSE/A2X, JSE-SSF/Futures</td><td>Shares, SSFs, CFDs, Futures, Options</td><td>Retail / High-Net</td><td>Flat R50 + 0.35%; SSF 0.4% (min R110); CFDs: R50 + 0.35%.</td></tr>
-            <tr><td><strong>Investec Securities</strong></td><td>JSE/A2X, JSE-SSF</td><td>Shares, SSFs, CFDs, Options, Bonds</td><td>Institutional / Premium</td><td>Tiered fees; negotiable, higher-end research.</td></tr>
-            <tr><td><strong>Absa Securities (CIB)</strong></td><td>JSE/A2X</td><td>Shares, SSFs, Derivatives, ETFs</td><td>Retail / Institutional</td><td>Via FNB/Absa Online. Offers A2X trading.</td></tr>
-            <tr><td><strong>PSG Online</strong></td><td>JSE (via FNB)</td><td>Shares, Unit Trusts</td><td>Retail / Mid-tier</td><td>Low min; A2X via partner; no SSFs.</td></tr>
-            <tr><td><strong>RMB Morgan Stanley</strong></td><td>JSE/A2X</td><td>Shares, Derivatives (incl. SSF/Options)</td><td>Institutional</td><td>Full-service; competitive bulk trading rates.</td></tr>
-            <tr><td><strong>Sasfin Securities</strong></td><td>JSE/A2X, 4AX/AltX</td><td>Shares, SSFs, CFDs, Derivatives</td><td>Retail / SME</td><td>Good for small-caps/AltX; Capital Rails platform.</td></tr>
-            <tr><td><strong>Allan Gray / Anchor</strong></td><td>JSE/A2X</td><td>Shares, Units, ETFs, SSFs</td><td>Institutional</td><td>A2X access via Anchor.</td></tr>
-            <tr><td><strong>CFD Brokers (Saxo, IG)</strong></td><td>Global (online)</td><td>ETFs, CFDs (incl. JSE indices)</td><td>Retail / Traders</td><td>Leverage; not for long-term holds; tactical hedging only.</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="table-caption">Table 2: JSE-listed stocks can trade on A2X if broker is an approved A2X trading member (e.g. ABSA, Investec, Nedbank, RMB, Standard Bank, UBS). SSFs are only on JSE via approved brokers. Choose based on need: retail traders often use EasyEquities, SBOST, FNB; institutional/active use Investec, RMB, Sasfin.</p>
-    </section>
+          <!-- Single Report -->
+          <div class="tier">
+            <div class="tier-label">Single Report</div>
+            <div class="tier-price"><sub>R</sub>99</div>
+            <div class="tier-period">one-time · this issue only</div>
+            <ul class="tier-features">
+              <li><span class="tf-check">✓</span> Full Apr 2026 report</li>
+              <li><span class="tf-check">✓</span> All 10 stock theses</li>
+              <li><span class="tf-check">✓</span> Entry &amp; stop levels</li>
+              <li><span class="tf-check">✓</span> Portfolio construction</li>
+              <li style="color:var(--text-faint);">✗ Future issues</li>
+              <li style="color:var(--text-faint);">✗ Broker matrix</li>
+            </ul>
+            <!-- Replace YOUR_PAYFAST_LINK with your actual PayFast payment link -->
+            <a href="https://payfast.io" target="_blank" class="btn-tier btn-tier-secondary">
+              Unlock This Issue →
+            </a>
+          </div>
 
-    <!-- Section 7 -->
-    <section id="s7">
-      <div class="section-header">
-        <span class="section-num">07</span>
-        <h2>Portfolio Construction (Barbell)</h2>
-      </div>
-      <div class="barbell">
-        <div class="bb-segment">
-          <div class="bb-pct">50–60%</div>
-          <div class="bb-label">Core Defensive</div>
-          <div class="bb-items">SBK · FSR · MTN · SHP · JSE<br/>Dividends &amp; franchise moats</div>
+          <!-- Monthly — FEATURED -->
+          <div class="tier featured">
+            <div class="tier-badge">Most Popular</div>
+            <div class="tier-label">Monthly</div>
+            <div class="tier-price"><sub>R</sub>199</div>
+            <div class="tier-period">per month · cancel anytime</div>
+            <ul class="tier-features">
+              <li><span class="tf-check">✓</span> Every weekly report</li>
+              <li><span class="tf-check">✓</span> Full conviction theses</li>
+              <li><span class="tf-check">✓</span> Entry, target &amp; stops</li>
+              <li><span class="tf-check">✓</span> Broker &amp; instrument guide</li>
+              <li><span class="tf-check">✓</span> Portfolio construction</li>
+              <li><span class="tf-check">✓</span> Bull/base/bear scenarios</li>
+            </ul>
+            <!-- Replace YOUR_PAYFAST_LINK with your actual PayFast payment link -->
+            <a href="https://payfast.io" target="_blank" class="btn-tier btn-tier-primary">
+              Unlock Full Report (R199) →
+            </a>
+          </div>
+
+          <!-- Annual -->
+          <div class="tier">
+            <div class="tier-label">Annual</div>
+            <div class="tier-price"><sub>R</sub>999</div>
+            <div class="tier-period">per year · 2 months free</div>
+            <ul class="tier-features">
+              <li><span class="tf-check">✓</span> Everything in Monthly</li>
+              <li><span class="tf-check">✓</span> 52 weekly reports/year</li>
+              <li><span class="tf-check">✓</span> Archive access</li>
+              <li><span class="tf-check">✓</span> Priority email support</li>
+              <li><span class="tf-check">✓</span> Custom watchlist alerts</li>
+              <li><span class="tf-check">✓</span> 2 months free vs monthly</li>
+            </ul>
+            <!-- Replace YOUR_PAYFAST_LINK with your actual PayFast payment link -->
+            <a href="https://payfast.io" target="_blank" class="btn-tier btn-tier-secondary">
+              Save with Annual →
+            </a>
+          </div>
+
         </div>
-        <div class="bb-segment">
-          <div class="bb-pct">30–40%</div>
-          <div class="bb-label">Growth / Cyclical</div>
-          <div class="bb-items">GRT · NPN · IOC · new picks<br/>High-upside undervalued</div>
-        </div>
-        <div class="bb-segment">
-          <div class="bb-pct">5–10%</div>
-          <div class="bb-label">Speculative</div>
-          <div class="bb-items">W2 · 4SI · PAN<br/>Moonshot &amp; volatile names</div>
-        </div>
-      </div>
-      <p><strong>Example weights:</strong> SBK 15%, FSR 10%, MTN 10%, SHP 10%, NPN 10%, GRT 5%, JSE 5%, iOCO 5%, PAN 5%, 4Sight 5%, W2 10% (total 100%).</p>
-      <p><strong>Rebalancing:</strong> Weekly/biweekly monitoring; trim winners to fund laggards; hedge via index puts or short GLD. Stop-loss: 10–15% on small-caps, 20% on large-caps.</p>
-      <p><strong>Sector diversification:</strong> Financials/Banks (35%), Retail (10%), Telecom (10%), Real Estate (5%), Technology (15%), Materials (5%), Gold (5%), Consumer/Income (15%).</p>
-      <div class="mermaid-wrap">
-        <div class="mermaid">
-pie title Sector Allocation
-"Financials (Banks/Fintech)": 35
-"Retail/Consumer": 25
-"Technology": 20
-"Telecom": 10
-"Real Estate": 10
-        </div>
-      </div>
-    </section>
 
-    <!-- Section 8 -->
-    <section id="s8">
-      <div class="section-header">
-        <span class="section-num">08</span>
-        <h2>Risk Analysis &amp; Macro Overlay</h2>
-      </div>
-      <p><strong>Macro Risks — four key X-factors:</strong></p>
-      <ul>
-        <li><strong>Inflation &amp; Rates:</strong> A sudden jump (oil shock, war escalation) could force SARB hikes, hurting cyclicals. Stable 3% CPI and global ease (Fed paused) bode well for cuts by H2.</li>
-        <li><strong>Rand Volatility:</strong> At ~17.1/USD, a sharp devaluation (&gt;18.5) could negate equity gains and raise inflation.</li>
-        <li><strong>Load-shedding:</strong> Currently negligible (EAF 65–69%). A relapse would hurt retailers and small-caps. We assume no major interruption through mid-2026.</li>
-        <li><strong>Regulatory/Political:</strong> New taxes on retail, mining royalties, or fintech regulation. Monitor any policy shifts closely.</li>
-      </ul>
-      <p><strong>Stock-specific risks:</strong> Banks — credit cycle spike, deposit flight. NPN/MTN — tech regulatory crackdowns. Shoprite — consumer spending squeeze. Growthpoint — property oversupply. iOCO/4Sight — execution risk. Pan African — gold price reversal.</p>
-      <p>We mitigate via stops or hedges (e.g. index puts to guard against portfolio tail risk). In a "bear" scenario (geopolitical shock, rand crash), defensive banks and JSE Ltd hold value (+5–10%), while small tech/gold names could drop 30–50%. The barbell ensures ~40–50% of portfolio in lower-volatility core.</p>
-    </section>
-
-    <!-- Section 9 -->
-    <section id="s9">
-      <div class="section-header">
-        <span class="section-num">09</span>
-        <h2>Factor Scoring &amp; Scenario Analysis</h2>
-      </div>
-      <p>Each stock is scored (0–100) on overall asymmetry: upside vs downside. Higher score = more asymmetric reward profile.</p>
-      <div class="factor-scores">
-        <div class="fs-item"><div class="fs-ticker">SBK</div><div class="fs-bar-bg"><div class="fs-bar" style="width:85%"></div></div><div class="fs-score">85 / 100</div></div>
-        <div class="fs-item"><div class="fs-ticker">FSR</div><div class="fs-bar-bg"><div class="fs-bar" style="width:82%"></div></div><div class="fs-score">82 / 100</div></div>
-        <div class="fs-item"><div class="fs-ticker">MTN</div><div class="fs-bar-bg"><div class="fs-bar" style="width:80%"></div></div><div class="fs-score">80 / 100</div></div>
-        <div class="fs-item"><div class="fs-ticker">NPN</div><div class="fs-bar-bg"><div class="fs-bar" style="width:78%"></div></div><div class="fs-score">78 / 100</div></div>
-        <div class="fs-item"><div class="fs-ticker">SHP</div><div class="fs-bar-bg"><div class="fs-bar" style="width:75%"></div></div><div class="fs-score">75 / 100</div></div>
-        <div class="fs-item"><div class="fs-ticker">GRT</div><div class="fs-bar-bg"><div class="fs-bar" style="width:72%"></div></div><div class="fs-score">72 / 100</div></div>
-        <div class="fs-item"><div class="fs-ticker">JSE</div><div class="fs-bar-bg"><div class="fs-bar" style="width:70%"></div></div><div class="fs-score">70 / 100</div></div>
-        <div class="fs-item"><div class="fs-ticker">IOC</div><div class="fs-bar-bg"><div class="fs-bar" style="width:68%"></div></div><div class="fs-score">68 / 100</div></div>
-        <div class="fs-item"><div class="fs-ticker">PAN</div><div class="fs-bar-bg"><div class="fs-bar" style="width:65%"></div></div><div class="fs-score">65 / 100</div></div>
-        <div class="fs-item"><div class="fs-ticker">4SI</div><div class="fs-bar-bg"><div class="fs-bar" style="width:60%"></div></div><div class="fs-score">60 / 100</div></div>
-      </div>
-
-      <div class="scenario-grid">
-        <div class="sc-card bull">
-          <div class="sc-title">🟢 Bull — Euphoria</div>
-          <div class="sc-desc">Fed/SARB ease; commodity rally continues. Banks/retail +30%, tech/small +50%. SBK +30%, MTN +40%, IOC +60%, 4SI +80%.</div>
+        <!-- Institutional -->
+        <div style="background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.2);border-radius:12px;padding:20px 28px;max-width:500px;margin:0 auto 28px;display:flex;align-items:center;gap:20px;text-align:left;">
+          <div style="font-size:28px;">🏛️</div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;">Institutional Tier — from R5,000/month</div>
+            <div style="font-size:12px;color:var(--text-muted);">Multi-seat access, custom sector reports, and direct analyst Q&amp;A. For asset managers, family offices, and prop desks.</div>
+          </div>
+          <a href="mailto:research@antifragile-alpha.co.za" style="background:var(--surface2);border:1px solid var(--border);color:var(--gold);font-size:12px;padding:8px 16px;border-radius:8px;text-decoration:none;white-space:nowrap;flex-shrink:0;">Contact Us</a>
         </div>
-        <div class="sc-card base">
-          <div class="sc-title">🟡 Base — Gradual Growth</div>
-          <div class="sc-desc">SARB cuts 1–2×. Banks +10–15%, others +5–20%. Gold holds above $1,800. Rand stable at 17–18/USD.</div>
-        </div>
-        <div class="sc-card bear">
-          <div class="sc-title">🔴 Bear — Inflation Surprise</div>
-          <div class="sc-desc">No rate cuts; rand weakens. Banks/retail flat to –10%, tech/small –20%. Defensive core cushions overall loss.</div>
-        </div>
-      </div>
 
-      <div class="mermaid-wrap">
-        <div class="mermaid">
-graph TB
-    A[Start Week] --> B(Identify undervalued stocks)
-    B --> C(Deep analysis and factor scoring)
-    C --> D(Select top ideas and allocate)
-    D --> E(Place orders: shares/SSFs/CFDs)
-    E --> F(Monitor catalysts and risk)
-    F --> G(Rebalance/hedge as needed)
+        <!-- Payment methods -->
+        <div>
+          <div class="pf-badge">🔐 Secured by PayFast · All major SA payment methods accepted</div>
+          <div class="pf-methods">
+            <span class="pf-method">💳 Visa / Mastercard</span>
+            <span class="pf-method">⚡ Instant EFT</span>
+            <span class="pf-method">📱 SnapScan QR</span>
+            <span class="pf-method">🏦 Capitec Pay</span>
+            <span class="pf-method">📲 Masterpass</span>
+          </div>
         </div>
-      </div>
 
-      <div class="mermaid-wrap">
-        <div class="mermaid">
-timeline
-    2025-11-20 : SARB cuts repo 25bps to 6.75%
-    2026-01-29 : SARB holds 6.75%
-    2026-02-28 : Inflation reaches ~3.0% (Feb)
-    2026-01-06 : Eskom reports 294 days no load-shedding
-    2026-03-26 : SARB holds 6.75%
-    2026-04 : Banks Q1 results preview growth on margins
-        </div>
+        <p class="pw-note">Already a subscriber? <a href="mailto:research@antifragile-alpha.co.za">Email us</a> for access. · <a href="index.html">← Back to portal</a> · Not financial advice.</p>
       </div>
-    </section>
-
-    <!-- Section 10 -->
-    <section id="s10">
-      <div class="section-header">
-        <span class="section-num">10</span>
-        <h2>Instruments &amp; Entry Guidelines</h2>
-      </div>
-      <div class="entry-grid">
-        <div class="entry-card"><div class="ec-ticker">SBK</div><div class="ec-row"><span class="ek">Buy</span><span class="ev">R290–300</span></div><div class="ec-row"><span class="ek">Target</span><span class="ev target">~R350</span></div><div class="ec-row"><span class="ek">Stop</span><span class="ev">R260</span></div></div>
-        <div class="entry-card"><div class="ec-ticker">FSR</div><div class="ec-row"><span class="ek">Buy</span><span class="ev">R82–86</span></div><div class="ec-row"><span class="ek">Target</span><span class="ev target">~R100</span></div><div class="ec-row"><span class="ek">Stop</span><span class="ev">—</span></div></div>
-        <div class="entry-card"><div class="ec-ticker">NPN</div><div class="ec-row"><span class="ek">Buy</span><span class="ev">R820–860</span></div><div class="ec-row"><span class="ek">Target</span><span class="ev target">R1,000+</span></div><div class="ec-row"><span class="ek">Stop</span><span class="ev">—</span></div></div>
-        <div class="entry-card"><div class="ec-ticker">MTN</div><div class="ec-row"><span class="ek">Buy</span><span class="ev">R18.50–19.50</span></div><div class="ec-row"><span class="ek">Target</span><span class="ev target">~R25</span></div><div class="ec-row"><span class="ek">Stop</span><span class="ev">R16.50</span></div></div>
-        <div class="entry-card"><div class="ec-ticker">SHP</div><div class="ec-row"><span class="ek">Buy</span><span class="ev">R250–260</span></div><div class="ec-row"><span class="ek">Target</span><span class="ev target">~R300</span></div><div class="ec-row"><span class="ek">Stop</span><span class="ev">R240</span></div></div>
-        <div class="entry-card"><div class="ec-ticker">GRT</div><div class="ec-row"><span class="ek">Buy</span><span class="ev">R15.50–16.50</span></div><div class="ec-row"><span class="ek">Target</span><span class="ev target">R19+</span></div><div class="ec-row"><span class="ek">Stop</span><span class="ev">—</span></div></div>
-        <div class="entry-card"><div class="ec-ticker">JSE</div><div class="ec-row"><span class="ek">Buy</span><span class="ev">R150–158</span></div><div class="ec-row"><span class="ek">Target</span><span class="ev target">~R190</span></div><div class="ec-row"><span class="ek">Stop</span><span class="ev">R140</span></div></div>
-        <div class="entry-card"><div class="ec-ticker">IOC</div><div class="ec-row"><span class="ek">Buy</span><span class="ev">R3.60–3.90</span></div><div class="ec-row"><span class="ek">Target</span><span class="ev target">R5.50</span></div><div class="ec-row"><span class="ek">Stop</span><span class="ev">—</span></div></div>
-        <div class="entry-card"><div class="ec-ticker">4SI</div><div class="ec-row"><span class="ek">Buy</span><span class="ev">R0.60–0.70</span></div><div class="ec-row"><span class="ek">Target</span><span class="ev target">R1.10</span></div><div class="ec-row"><span class="ek">Stop</span><span class="ev">—</span></div></div>
-        <div class="entry-card"><div class="ec-ticker">PAN</div><div class="ec-row"><span class="ek">Buy</span><span class="ev">R35–38</span></div><div class="ec-row"><span class="ek">Target</span><span class="ev target">R50</span></div><div class="ec-row"><span class="ek">Stop</span><span class="ev">—</span></div></div>
-      </div>
-      <p style="margin-top:16px;">Position sizing proportional to confidence and liquidity. Use limit orders and scale-in on dips. E.g. SBK 10% of portfolio, IOC 3%, W2 5%.</p>
-    </section>
-
-    <!-- Sources -->
-    <section id="sources">
-      <div class="section-header">
-        <span class="section-num">—</span>
-        <h2>Sources</h2>
-      </div>
-      <div class="sources-list">
-        <div class="source-item">Company data and metrics from official filings and market data (ProfileData sharedata for IOC, PAN, 4SI).</div>
-        <div class="source-item">Macro/economic context: Inflation 3.0%, repo 6.75% (SARB); rand ~17.1/USD (South African Treasury/SARB data).</div>
-        <div class="source-item">Eskom/energy: Eskom generation reports — EAF 65–69%, 294 days without load-shedding as of Jan 2026.</div>
-        <div class="source-item">Market insights (precious metals, fintech growth): SA financial press and JSE market data.</div>
-        <div class="source-item">Broker lists and A2X listings from A2X Markets approved member directory.</div>
-        <div class="source-item">Factor performance evidence drawn from academic finance literature (Swedroe et al.) and SA market commentaries.</div>
-        <div class="source-item">All analytics current as of April 1, 2026 market close. This report is for informational purposes only and does not constitute financial advice.</div>
-      </div>
-    </section>
+    </div>
 
   </div><!-- /.content -->
 </main>
 </div><!-- /.layout -->
 
 <script>
-  mermaid.initialize({
-    startOnLoad: true,
-    theme: 'dark',
-    themeVariables: {
-      primaryColor: '#1a1e29',
-      primaryTextColor: '#dde2ef',
-      primaryBorderColor: '#252a38',
-      lineColor: '#c9a84c',
-      secondaryColor: '#13161e',
-      tertiaryColor: '#0d0f14',
-      edgeLabelBackground: '#13161e',
-      titleColor: '#c9a84c',
-    },
-    flowchart: { curve: 'basis' },
+  mermaid.initialize({ startOnLoad: true, theme: 'dark',
+    themeVariables: { primaryColor: '#1a1e29', primaryTextColor: '#dde2ef', primaryBorderColor: '#252a38', lineColor: '#c9a84c', secondaryColor: '#13161e', titleColor: '#c9a84c' }
   });
 </script>
 </body>

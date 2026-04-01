@@ -24,17 +24,9 @@
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.7; min-height: 100vh; }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    line-height: 1.7;
-    min-height: 100vh;
-  }
-
-  /* ── Top Nav ── */
+  /* ── Header ── */
   header {
     background: var(--surface);
     border-bottom: 1px solid var(--border);
@@ -47,240 +39,60 @@
     top: 0;
     z-index: 100;
   }
-
-  .brand {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--gold);
-    letter-spacing: 0.02em;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-  }
-  .brand .diamond { font-size: 10px; opacity: 0.6; }
-
-  .nav-links {
-    display: flex;
-    gap: 6px;
-    align-items: center;
-  }
-  .nav-links a {
-    text-decoration: none;
-    color: var(--text-muted);
-    font-size: 13px;
-    padding: 6px 14px;
-    border-radius: 6px;
-    transition: all 0.2s;
-  }
+  .brand { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 700; color: var(--gold); letter-spacing: 0.02em; display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-links { display: flex; gap: 6px; align-items: center; }
+  .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 13px; padding: 6px 14px; border-radius: 6px; transition: all 0.2s; }
   .nav-links a:hover { color: var(--text); background: var(--surface2); }
-  .nav-links .cta {
-    background: var(--gold-dim);
-    color: var(--gold);
-    border: 1px solid rgba(201,168,76,0.25);
-  }
-  .nav-links .cta:hover { background: rgba(201,168,76,0.18); }
+  .nav-links .cta { background: var(--gold); color: #0b0d12; font-weight: 600; }
+  .nav-links .cta:hover { background: var(--gold-light); }
 
   /* ── Hero ── */
-  .hero {
-    padding: 96px 48px 72px;
-    position: relative;
-    overflow: hidden;
-    text-align: center;
-    border-bottom: 1px solid var(--border);
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -120px; left: 50%;
-    transform: translateX(-50%);
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 60%);
-    pointer-events: none;
-  }
-  .hero-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--gold);
-    font-weight: 600;
-    margin-bottom: 20px;
-    background: var(--gold-dim);
-    border: 1px solid rgba(201,168,76,0.2);
-    padding: 5px 14px;
-    border-radius: 4px;
-  }
-
-  .hero h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(36px, 6vw, 72px);
-    font-weight: 700;
-    color: #fff;
-    line-height: 1.1;
-    max-width: 720px;
-    margin: 0 auto 20px;
-  }
+  .hero { padding: 96px 48px 72px; position: relative; overflow: hidden; text-align: center; border-bottom: 1px solid var(--border); }
+  .hero::before { content: ''; position: absolute; top: -120px; left: 50%; transform: translateX(-50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 60%); pointer-events: none; }
+  .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 20px; background: var(--gold-dim); border: 1px solid rgba(201,168,76,0.2); padding: 5px 14px; border-radius: 4px; }
+  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 6vw, 72px); font-weight: 700; color: #fff; line-height: 1.1; max-width: 720px; margin: 0 auto 20px; }
   .hero h1 em { color: var(--gold); font-style: normal; }
+  .hero-sub { max-width: 560px; margin: 0 auto 36px; color: var(--text-muted); font-size: 16px; }
 
-  .hero-sub {
-    max-width: 560px;
-    margin: 0 auto 36px;
-    color: var(--text-muted);
-    font-size: 16px;
-  }
+  .hero-cta-group { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 44px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; cursor: pointer; border: none; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+  .btn-primary { background: var(--gold); color: #0b0d12; }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-secondary { background: var(--surface2); color: var(--text-muted); border: 1px solid var(--border); }
+  .btn-secondary:hover { color: var(--text); border-color: var(--gold); }
 
-  .hero-stats {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    flex-wrap: wrap;
-  }
+  .hero-stats { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
   .hs { text-align: center; }
   .hs .hs-val { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 700; color: var(--gold); }
   .hs .hs-label { font-size: 12px; color: var(--text-faint); letter-spacing: 0.08em; text-transform: uppercase; }
 
-  /* ── Main content ── */
   .container { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
 
-  /* ── Filter bar ── */
-  .filter-bar {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 32px 0 24px;
-    flex-wrap: wrap;
-  }
+  /* ── Macro strip ── */
+  .macro-strip { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px 32px; display: flex; gap: 32px; flex-wrap: wrap; margin: 40px 0 48px; align-items: center; }
+  .ms-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-faint); font-weight: 600; margin-right: 8px; }
+  .ms-item { display: flex; flex-direction: column; gap: 2px; }
+  .ms-key { font-size: 10.5px; color: var(--text-faint); }
+  .ms-val { font-family: 'DM Mono', monospace; font-size: 15px; font-weight: 500; }
+  .ms-val.up { color: var(--green); }
+  .ms-val.neutral { color: var(--gold); }
+  .ms-divider { width: 1px; height: 36px; background: var(--border); }
 
-  .search-box {
-    flex: 1;
-    min-width: 220px;
-    max-width: 320px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 9px 14px;
-    transition: border-color 0.2s;
-  }
-  .search-box:focus-within { border-color: rgba(201,168,76,0.4); }
-  .search-box svg { color: var(--text-faint); flex-shrink: 0; }
-  .search-box input {
-    background: none;
-    border: none;
-    outline: none;
-    color: var(--text);
-    font-size: 13px;
-    font-family: 'DM Sans', sans-serif;
-    width: 100%;
-  }
-  .search-box input::placeholder { color: var(--text-faint); }
+  /* ── Section headers ── */
+  .section-row { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  .section-row h2 { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: #fff; }
+  .see-all { font-size: 13px; color: var(--gold); text-decoration: none; transition: opacity 0.2s; }
+  .see-all:hover { opacity: 0.7; }
 
-  .filter-chips { display: flex; gap: 8px; flex-wrap: wrap; }
-  .chip {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    color: var(--text-muted);
-    font-size: 12px;
-    padding: 6px 14px;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.2s;
-    user-select: none;
-  }
-  .chip:hover { border-color: var(--gold); color: var(--gold); }
-  .chip.active { background: var(--gold-dim); border-color: rgba(201,168,76,0.4); color: var(--gold); }
-
-  .filter-count { margin-left: auto; font-size: 12px; color: var(--text-faint); }
-
-  /* ── Section title ── */
-  .section-row {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--border);
-  }
-  .section-row h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
-    color: #fff;
-  }
-  .section-row .see-all {
-    font-size: 13px;
-    color: var(--gold);
-    text-decoration: none;
-    transition: opacity 0.2s;
-  }
-  .section-row .see-all:hover { opacity: 0.7; }
-
-  /* ── Featured Report ── */
-  .featured {
-    background: linear-gradient(135deg, #11141c 0%, #171128 100%);
-    border: 1px solid rgba(201,168,76,0.25);
-    border-radius: 16px;
-    padding: 40px;
-    margin-bottom: 48px;
-    position: relative;
-    overflow: hidden;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 32px;
-    align-items: center;
-  }
-  .featured::before {
-    content: 'LATEST';
-    position: absolute;
-    top: 16px; right: 20px;
-    font-size: 10px; letter-spacing: 0.15em;
-    color: var(--gold); font-weight: 700;
-    background: var(--gold-dim);
-    border: 1px solid rgba(201,168,76,0.3);
-    padding: 3px 10px; border-radius: 4px;
-  }
-  .featured::after {
-    content: '';
-    position: absolute;
-    bottom: -60px; right: -60px;
-    width: 240px; height: 240px;
-    background: radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .featured-meta {
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-faint);
-    margin-bottom: 10px;
-    display: flex;
-    gap: 16px;
-  }
+  /* ── Featured report ── */
+  .featured { background: linear-gradient(135deg, #11141c 0%, #171128 100%); border: 1px solid rgba(201,168,76,0.25); border-radius: 16px; padding: 40px; margin-bottom: 48px; position: relative; overflow: hidden; display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center; }
+  .featured::before { content: 'LATEST'; position: absolute; top: 16px; right: 20px; font-size: 10px; letter-spacing: 0.15em; color: var(--gold); font-weight: 700; background: var(--gold-dim); border: 1px solid rgba(201,168,76,0.3); padding: 3px 10px; border-radius: 4px; }
+  .featured-meta { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 10px; display: flex; gap: 16px; }
   .featured-meta span { color: var(--gold); }
-
-  .featured h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 12px;
-    line-height: 1.2;
-  }
+  .featured h3 { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 12px; line-height: 1.2; }
   .featured-summary { color: var(--text-muted); font-size: 14px; max-width: 600px; margin-bottom: 20px; }
-
   .featured-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
-  .tag {
-    font-size: 11px;
-    padding: 3px 10px;
-    border-radius: 12px;
-    font-weight: 500;
-  }
+  .tag { font-size: 11px; padding: 3px 10px; border-radius: 12px; font-weight: 500; }
   .tag-banks { background: rgba(92,156,245,0.12); color: var(--blue); border: 1px solid rgba(92,156,245,0.25); }
   .tag-gold { background: var(--gold-dim); color: var(--gold); border: 1px solid rgba(201,168,76,0.25); }
   .tag-tech { background: rgba(62,207,142,0.1); color: var(--green); border: 1px solid rgba(62,207,142,0.25); }
@@ -288,250 +100,214 @@
   .tag-telecom { background: rgba(150,100,240,0.1); color: #b07ef5; border: 1px solid rgba(150,100,240,0.25); }
   .tag-retail { background: rgba(240,180,80,0.1); color: #f0b450; border: 1px solid rgba(240,180,80,0.25); }
   .tag-macro { background: rgba(100,200,240,0.08); color: #64c8f0; border: 1px solid rgba(100,200,240,0.2); }
-
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 11px 22px;
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 600;
-    text-decoration: none;
-    cursor: pointer;
-    border: none;
-    transition: all 0.2s;
-  }
-  .btn-primary { background: var(--gold); color: #0b0d12; }
-  .btn-primary:hover { background: var(--gold-light); }
-  .btn-secondary {
-    background: var(--surface2);
-    color: var(--text-muted);
-    border: 1px solid var(--border);
-  }
-  .btn-secondary:hover { color: var(--text); border-color: var(--gold); }
-
-  .featured-metrics {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    min-width: 180px;
-  }
+  .featured-metrics { display: flex; flex-direction: column; gap: 14px; min-width: 180px; }
   .fm-item { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; text-align: center; }
   .fm-val { font-family: 'DM Mono', monospace; font-size: 20px; font-weight: 500; }
   .fm-val.green { color: var(--green); }
   .fm-val.gold { color: var(--gold); }
   .fm-label { font-size: 11px; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
 
-  /* ── Report Grid ── */
-  .reports-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 20px;
-    margin-bottom: 64px;
-  }
+  /* ── Filter / Archive ── */
+  .filter-bar { display: flex; align-items: center; gap: 12px; padding: 32px 0 24px; flex-wrap: wrap; }
+  .search-box { flex: 1; min-width: 220px; max-width: 320px; display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 9px 14px; transition: border-color 0.2s; }
+  .search-box:focus-within { border-color: rgba(201,168,76,0.4); }
+  .search-box input { background: none; border: none; outline: none; color: var(--text); font-size: 13px; font-family: 'DM Sans', sans-serif; width: 100%; }
+  .search-box input::placeholder { color: var(--text-faint); }
+  .filter-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip { background: var(--surface); border: 1px solid var(--border); color: var(--text-muted); font-size: 12px; padding: 6px 14px; border-radius: 20px; cursor: pointer; transition: all 0.2s; user-select: none; }
+  .chip:hover { border-color: var(--gold); color: var(--gold); }
+  .chip.active { background: var(--gold-dim); border-color: rgba(201,168,76,0.4); color: var(--gold); }
+  .filter-count { margin-left: auto; font-size: 12px; color: var(--text-faint); }
 
-  .report-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 24px;
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    transition: all 0.2s;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-  }
+  /* Report cards */
+  .reports-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; margin-bottom: 64px; }
+  .report-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; display: flex; flex-direction: column; gap: 12px; transition: all 0.2s; position: relative; overflow: hidden; cursor: pointer; }
   .report-card:hover { border-color: rgba(201,168,76,0.3); transform: translateY(-2px); background: var(--surface2); }
-  .report-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--gold), transparent);
-    opacity: 0;
-    transition: opacity 0.2s;
-  }
+  .report-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--gold), transparent); opacity: 0; transition: opacity 0.2s; }
   .report-card:hover::before { opacity: 1; }
-
   .rc-header { display: flex; justify-content: space-between; align-items: flex-start; }
   .rc-date { font-size: 11px; color: var(--text-faint); letter-spacing: 0.08em; font-family: 'DM Mono', monospace; }
   .rc-badge { font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 600; }
   .badge-new { background: rgba(62,207,142,0.15); color: var(--green); border: 1px solid rgba(62,207,142,0.3); }
   .badge-archived { background: var(--surface2); color: var(--text-faint); border: 1px solid var(--border); }
-
-  .rc-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--text);
-    line-height: 1.3;
-  }
+  .rc-title { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 700; color: var(--text); line-height: 1.3; }
   .rc-summary { font-size: 12.5px; color: var(--text-faint); line-height: 1.6; flex: 1; }
-
   .rc-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-
-  .rc-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 12px;
-    border-top: 1px solid var(--border);
-    font-size: 12px;
-  }
+  .rc-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 12px; border-top: 1px solid var(--border); font-size: 12px; }
   .rc-stats { display: flex; gap: 16px; color: var(--text-faint); }
-  .rc-stats span { display: flex; align-items: center; gap: 4px; }
   .rc-arrow { color: var(--gold); opacity: 0; transition: opacity 0.2s; }
   .report-card:hover .rc-arrow { opacity: 1; }
+  .rc-lock { font-size: 11px; color: var(--gold); opacity: 0.8; }
 
-  /* ── Macro Strip ── */
-  .macro-strip {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 24px 32px;
-    display: flex;
-    gap: 32px;
-    flex-wrap: wrap;
-    margin-bottom: 48px;
-    align-items: center;
+  /* ══════════════════════════════════════
+     PRICING SECTION
+  ══════════════════════════════════════ */
+  .pricing-section {
+    margin-bottom: 80px;
   }
-  .ms-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-faint); font-weight: 600; margin-right: 8px; }
-  .ms-item { display: flex; flex-direction: column; gap: 2px; }
-  .ms-key { font-size: 10.5px; color: var(--text-faint); letter-spacing: 0.06em; }
-  .ms-val { font-family: 'DM Mono', monospace; font-size: 15px; font-weight: 500; }
-  .ms-val.up { color: var(--green); }
-  .ms-val.neutral { color: var(--gold); }
-  .ms-divider { width: 1px; height: 36px; background: var(--border); }
 
-  /* ── Newsletter signup ── */
-  .signup-banner {
-    background: linear-gradient(135deg, #13161e, #111828);
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .price-card {
+    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 16px;
-    padding: 48px;
-    text-align: center;
-    margin-bottom: 64px;
+    padding: 32px 24px;
     position: relative;
-    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+    display: flex;
+    flex-direction: column;
   }
-  .signup-banner::before {
-    content: '';
-    position: absolute;
-    top: -80px; left: 50%;
-    transform: translateX(-50%);
-    width: 400px; height: 300px;
-    background: radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 70%);
-    pointer-events: none;
+  .price-card:hover { border-color: rgba(201,168,76,0.3); transform: translateY(-3px); }
+  .price-card.featured {
+    border-color: rgba(201,168,76,0.5);
+    background: linear-gradient(160deg, #14122a, #12141e);
+    box-shadow: 0 0 50px rgba(201,168,76,0.1);
   }
-  .signup-banner h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 8px;
-  }
-  .signup-banner p { color: var(--text-muted); margin-bottom: 28px; font-size: 14px; }
-  .signup-form { display: flex; gap: 10px; max-width: 440px; margin: 0 auto; }
-  .signup-form input {
-    flex: 1;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    color: var(--text);
-    font-size: 14px;
-    padding: 11px 16px;
-    font-family: 'DM Sans', sans-serif;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  .signup-form input:focus { border-color: rgba(201,168,76,0.4); }
-  .signup-form input::placeholder { color: var(--text-faint); }
 
-  /* ── About / How it works ── */
-  .about-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin-bottom: 64px; }
-  .about-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 24px;
+  .price-badge {
+    position: absolute;
+    top: -12px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: #0b0d12;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 14px;
+    border-radius: 20px;
+    white-space: nowrap;
   }
+
+  .price-plan { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-faint); font-weight: 600; margin-bottom: 12px; }
+  .price-amount { font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 700; color: #fff; line-height: 1; margin-bottom: 4px; display: flex; align-items: flex-start; gap: 2px; }
+  .price-amount .currency { font-size: 20px; color: var(--gold); font-family: 'DM Sans', sans-serif; font-weight: 400; margin-top: 8px; }
+  .price-period { font-size: 12px; color: var(--text-faint); margin-bottom: 20px; }
+
+  .price-features { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-bottom: 24px; flex: 1; }
+  .price-features li { font-size: 13px; color: var(--text-muted); display: flex; align-items: flex-start; gap: 8px; padding-left: 0; }
+  .price-features li::before { content: none; }
+  .pf-yes { color: var(--green); flex-shrink: 0; font-size: 13px; margin-top: 1px; }
+  .pf-no { color: var(--text-faint); flex-shrink: 0; font-size: 13px; margin-top: 1px; }
+  .pf-no + span { color: var(--text-faint); }
+
+  .btn-price { display: block; width: 100%; padding: 12px; border-radius: 8px; font-size: 13px; font-weight: 600; text-align: center; text-decoration: none; border: none; cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+  .btn-price-primary { background: var(--gold); color: #0b0d12; }
+  .btn-price-primary:hover { background: var(--gold-light); }
+  .btn-price-secondary { background: var(--surface2); color: var(--text-muted); border: 1px solid var(--border); }
+  .btn-price-secondary:hover { color: var(--text); border-color: var(--gold); }
+  .btn-price-contact { background: rgba(201,168,76,0.08); color: var(--gold); border: 1px solid rgba(201,168,76,0.3); }
+  .btn-price-contact:hover { background: var(--gold-dim); }
+
+  .pf-secure {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 12px;
+    color: var(--text-faint);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .pf-method-row { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 10px; }
+  .pf-pill { background: var(--surface); border: 1px solid var(--border); color: var(--text-faint); font-size: 11px; padding: 4px 12px; border-radius: 20px; }
+
+  /* ── How it works ── */
+  .about-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin-bottom: 64px; }
+  .about-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
   .about-icon { font-size: 24px; margin-bottom: 12px; }
   .about-card h4 { font-weight: 600; color: var(--text); margin-bottom: 6px; font-size: 14px; }
   .about-card p { font-size: 13px; color: var(--text-faint); line-height: 1.6; }
 
-  /* ── Footer ── */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 32px 48px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 16px;
-    font-size: 12px;
-    color: var(--text-faint);
+  /* ── Funnel visual ── */
+  .funnel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+    margin-bottom: 64px;
   }
+  .funnel h3 { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: #fff; margin-bottom: 28px; }
+  .funnel-steps { display: flex; align-items: center; justify-content: center; gap: 0; flex-wrap: wrap; }
+  .funnel-step { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; text-align: center; min-width: 120px; }
+  .funnel-step .fs-icon { font-size: 22px; margin-bottom: 6px; }
+  .funnel-step .fs-label { font-size: 12px; color: var(--text-muted); font-weight: 600; }
+  .funnel-step .fs-sub { font-size: 11px; color: var(--text-faint); margin-top: 2px; }
+  .funnel-arrow { color: var(--gold); font-size: 18px; padding: 0 8px; opacity: 0.5; }
+
+  /* ── Signup banner ── */
+  .signup-banner { background: linear-gradient(135deg, #13161e, #111828); border: 1px solid var(--border); border-radius: 16px; padding: 48px; text-align: center; margin-bottom: 64px; position: relative; overflow: hidden; }
+  .signup-banner::before { content: ''; position: absolute; top: -80px; left: 50%; transform: translateX(-50%); width: 400px; height: 300px; background: radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 70%); pointer-events: none; }
+  .signup-banner h3 { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+  .signup-banner p { color: var(--text-muted); margin-bottom: 28px; font-size: 14px; }
+  .signup-form { display: flex; gap: 10px; max-width: 440px; margin: 0 auto; }
+  .signup-form input { flex: 1; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: 14px; padding: 11px 16px; font-family: 'DM Sans', sans-serif; outline: none; transition: border-color 0.2s; }
+  .signup-form input:focus { border-color: rgba(201,168,76,0.4); }
+  .signup-form input::placeholder { color: var(--text-faint); }
+
+  /* ── Footer ── */
+  footer { border-top: 1px solid var(--border); padding: 32px 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; font-size: 12px; color: var(--text-faint); }
   footer a { color: var(--text-faint); text-decoration: none; transition: color 0.2s; }
   footer a:hover { color: var(--gold); }
   .footer-links { display: flex; gap: 20px; }
 
-  /* ── Empty state ── */
   .empty-state { text-align: center; padding: 64px 32px; color: var(--text-faint); }
   .empty-state h3 { font-size: 18px; color: var(--text-muted); margin-bottom: 8px; }
-  .empty-state p { font-size: 14px; }
 
-  /* ── Responsive ── */
-  @media (max-width: 768px) {
-    header { padding: 0 20px; }
-    .nav-links a:not(.cta) { display: none; }
-    .hero { padding: 64px 20px 48px; }
-    .container { padding: 0 20px; }
-    .featured { grid-template-columns: 1fr; }
-    .featured-metrics { flex-direction: row; justify-content: flex-start; min-width: 0; }
-    .fm-item { min-width: 130px; }
-    footer { padding: 24px 20px; flex-direction: column; text-align: center; }
-  }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-in { animation: fadeUp 0.5s ease both; }
 
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 
-  /* Fade-in animation */
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-  .fade-in { animation: fadeUp 0.5s ease both; }
-  .fade-in:nth-child(1) { animation-delay: 0.05s; }
-  .fade-in:nth-child(2) { animation-delay: 0.1s; }
-  .fade-in:nth-child(3) { animation-delay: 0.15s; }
-  .fade-in:nth-child(4) { animation-delay: 0.2s; }
-  .fade-in:nth-child(5) { animation-delay: 0.25s; }
-  .fade-in:nth-child(6) { animation-delay: 0.3s; }
+  @media (max-width: 900px) {
+    header { padding: 0 20px; }
+    .nav-links a:not(.cta) { display: none; }
+    .hero { padding: 64px 20px 48px; }
+    .container { padding: 0 20px; }
+    .featured { grid-template-columns: 1fr; }
+    .featured-metrics { flex-direction: row; }
+    .pricing-grid { grid-template-columns: 1fr 1fr; }
+    .funnel-steps { flex-direction: column; }
+    .funnel-arrow { transform: rotate(90deg); }
+    footer { padding: 24px 20px; flex-direction: column; text-align: center; }
+  }
+  @media (max-width: 600px) {
+    .pricing-grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
 
-<!-- ── Header ── -->
 <header>
-  <a class="brand" href="#">
-    <span class="diamond">◆</span>
-    Antifragile Alpha
-  </a>
+  <a class="brand" href="#">◆ Antifragile Alpha</a>
   <nav class="nav-links">
     <a href="#reports">Reports</a>
+    <a href="#pricing">Pricing</a>
     <a href="#about">About</a>
-    <a href="https://github.com" target="_blank">GitHub ↗</a>
-    <a href="#subscribe" class="cta">Subscribe</a>
+    <a href="https://github.com/1906reblabs/Antifragile-Alpha-Weekly-" target="_blank">GitHub ↗</a>
+    <a href="#pricing" class="cta">Unlock Access →</a>
   </nav>
 </header>
 
-<!-- ── Hero ── -->
+<!-- Hero -->
 <section class="hero">
   <div class="hero-eyebrow">◆ South African Equities Research</div>
   <h1>Find <em>Asymmetric</em><br/>Alpha in SA Markets</h1>
   <p class="hero-sub">Weekly deep-dive research into JSE, A2X, and AltX stocks. Barbell-structured, evidence-based, and ruthlessly focused on undervalued asymmetry.</p>
+  <div class="hero-cta-group">
+    <a href="#pricing" class="btn btn-primary">Unlock Full Access — from R99 →</a>
+    <a href="report-apr-2026.html" class="btn btn-secondary">Read Free Preview</a>
+  </div>
   <div class="hero-stats">
     <div class="hs"><div class="hs-val" id="stat-reports">1</div><div class="hs-label">Reports Published</div></div>
     <div class="hs"><div class="hs-val">600+</div><div class="hs-label">Stocks Screened</div></div>
@@ -540,15 +316,14 @@
   </div>
 </section>
 
-<!-- ── Main ── -->
 <div class="container">
 
-  <!-- Macro Strip -->
-  <div class="macro-strip" style="margin-top:40px;">
+  <!-- Macro strip -->
+  <div class="macro-strip">
     <span class="ms-label">Live Macro</span>
     <div class="ms-item"><div class="ms-key">SARB Repo</div><div class="ms-val neutral">6.75%</div></div>
     <div class="ms-divider"></div>
-    <div class="ms-item"><div class="ms-key">CPI (Feb 2026)</div><div class="ms-val up">~3.0%</div></div>
+    <div class="ms-item"><div class="ms-key">CPI Feb 2026</div><div class="ms-val up">~3.0%</div></div>
     <div class="ms-divider"></div>
     <div class="ms-item"><div class="ms-key">ZAR / USD</div><div class="ms-val neutral">~17.1</div></div>
     <div class="ms-divider"></div>
@@ -578,7 +353,7 @@
           <span style="color:var(--text-faint)">JSE / A2X / AltX</span>
         </div>
         <h3>Antifragile Alpha Weekly<br/>— SA Equities (Apr 1, 2026)</h3>
-        <p class="featured-summary">SA markets remain cheap relative to fundamentals. We screen 600+ stocks and identify 10 undervalued picks with 3 high-conviction asymmetric bets and a 5–10× moonshot fintech play.</p>
+        <p class="featured-summary">SA markets remain cheap relative to fundamentals. We screen 600+ stocks and identify 10 undervalued picks with 3 high-conviction asymmetric bets and a 5–10× moonshot fintech play. Full broker matrix, entry ranges, and scenario analysis included.</p>
         <div class="featured-tags">
           <span class="tag tag-banks">Banks</span>
           <span class="tag tag-telecom">Telecoms</span>
@@ -589,12 +364,12 @@
           <span class="tag tag-macro">Macro</span>
         </div>
         <div style="display:flex;gap:12px;flex-wrap:wrap;">
-          <a href="report-apr-2026.html" class="btn btn-primary">Read Report →</a>
-          <a href="report-apr-2026.html" download class="btn btn-secondary">⬇ Download HTML</a>
+          <a href="report-apr-2026.html" class="btn btn-primary">Read Free Preview →</a>
+          <a href="#pricing" class="btn btn-secondary">🔓 Unlock Full Report (R99)</a>
         </div>
       </div>
       <div class="featured-metrics">
-        <div class="fm-item"><div class="fm-val green">+32%</div><div class="fm-label">Top pick upside</div></div>
+        <div class="fm-item"><div class="fm-val green">+71%</div><div class="fm-label">Top pick upside</div></div>
         <div class="fm-item"><div class="fm-val gold">10</div><div class="fm-label">Stocks profiled</div></div>
         <div class="fm-item"><div class="fm-val green">5×</div><div class="fm-label">Moonshot target</div></div>
       </div>
@@ -614,14 +389,11 @@
       <span class="chip" onclick="setFilter('gold', this)">Gold</span>
       <span class="chip" onclick="setFilter('reit', this)">REITs</span>
       <span class="chip" onclick="setFilter('telecom', this)">Telecom</span>
-      <span class="chip" onclick="setFilter('macro', this)">Macro</span>
     </div>
     <span class="filter-count" id="filterCount">1 report</span>
   </div>
 
-  <!-- Archive Grid -->
   <div class="reports-grid" id="reportsGrid">
-    <!-- Report Card: Apr 2026 -->
     <a href="report-apr-2026.html" class="report-card fade-in" data-tags="banks tech gold reit telecom retail macro" data-title="Antifragile Alpha Weekly SA Equities Apr 2026">
       <div class="rc-header">
         <span class="rc-date">01 Apr 2026</span>
@@ -639,128 +411,204 @@
           <span>📄 10 stocks</span>
           <span>🏦 JSE · A2X</span>
         </div>
+        <span class="rc-lock">🔒 Premium</span>
         <span class="rc-arrow">→</span>
       </div>
     </a>
 
-    <!-- Placeholder cards for future issues -->
-    <div class="report-card fade-in" style="opacity:0.4;pointer-events:none;" data-tags="" data-title="">
-      <div class="rc-header">
-        <span class="rc-date">08 Apr 2026</span>
-        <span class="rc-badge badge-archived">UPCOMING</span>
-      </div>
+    <div class="report-card fade-in" style="opacity:0.4;pointer-events:none;">
+      <div class="rc-header"><span class="rc-date">08 Apr 2026</span><span class="rc-badge badge-archived">UPCOMING</span></div>
       <div class="rc-title">SA Equities — Apr 8, 2026</div>
-      <div class="rc-summary">Next weekly edition — in preparation. Q1 earnings season begins; bank results preview and commodity sector refresh.</div>
+      <div class="rc-summary">Next weekly edition — Q1 earnings season preview; bank results and commodity sector refresh.</div>
       <div class="rc-tags"><span class="tag tag-macro">Macro</span></div>
-      <div class="rc-footer">
-        <div class="rc-stats"><span>🔒 Pending</span></div>
-        <span class="rc-arrow">→</span>
-      </div>
+      <div class="rc-footer"><div class="rc-stats"><span>🔒 Subscribers only</span></div></div>
     </div>
 
-    <div class="report-card fade-in" style="opacity:0.4;pointer-events:none;" data-tags="" data-title="">
-      <div class="rc-header">
-        <span class="rc-date">15 Apr 2026</span>
-        <span class="rc-badge badge-archived">UPCOMING</span>
-      </div>
+    <div class="report-card fade-in" style="opacity:0.4;pointer-events:none;">
+      <div class="rc-header"><span class="rc-date">15 Apr 2026</span><span class="rc-badge badge-archived">UPCOMING</span></div>
       <div class="rc-title">SA Equities — Apr 15, 2026</div>
-      <div class="rc-summary">Post-results review. Did our picks deliver? Updated fair values and position sizing recommendations based on earnings surprises.</div>
+      <div class="rc-summary">Post-results review. Updated fair values and position sizing recommendations based on earnings surprises.</div>
       <div class="rc-tags"><span class="tag tag-macro">Macro</span></div>
-      <div class="rc-footer">
-        <div class="rc-stats"><span>🔒 Pending</span></div>
-        <span class="rc-arrow">→</span>
+      <div class="rc-footer"><div class="rc-stats"><span>🔒 Subscribers only</span></div></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       PRICING
+  ══════════════════════════════════════ -->
+  <section class="pricing-section" id="pricing">
+    <div class="section-row">
+      <h2>Unlock the Intelligence</h2>
+    </div>
+    <p style="color:var(--text-muted);max-width:560px;margin-bottom:32px;">Every report surfaces 8 locked sections: exact entry ranges, stop-losses, conviction theses, the moonshot idea, portfolio construction, broker matrix, and bull/base/bear scenarios. Choose your access level.</p>
+
+    <div class="pricing-grid">
+
+      <!-- Single Issue -->
+      <div class="price-card">
+        <div class="price-plan">Single Issue</div>
+        <div class="price-amount"><span class="currency">R</span>99</div>
+        <div class="price-period">one-time · this issue only</div>
+        <ul class="price-features">
+          <li><span class="pf-yes">✓</span><span>Full Apr 2026 report</span></li>
+          <li><span class="pf-yes">✓</span><span>All 10 stock theses</span></li>
+          <li><span class="pf-yes">✓</span><span>Entry &amp; stop levels</span></li>
+          <li><span class="pf-yes">✓</span><span>Broker matrix</span></li>
+          <li><span class="pf-no">✗</span><span>Future issues</span></li>
+          <li><span class="pf-no">✗</span><span>Archive access</span></li>
+        </ul>
+        <!-- Replace href with your PayFast payment page URL -->
+        <a href="https://payfast.io" target="_blank" class="btn-price btn-price-secondary">Unlock This Issue →</a>
+      </div>
+
+      <!-- Monthly — FEATURED -->
+      <div class="price-card featured">
+        <div class="price-badge">Most Popular</div>
+        <div class="price-plan">Monthly</div>
+        <div class="price-amount"><span class="currency">R</span>199</div>
+        <div class="price-period">per month · cancel anytime</div>
+        <ul class="price-features">
+          <li><span class="pf-yes">✓</span><span>Every weekly report</span></li>
+          <li><span class="pf-yes">✓</span><span>Full conviction theses</span></li>
+          <li><span class="pf-yes">✓</span><span>Entry, target &amp; stops</span></li>
+          <li><span class="pf-yes">✓</span><span>Broker &amp; instrument guide</span></li>
+          <li><span class="pf-yes">✓</span><span>Portfolio construction</span></li>
+          <li><span class="pf-yes">✓</span><span>Bull/base/bear scenarios</span></li>
+        </ul>
+        <!-- Replace href with your PayFast subscription link -->
+        <a href="https://payfast.io" target="_blank" class="btn-price btn-price-primary">Start Monthly (R199) →</a>
+      </div>
+
+      <!-- Annual -->
+      <div class="price-card">
+        <div class="price-plan">Annual</div>
+        <div class="price-amount"><span class="currency">R</span>999</div>
+        <div class="price-period">per year · save R1,389 vs monthly</div>
+        <ul class="price-features">
+          <li><span class="pf-yes">✓</span><span>Everything in Monthly</span></li>
+          <li><span class="pf-yes">✓</span><span>52 weekly reports</span></li>
+          <li><span class="pf-yes">✓</span><span>Full archive access</span></li>
+          <li><span class="pf-yes">✓</span><span>Priority email support</span></li>
+          <li><span class="pf-yes">✓</span><span>Custom watchlist alerts</span></li>
+          <li><span class="pf-yes">✓</span><span>2 months free vs monthly</span></li>
+        </ul>
+        <!-- Replace href with your PayFast annual link -->
+        <a href="https://payfast.io" target="_blank" class="btn-price btn-price-secondary">Save with Annual →</a>
+      </div>
+
+      <!-- Institutional -->
+      <div class="price-card" style="background:rgba(201,168,76,0.04);border-color:rgba(201,168,76,0.2);">
+        <div class="price-plan">Institutional</div>
+        <div class="price-amount" style="font-size:28px;"><span class="currency" style="font-size:16px;margin-top:6px;">R</span>5k+</div>
+        <div class="price-period">per month · multi-seat</div>
+        <ul class="price-features">
+          <li><span class="pf-yes">✓</span><span>All Annual features</span></li>
+          <li><span class="pf-yes">✓</span><span>Multi-seat team access</span></li>
+          <li><span class="pf-yes">✓</span><span>Custom sector reports</span></li>
+          <li><span class="pf-yes">✓</span><span>Direct analyst Q&amp;A</span></li>
+          <li><span class="pf-yes">✓</span><span>Portfolio overlay sessions</span></li>
+          <li><span class="pf-yes">✓</span><span>White-label available</span></li>
+        </ul>
+        <a href="mailto:research@antifragile-alpha.co.za" class="btn-price btn-price-contact">Contact for Pricing →</a>
+      </div>
+
+    </div>
+
+    <!-- Payment methods -->
+    <div style="text-align:center;margin-top:28px;">
+      <div style="font-size:12px;color:var(--text-faint);margin-bottom:10px;">🔐 Secured by PayFast · All major SA payment methods</div>
+      <div class="pf-method-row">
+        <span class="pf-pill">💳 Visa / Mastercard</span>
+        <span class="pf-pill">⚡ Instant EFT</span>
+        <span class="pf-pill">📱 SnapScan QR</span>
+        <span class="pf-pill">🏦 Capitec Pay</span>
+        <span class="pf-pill">📲 Masterpass</span>
+        <span class="pf-pill">🔵 Ozow EFT</span>
+      </div>
+      <p style="font-size:11px;color:var(--text-faint);margin-top:12px;">Already a subscriber? <a href="mailto:research@antifragile-alpha.co.za" style="color:var(--gold);text-decoration:none;">Email us</a> for access. · Not financial advice.</p>
+    </div>
+  </section>
+
+  <!-- Funnel visual -->
+  <div class="funnel">
+    <h3>How It Works — Your Funnel</h3>
+    <div class="funnel-steps">
+      <div class="funnel-step">
+        <div class="fs-icon">📣</div>
+        <div class="fs-label">Discovery</div>
+        <div class="fs-sub">LinkedIn / Substack</div>
+      </div>
+      <div class="funnel-arrow">→</div>
+      <div class="funnel-step">
+        <div class="fs-icon">📄</div>
+        <div class="fs-label">Free Preview</div>
+        <div class="fs-sub">Top 10 + Methodology</div>
+      </div>
+      <div class="funnel-arrow">→</div>
+      <div class="funnel-step" style="border-color:rgba(201,168,76,0.3);">
+        <div class="fs-icon">🔒</div>
+        <div class="fs-label">Paywall</div>
+        <div class="fs-sub">Sections 3–10 locked</div>
+      </div>
+      <div class="funnel-arrow">→</div>
+      <div class="funnel-step" style="border-color:rgba(201,168,76,0.4);background:var(--gold-dim);">
+        <div class="fs-icon">💳</div>
+        <div class="fs-label">PayFast</div>
+        <div class="fs-sub">R99 / R199 / R999</div>
+      </div>
+      <div class="funnel-arrow">→</div>
+      <div class="funnel-step" style="border-color:rgba(62,207,142,0.4);background:rgba(62,207,142,0.06);">
+        <div class="fs-icon">✅</div>
+        <div class="fs-label">Full Access</div>
+        <div class="fs-sub">All 10 sections unlocked</div>
       </div>
     </div>
   </div>
 
   <!-- How it works -->
   <section id="about">
-    <div class="section-row">
-      <h2>How It Works</h2>
-    </div>
+    <div class="section-row"><h2>How It Works</h2></div>
     <div class="about-grid">
-      <div class="about-card">
-        <div class="about-icon">🔎</div>
-        <h4>Multi-Factor Screen</h4>
-        <p>600+ JSE/A2X/AltX stocks screened weekly across value, quality, momentum, and catalyst signals.</p>
-      </div>
-      <div class="about-card">
-        <div class="about-icon">⚖️</div>
-        <h4>Barbell Structure</h4>
-        <p>50–60% defensive core + 30–40% high-upside + 5–10% asymmetric moonshots for antifragile positioning.</p>
-      </div>
-      <div class="about-card">
-        <div class="about-icon">💡</div>
-        <h4>Hidden Truth Insights</h4>
-        <p>Each pick requires a contrarian catalyst or misunderstood fundamental — not just a cheap P/E ratio.</p>
-      </div>
-      <div class="about-card">
-        <div class="about-icon">📊</div>
-        <h4>Scenario Analysis</h4>
-        <p>Bull / base / bear return scenarios with explicit entry ranges, targets, and stop-loss levels for every pick.</p>
-      </div>
-      <div class="about-card">
-        <div class="about-icon">🏛️</div>
-        <h4>Execution Ready</h4>
-        <p>Broker matrix, instrument selection (shares, SSFs, CFDs, ETFs), and liquidity data included in every report.</p>
-      </div>
-      <div class="about-card">
-        <div class="about-icon">🌍</div>
-        <h4>Macro Overlay</h4>
-        <p>SARB policy, rand FX, inflation trajectory, and Eskom availability factor are incorporated in every thesis.</p>
-      </div>
+      <div class="about-card"><div class="about-icon">🔎</div><h4>Multi-Factor Screen</h4><p>600+ JSE/A2X/AltX stocks screened weekly across value, quality, momentum, and catalyst signals.</p></div>
+      <div class="about-card"><div class="about-icon">⚖️</div><h4>Barbell Structure</h4><p>50–60% defensive core + 30–40% high-upside + 5–10% asymmetric moonshots for antifragile positioning.</p></div>
+      <div class="about-card"><div class="about-icon">💡</div><h4>Hidden Truth Insights</h4><p>Each pick requires a contrarian catalyst or misunderstood fundamental — not just a cheap P/E ratio.</p></div>
+      <div class="about-card"><div class="about-icon">📊</div><h4>Scenario Analysis</h4><p>Bull / base / bear return scenarios with explicit entry ranges, targets, and stop-loss levels for every pick.</p></div>
+      <div class="about-card"><div class="about-icon">🏛️</div><h4>Execution Ready</h4><p>Broker matrix, instrument selection (shares, SSFs, CFDs, ETFs), and liquidity data in every report.</p></div>
+      <div class="about-card"><div class="about-icon">🌍</div><h4>Macro Overlay</h4><p>SARB policy, rand FX, inflation trajectory, and Eskom availability factor are incorporated in every thesis.</p></div>
     </div>
   </section>
 
-  <!-- Subscribe -->
+  <!-- Newsletter -->
   <div class="signup-banner" id="subscribe">
     <h3>Get New Reports in Your Inbox</h3>
-    <p>Every Tuesday — free. No noise, no fluff. Just deep SA equity research.</p>
+    <p>Free preview every Tuesday. Subscribers get the full report including all locked sections.</p>
     <div class="signup-form">
       <input type="email" placeholder="your@email.com"/>
       <button class="btn btn-primary" onclick="handleSubscribe()">Subscribe →</button>
     </div>
-    <p style="font-size:12px;color:var(--text-faint);margin-top:14px;">No spam. Unsubscribe anytime. Reports also available free on GitHub.</p>
+    <p style="font-size:12px;color:var(--text-faint);margin-top:14px;">No spam. Unsubscribe anytime. Preview always free on GitHub.</p>
   </div>
 
-</div><!-- /.container -->
+</div>
 
-<!-- Footer -->
 <footer>
-  <div>
-    <strong style="color:var(--text-muted);">Antifragile Alpha</strong> · SA Equities Research Portal
-  </div>
+  <div><strong style="color:var(--text-muted);">Antifragile Alpha</strong> · SA Equities Research Portal</div>
   <div class="footer-links">
-    <a href="#">Reports</a>
-    <a href="#">Methodology</a>
-    <a href="https://github.com" target="_blank">GitHub ↗</a>
+    <a href="#reports">Reports</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#about">Methodology</a>
+    <a href="https://github.com/1906reblabs/Antifragile-Alpha-Weekly-" target="_blank">GitHub ↗</a>
     <a href="#">Disclaimer</a>
   </div>
-  <div>
-    For informational purposes only · Not financial advice · Data as of market close
-  </div>
+  <div>For informational purposes only · Not financial advice · © 2026 Antifragile Alpha</div>
 </footer>
 
 <script>
-  // ── Report data (extend this array as new reports are added) ──
   const reports = [
-    {
-      id: 'report-apr-2026',
-      title: 'SA Equities — Apr 1, 2026',
-      date: '01 Apr 2026',
-      summary: '10 undervalued picks, 3 high-conviction bets (SBK, IOC, PAN), and Weaver Fintech as a 5×–10× moonshot. Full barbell portfolio construction + broker matrix.',
-      tags: ['banks', 'tech', 'gold', 'reit', 'telecom', 'retail', 'macro'],
-      tagLabels: [['banks','tag-banks'], ['gold','tag-gold'], ['tech','tag-tech']],
-      stocks: '10 stocks',
-      exch: 'JSE · A2X',
-      href: 'report-apr-2026.html',
-      isNew: true
-    }
-    // Add future reports here — they'll auto-render in the grid
+    { id: 'report-apr-2026', title: 'SA Equities — Apr 1, 2026', date: '01 Apr 2026', summary: '10 undervalued picks, 3 high-conviction bets (SBK, IOC, PAN), and Weaver Fintech as a 5×–10× moonshot. Full barbell portfolio + broker matrix.', tags: ['banks','tech','gold','reit','telecom','retail','macro'], tagLabels: [['Banks','tag-banks'],['Gold','tag-gold'],['Tech','tag-tech']], stocks: '10 stocks', exch: 'JSE · A2X', href: 'report-apr-2026.html', isNew: true }
   ];
 
-  let activeFilter = 'all';
-  let searchQuery = '';
+  let activeFilter = 'all', searchQuery = '';
 
   function setFilter(tag, el) {
     activeFilter = tag;
@@ -781,36 +629,29 @@
       const matchSearch = !searchQuery || r.title.toLowerCase().includes(searchQuery) || r.summary.toLowerCase().includes(searchQuery);
       return matchTag && matchSearch;
     });
-
     grid.innerHTML = '';
     document.getElementById('filterCount').textContent = `${filtered.length} report${filtered.length !== 1 ? 's' : ''}`;
     document.getElementById('stat-reports').textContent = reports.length;
 
     if (filtered.length === 0) {
-      grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><h3>No reports found</h3><p>Try adjusting your filter or search terms.</p></div>`;
+      grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><h3>No reports found</h3><p>Try adjusting your filter.</p></div>`;
       return;
     }
 
-    filtered.forEach((r, i) => {
-      const tagHTML = r.tagLabels.map(([l, cls]) => `<span class="tag ${cls}">${l.charAt(0).toUpperCase() + l.slice(1)}</span>`).join('');
-      const card = `
+    filtered.forEach(r => {
+      const tagHTML = r.tagLabels.map(([l, cls]) => `<span class="tag ${cls}">${l}</span>`).join('');
+      grid.insertAdjacentHTML('beforeend', `
         <a href="${r.href}" class="report-card fade-in">
-          <div class="rc-header">
-            <span class="rc-date">${r.date}</span>
-            <span class="rc-badge ${r.isNew ? 'badge-new' : 'badge-archived'}">${r.isNew ? 'NEW' : 'ARCHIVED'}</span>
-          </div>
+          <div class="rc-header"><span class="rc-date">${r.date}</span><span class="rc-badge ${r.isNew ? 'badge-new' : 'badge-archived'}">${r.isNew ? 'NEW' : 'ARCHIVED'}</span></div>
           <div class="rc-title">${r.title}</div>
           <div class="rc-summary">${r.summary}</div>
           <div class="rc-tags">${tagHTML}</div>
           <div class="rc-footer">
-            <div class="rc-stats">
-              <span>📄 ${r.stocks}</span>
-              <span>🏦 ${r.exch}</span>
-            </div>
+            <div class="rc-stats"><span>📄 ${r.stocks}</span><span>🏦 ${r.exch}</span></div>
+            <span class="rc-lock">🔒 Premium</span>
             <span class="rc-arrow">→</span>
           </div>
-        </a>`;
-      grid.insertAdjacentHTML('beforeend', card);
+        </a>`);
     });
   }
 
@@ -823,22 +664,20 @@
     }
     input.value = '';
     const btn = document.querySelector('.signup-form .btn');
+    const orig = btn.textContent;
     btn.textContent = '✓ Subscribed!';
     btn.style.background = 'var(--green)';
     btn.style.color = '#0b0d12';
-    setTimeout(() => { btn.textContent = 'Subscribe →'; btn.style.background = ''; btn.style.color = ''; }, 2500);
+    setTimeout(() => { btn.textContent = orig; btn.style.background = ''; btn.style.color = ''; }, 2500);
   }
 
-  // Initial render
   renderReports();
 
-  // Subtle scroll reveal for above-fold elements
-  const observer = new IntersectionObserver((entries) => {
+  const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'none'; } });
   }, { threshold: 0.1 });
-  document.querySelectorAll('.about-card').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(12px)';
+  document.querySelectorAll('.about-card, .price-card').forEach(el => {
+    el.style.opacity = '0'; el.style.transform = 'translateY(12px)';
     el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
     observer.observe(el);
   });
