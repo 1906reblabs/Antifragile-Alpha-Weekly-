@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Antifragile Alpha Weekly – SA Equities (Apr 9, 2026)</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #0d0f14;
+    --surface: #13161e;
+    --surface2: #1a1e29;
+    --border: #252a38;
+    --gold: #c9a84c;
+    --gold-light: #e8c76a;
+    --gold-dim: rgba(201,168,76,0.12);
+    --green: #3ecf8e;
+    --red: #f06a6a;
+    --amber: #f0a84c;
+    --text: #dde2ef;
+    --text-muted: #7a8299;
+    --text-faint: #3e4561;
+    --accent: #5c9cf5;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.75;
+    min-height: 100vh;
+  }
+
+  .layout { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+
+  /* ── Sidebar ── */
+  nav.sidebar {
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 36px 24px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .sidebar-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.02em;
+    line-height: 1.3;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .sidebar-brand span { display: block; font-size: 11px; font-family: 'DM Sans', sans-serif; font-weight: 400; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px; }
+
+  .sidebar-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-faint); font-weight: 600; margin-bottom: 10px; }
+
+  .sidebar-links { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+  .sidebar-links a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 13px;
+    padding: 7px 10px;
+    border-radius: 6px;
+    transition: all 0.2s;
+    border-left: 2px solid transparent;
+  }
+  .sidebar-links a:hover { color: var(--text); background: var(--surface2); border-left-color: var(--gold); }
+  .sidebar-links a .num { color: var(--text-faint); font-family: 'DM Mono', monospace; font-size: 11px; }
+  .sidebar-links a.locked { color: var(--text-faint); cursor: default; pointer-events: none; }
+  .sidebar-links a.locked:hover { background: none; border-left-color: transparent; }
+  .lock-icon { margin-left: auto; font-size: 11px; color: var(--gold); opacity: 0.7; }
+
+  .macro-card {
+    background: rgba(240,106,106,0.06);
+    border: 1px solid rgba(240,106,106,0.2);
+    border-radius: 10px;
+    padding: 16px;
+    margin-top: auto;
+  }
+  .macro-card .mc-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); font-weight: 600; margin-bottom: 12px; display:flex; align-items:center; gap:6px; }
+  .macro-stat { display: flex; justify-content: space-between; font-size: 12px; padding: 4px 0; border-bottom: 1px solid rgba(240,106,106,0.08); }
+  .macro-stat:last-child { border-bottom: none; }
+  .macro-stat .k { color: var(--text-muted); }
+  .macro-stat .v { font-family: 'DM Mono', monospace; font-weight: 500; }
+  .v-warn { color: var(--red) !important; }
+  .v-ok { color: var(--green) !important; }
+  .v-gold { color: var(--gold-light) !important; }
+
+  .alert-banner {
+    background: rgba(240,106,106,0.08);
+    border: 1px solid rgba(240,106,106,0.25);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 12px;
+    color: var(--red);
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    margin-top: 12px;
+  }
+
+  /* ── Main ── */
+  main { padding: 0; }
+
+  .hero {
+    background: linear-gradient(135deg, #0d0f14 0%, #1a1015 50%, #0d0f1a 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 64px 60px 52px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -60px;
+    width: 360px; height: 360px;
+    background: radial-gradient(circle, rgba(240,106,106,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -40px;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(240,106,106,0.1);
+    border: 1px solid rgba(240,106,106,0.3);
+    color: var(--red);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .hero-tag::before { content: '⚠'; font-size: 10px; }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.15;
+    max-width: 740px;
+    margin-bottom: 20px;
+  }
+  .hero h1 em { color: var(--gold); font-style: normal; }
+
+  .hero-meta {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    margin-bottom: 28px;
+  }
+
+  .hero-summary {
+    max-width: 800px;
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.8;
+    border-left: 3px solid var(--red);
+    padding-left: 20px;
+  }
+
+  .hero-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 28px; }
+  .pill { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); font-size: 12px; padding: 5px 12px; border-radius: 20px; }
+  .pill.green { border-color: rgba(62,207,142,0.3); color: var(--green); background: rgba(62,207,142,0.08); }
+  .pill.gold { border-color: rgba(201,168,76,0.3); color: var(--gold); background: var(--gold-dim); }
+  .pill.red { border-color: rgba(240,106,106,0.3); color: var(--red); background: rgba(240,106,106,0.08); }
+  .pill.amber { border-color: rgba(240,168,76,0.3); color: var(--amber); background: rgba(240,168,76,0.08); }
+
+  /* ── Content ── */
+  .content { padding: 52px 60px; max-width: 1100px; }
+
+  section { margin-bottom: 72px; }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--gold);
+    font-weight: 500;
+    background: var(--gold-dim);
+    border: 1px solid rgba(201,168,76,0.25);
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  h2 { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 700; color: #fff; line-height: 1.2; }
+  h3 { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; color: var(--gold-light); margin: 32px 0 14px; display: flex; align-items: center; gap: 10px; }
+  h3::before { content: ''; display: block; width: 20px; height: 2px; background: var(--gold); flex-shrink: 0; }
+
+  p { color: var(--text-muted); margin-bottom: 14px; }
+  strong { color: var(--text); font-weight: 600; }
+
+  ul { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+  ul li { padding-left: 20px; position: relative; color: var(--text-muted); }
+  ul li::before { content: '›'; position: absolute; left: 0; color: var(--gold); font-size: 16px; line-height: 1.75; }
+
+  /* Tables */
+  .table-wrap { overflow-x: auto; margin: 8px 0 24px; border-radius: 10px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead tr { background: var(--surface2); }
+  thead th { padding: 12px 14px; text-align: left; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); font-weight: 600; white-space: nowrap; border-bottom: 1px solid var(--border); }
+  tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: var(--surface2); }
+  tbody td { padding: 12px 14px; color: var(--text-muted); vertical-align: top; }
+  tbody td:first-child { color: var(--text); font-weight: 500; }
+
+  .ticker { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--gold); font-weight: 500; }
+  .upside-green { color: var(--green); font-family: 'DM Mono', monospace; font-weight: 600; }
+  .upside-yellow { color: var(--gold); font-family: 'DM Mono', monospace; font-weight: 600; }
+  .risk-low { background: rgba(62,207,142,0.12); color: var(--green); font-size: 11px; padding: 2px 8px; border-radius: 12px; display: inline-block; white-space: nowrap; }
+  .risk-med { background: rgba(201,168,76,0.15); color: var(--gold-light); font-size: 11px; padding: 2px 8px; border-radius: 12px; display: inline-block; white-space: nowrap; }
+  .risk-high { background: rgba(240,106,106,0.15); color: var(--red); font-size: 11px; padding: 2px 8px; border-radius: 12px; display: inline-block; white-space: nowrap; }
+  .price { font-family: 'DM Mono', monospace; font-size: 13px; color: var(--text); }
+  .fv { font-family: 'DM Mono', monospace; font-size: 13px; color: var(--green); }
+  .table-caption { font-size: 12px; color: var(--text-faint); margin-top: 10px; font-style: italic; }
+
+  blockquote { border-left: 3px solid var(--gold); padding: 14px 20px; background: var(--gold-dim); border-radius: 0 8px 8px 0; color: var(--text-muted); font-size: 14px; font-style: italic; margin: 16px 0; }
+
+  .alert-box {
+    background: rgba(240,106,106,0.07);
+    border: 1px solid rgba(240,106,106,0.25);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    font-size: 13.5px;
+    color: var(--text-muted);
+  }
+  .alert-box strong { color: var(--red); }
+
+  /* FREE BADGE */
+  .free-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(62,207,142,0.12);
+    border: 1px solid rgba(62,207,142,0.3);
+    color: var(--green);
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    margin-left: 10px;
+    vertical-align: middle;
+  }
+
+  /* TEASER */
+  .teaser-section {
+    position: relative;
+    margin-bottom: 0;
+    user-select: none;
+    pointer-events: none;
+  }
+  .teaser-content {
+    filter: blur(5px);
+    opacity: 0.45;
+    overflow: hidden;
+    max-height: 320px;
+  }
+
+  /* PAYWALL */
+  .paywall-wall {
+    position: relative;
+    z-index: 10;
+    margin: -80px 0 0;
+    background: linear-gradient(to bottom, transparent 0%, var(--bg) 30%);
+    padding: 80px 60px 0;
+  }
+
+  .paywall-block {
+    background: linear-gradient(135deg, #0f1220, #12101e);
+    border: 1px solid rgba(201,168,76,0.35);
+    border-radius: 20px;
+    padding: 56px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 80px rgba(201,168,76,0.07), 0 24px 60px rgba(0,0,0,0.4);
+  }
+  .paywall-block::before {
+    content: '';
+    position: absolute;
+    top: -100px; left: 50%;
+    transform: translateX(-50%);
+    width: 500px; height: 400px;
+    background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .pw-lock-icon { font-size: 40px; margin-bottom: 16px; display: block; filter: drop-shadow(0 0 16px rgba(201,168,76,0.4)); }
+  .paywall-block h2 { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 700; color: #fff; margin-bottom: 8px; line-height: 1.2; }
+  .paywall-block .pw-sub { color: var(--text-muted); font-size: 15px; max-width: 480px; margin: 0 auto 36px; line-height: 1.7; }
+
+  .pw-locked-items { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 40px; }
+  .pw-item { background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18); color: var(--text-muted); font-size: 12px; padding: 6px 14px; border-radius: 20px; display: flex; align-items: center; gap: 6px; }
+  .pw-item::before { content: '🔒'; font-size: 10px; }
+
+  .pricing-tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 760px; margin: 0 auto 36px; }
+
+  .tier { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 28px 20px; text-align: center; position: relative; transition: border-color 0.2s, transform 0.2s; cursor: pointer; }
+  .tier:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-3px); }
+  .tier.featured { border-color: rgba(201,168,76,0.5); background: linear-gradient(160deg, #161428, #131828); box-shadow: 0 0 40px rgba(201,168,76,0.1); }
+  .tier-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gold); color: #0d0f14; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 12px; border-radius: 20px; white-space: nowrap; }
+  .tier-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-faint); font-weight: 600; margin-bottom: 10px; }
+  .tier-price { font-family: 'Cormorant Garamond', serif; font-size: 38px; font-weight: 700; color: #fff; line-height: 1; margin-bottom: 4px; }
+  .tier-price sub { font-size: 16px; color: var(--gold); vertical-align: super; font-family: 'DM Sans', sans-serif; font-weight: 400; }
+  .tier-period { font-size: 11px; color: var(--text-faint); margin-bottom: 18px; }
+  .tier-features { list-style: none; text-align: left; display: flex; flex-direction: column; gap: 7px; margin-bottom: 22px; }
+  .tier-features li { font-size: 12.5px; color: var(--text-muted); display: flex; align-items: flex-start; gap: 8px; padding-left: 0; }
+  .tier-features li::before { content: none; }
+  .tier-features li .tf-check { color: var(--green); flex-shrink: 0; margin-top: 2px; font-size: 12px; }
+  .btn-tier { display: block; width: 100%; padding: 11px; border-radius: 8px; font-size: 13px; font-weight: 600; text-decoration: none; text-align: center; border: none; cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+  .btn-tier-primary { background: var(--gold); color: #0d0f14; }
+  .btn-tier-primary:hover { background: var(--gold-light); }
+  .btn-tier-secondary { background: var(--surface2); color: var(--text-muted); border: 1px solid var(--border); }
+  .btn-tier-secondary:hover { color: var(--text); border-color: var(--gold); }
+  .pw-note { font-size: 12px; color: var(--text-faint); margin-top: 20px; }
+  .pw-note a { color: var(--gold); text-decoration: none; }
+
+  .pf-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 8px; padding: 8px 16px; font-size: 12px; color: var(--text-faint); margin-top: 20px; }
+  .pf-methods { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-top: 10px; }
+  .pf-method { background: var(--surface2); border: 1px solid var(--border); color: var(--text-faint); font-size: 11px; padding: 4px 10px; border-radius: 6px; }
+
+  /* Regime change banner */
+  .regime-card {
+    background: linear-gradient(135deg, rgba(240,106,106,0.08), rgba(240,168,76,0.05));
+    border: 1px solid rgba(240,106,106,0.2);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  .regime-item { text-align: center; }
+  .ri-arrow { font-size: 20px; margin-bottom: 4px; }
+  .ri-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 4px; }
+  .ri-val { font-family: 'DM Mono', monospace; font-size: 18px; font-weight: 500; }
+  .ri-change { font-size: 11px; margin-top: 4px; }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: 1fr; }
+    nav.sidebar { display: none; }
+    .hero, .content { padding: 36px 24px; }
+    .paywall-wall { padding: 80px 24px 0; }
+    .paywall-block { padding: 40px 24px; }
+    .pricing-tiers { grid-template-columns: 1fr; }
+    .regime-card { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- ── Sidebar ── -->
+<nav class="sidebar">
+  <div class="sidebar-brand">
+    Antifragile Alpha Weekly
+    <span>South African Equities</span>
+  </div>
+
+  <div>
+    <div class="sidebar-label">Contents</div>
+    <ul class="sidebar-links">
+      <li><a href="#s1"><span class="num">01</span> Macro Regime Shift</a></li>
+      <li><a href="#s2"><span class="num">02</span> Top 10 Undervalued Stocks</a></li>
+      <li><a href="#s3"><span class="num">03</span> Screening Methodology</a></li>
+      <li><a href="#paywall" class="locked"><span class="num">04</span> High-Conviction Bets <span class="lock-icon">🔒</span></a></li>
+      <li><a href="#paywall" class="locked"><span class="num">05</span> Moonshot Idea <span class="lock-icon">🔒</span></a></li>
+      <li><a href="#paywall" class="locked"><span class="num">06</span> Execution & Instruments <span class="lock-icon">🔒</span></a></li>
+      <li><a href="#paywall" class="locked"><span class="num">07</span> Broker Matrix <span class="lock-icon">🔒</span></a></li>
+      <li><a href="#paywall" class="locked"><span class="num">08</span> Portfolio Construction <span class="lock-icon">🔒</span></a></li>
+      <li><a href="#paywall" class="locked"><span class="num">09</span> Risk & Scenarios <span class="lock-icon">🔒</span></a></li>
+      <li><a href="#paywall" class="locked"><span class="num">10</span> Entry Guidelines <span class="lock-icon">🔒</span></a></li>
+    </ul>
+  </div>
+
+  <div style="margin-top:12px;">
+    <a href="#paywall" style="display:block;background:var(--gold);color:#0d0f14;text-align:center;padding:10px;border-radius:8px;text-decoration:none;font-weight:600;font-size:13px;">🔓 Unlock Full Report</a>
+  </div>
+
+  <div class="macro-card">
+    <div class="mc-label">⚠ Macro Alert — Apr 9</div>
+    <div class="macro-stat"><span class="k">CPI (Feb 2026)</span><span class="v v-ok">3.0%</span></div>
+    <div class="macro-stat"><span class="k">SARB Repo</span><span class="v v-gold">6.75% (HOLD)</span></div>
+    <div class="macro-stat"><span class="k">SARB CPI Fcst '26</span><span class="v v-warn">3.7% ↑</span></div>
+    <div class="macro-stat"><span class="k">ZAR / USD</span><span class="v v-warn">~16.9 (vol)</span></div>
+    <div class="macro-stat"><span class="k">Gold (USD/oz)</span><span class="v v-ok">~$4,700</span></div>
+    <div class="macro-stat"><span class="k">Oil / Brent</span><span class="v v-warn">Volatile ↑</span></div>
+    <div class="macro-stat"><span class="k">ALSI y/y</span><span class="v v-ok">+43.6%</span></div>
+    <div class="macro-stat"><span class="k">LS-Free Days</span><span class="v v-ok">310+</span></div>
+  </div>
+
+  <div class="alert-banner">
+    ⚡ Middle East conflict: oil/fuel inflation shock now reshaping the SA macro thesis. Read Section 01 first.
+  </div>
+</nav>
+
+<!-- ── Main ── -->
+<main>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-tag">Regime-Change Edition — Weekly Research Report</div>
+    <h1>Antifragile Alpha Weekly —<br/><em>SA Equities (Apr 9, 2026)</em></h1>
+    <div class="hero-meta">
+      <span>📅 April 9, 2026</span>
+      <span>📊 Data: Market close Apr 8, 2026</span>
+      <span>🏦 JSE · A2X · AltX · CTSE · 4AX</span>
+    </div>
+    <p class="hero-summary">
+      This is a <strong>regime-change edition</strong>. Since our April 1 report, SA's macro landscape has shifted materially:
+      gold has surged past <strong>$4,700/oz</strong>, the SARB now projects only <strong>1 rate cut in 2026</strong> (revised from 2),
+      the rand has weakened ~6% on oil-driven inflation fears, and Sasol has become the JSE's most explosive large-cap.
+      We re-screen the universe, rotate barbell weights toward commodities and energy, and identify the new asymmetric plays
+      in an environment of <strong>higher-for-longer rates, oil volatility, and surging precious metals</strong>.
+    </p>
+    <div class="hero-pills">
+      <span class="pill red">Regime Shift: Risk-Off</span>
+      <span class="pill gold">Gold at $4,700 — Miners Win</span>
+      <span class="pill amber">SARB Holds — 1 Cut Only</span>
+      <span class="pill green">3 New High-Conviction Picks</span>
+      <span class="pill">Energy · Gold · Banks · Tech</span>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="content">
+
+    <!-- ═══ SECTION 1 — MACRO REGIME ═══ -->
+    <section id="s1">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <h2>Macro Regime Shift — What Changed Since Apr 1 <span class="free-badge">✓ Free Preview</span></h2>
+      </div>
+
+      <div class="alert-box">
+        <strong>⚠ Material change alert:</strong> Since our last report (Apr 1), three macro variables have shifted enough to require a barbell reweighting. Gold is up ~150% since the start of 2026, Middle East conflict is driving an oil/fuel inflation shock, and the SARB explicitly revised down its rate-cut path. Positions sized for the Apr 1 thesis require adjustment.
+      </div>
+
+      <div class="regime-card">
+        <div class="regime-item">
+          <div class="ri-arrow">🥇</div>
+          <div class="ri-label">Gold (USD/oz)</div>
+          <div class="ri-val" style="color:var(--green);">~$4,700</div>
+          <div class="ri-change" style="color:var(--green);">Apr 1 was ~$1,950. +141%</div>
+        </div>
+        <div class="regime-item">
+          <div class="ri-arrow">🛢</div>
+          <div class="ri-label">SARB Rate Path</div>
+          <div class="ri-val" style="color:var(--amber);">1 cut only</div>
+          <div class="ri-change" style="color:var(--amber);">Revised down from 2 cuts. CPI fcst ↑3.7%</div>
+        </div>
+        <div class="regime-item">
+          <div class="ri-arrow">💱</div>
+          <div class="ri-label">ZAR / USD</div>
+          <div class="ri-val" style="color:var(--red);">~16.9</div>
+          <div class="ri-change" style="color:var(--red);">Down ~6% vs Mar. High volatility persists</div>
+        </div>
+      </div>
+
+      <p>The <strong>Middle East conflict</strong> (Iran war, Strait of Hormuz disruptions) has injected a major supply shock into global oil markets. SA, as a <strong>net oil importer</strong>, faces elevated fuel prices that are feeding into CPI forecasts. The SARB's March 26 hold cited this explicitly, and its new base case projects CPI rising to ~4% in Q2 2026 before easing. This pushes the first meaningful rate cut to H2 at best.</p>
+
+      <p>However, the same conflict has sent <strong>gold above $4,700/oz</strong> — a staggering move that dramatically reprices SA gold miners. Pan African Resources (PAN), DRD Gold, Harmony, and Sibanye are now operating with extraordinary free cash flow margins. This is the single biggest alpha-generating event for SA equities in years.</p>
+
+      <p>Meanwhile, <strong>Sasol (SOL)</strong> — previously underappreciated — has surged over 200% YoY and ~50% in just 4 weeks. The coal-to-liquids business benefits directly from higher oil prices, and the market has repriced it aggressively. Some of this move is now priced in, but the question is what comes next.</p>
+
+      <blockquote>"The antifragile investor doesn't panic at regime changes — they re-screen fast, rotate deliberately, and find the new asymmetries before the crowd catches up."</blockquote>
+
+      <p><strong>Key implication for the barbell:</strong> We rotate the defensive core to include gold miners as a partial inflation hedge. We trim pure rate-cycle plays (banks) slightly given reduced cut probability. We add energy exposure via Sasol (with appropriate stop-loss given the run). The moonshot rotates to a platinum/PGM play given the metals complex re-rating.</p>
+    </section>
+
+    <!-- ═══ SECTION 2 — TOP 10 ═══ -->
+    <section id="s2">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <h2>Top 10 Undervalued Stocks (Apr 9 Rescreen) <span class="free-badge">✓ Free Preview</span></h2>
+      </div>
+
+      <p>We re-ran the 600+ stock screen with updated gold, oil, and currency assumptions. The top 10 has rotated meaningfully — 4 new names replace prior entries based on the regime change. Key additions: Sasol, DRD Gold, Sibanye-Stillwater, and Motus Holdings.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Company</th><th>Ticker</th><th>Exch</th><th>Sector</th>
+              <th>Price (ZAR)</th><th>Fair Value</th><th>Upside</th>
+              <th>Horizon</th><th>Risk</th><th>Regime-Adjusted Thesis</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Pan African Res.</strong></td><td><span class="ticker">PAN</span></td><td>JSE/A2X</td><td>Gold Mining</td>
+              <td><span class="price">~R68</span></td><td><span class="fv">~R90–100</span></td><td><span class="upside-green">+32–47%</span></td>
+              <td>3–6m</td><td><span class="risk-med">Medium</span></td>
+              <td>Gold at $4,700 = ~R80,000/oz in ZAR terms. PAN is net-debt-free with H1 output +51%. P/E still &lt;8× at current gold. Enormous FCF leverage to sustained $4k+ gold. Re-rated but not finished.</td>
+            </tr>
+            <tr>
+              <td><strong>Sasol</strong></td><td><span class="ticker">SOL</span></td><td>JSE/A2X</td><td>Energy/Chemicals</td>
+              <td><span class="price">~R190</span></td><td><span class="fv">~R250–280</span></td><td><span class="upside-green">+32–47%</span></td>
+              <td>6–12m</td><td><span class="risk-high">High</span></td>
+              <td>Coal-to-liquids margins surge with higher oil. JPMorgan upgraded to Overweight. Still trades at discount to intrinsic CTL value. Catalyst: sustained Brent $80+, H2 FY26 results in Aug 2026. Stop-loss critical — stock is volatile.</td>
+            </tr>
+            <tr>
+              <td><strong>DRD Gold</strong></td><td><span class="ticker">DRD</span></td><td>JSE/A2X</td><td>Gold Mining</td>
+              <td><span class="price">~R32</span></td><td><span class="fv">~R45–50</span></td><td><span class="upside-green">+40–56%</span></td>
+              <td>3–6m</td><td><span class="risk-med">Medium</span></td>
+              <td>Surface gold re-treatment — zero underground risk, low capex. At $4,700 gold, operating at extraordinary margins. NYSE dual-listed = US liquidity. Dividend will likely spike. Under-owned relative to PAN and Harmony.</td>
+            </tr>
+            <tr>
+              <td><strong>Standard Bank</strong></td><td><span class="ticker">SBK</span></td><td>JSE/A2X</td><td>Banking</td>
+              <td><span class="price">~R315</span></td><td><span class="fv">~R360–375</span></td><td><span class="upside-green">+14–19%</span></td>
+              <td>12m</td><td><span class="risk-low">Low</span></td>
+              <td>Higher-for-longer rates actually support NII margins. Africa franchise undervalued. Only 1 cut now priced vs 2 — less tailwind, but still growing. Revised target; still a core position but slightly trimmed thesis.</td>
+            </tr>
+            <tr>
+              <td><strong>Sibanye-Stillwater</strong></td><td><span class="ticker">SSW</span></td><td>JSE/A2X</td><td>Gold/PGMs</td>
+              <td><span class="price">~R45</span></td><td><span class="fv">~R70–80</span></td><td><span class="upside-green">+55–78%</span></td>
+              <td>6–12m</td><td><span class="risk-high">High</span></td>
+              <td>High leverage play on gold + platinum re-rating. Deeply beaten-down from PGM weakness — market has not yet priced gold surge fully. Palladium and platinum still weak but gold segment now dominant. Balance sheet risk real but manageable at $4k+ gold.</td>
+            </tr>
+            <tr>
+              <td><strong>FirstRand</strong></td><td><span class="ticker">FSR</span></td><td>JSE/A2X</td><td>Banking/FinServ</td>
+              <td><span class="price">~R89</span></td><td><span class="fv">~R105–112</span></td><td><span class="upside-green">+18–26%</span></td>
+              <td>12m</td><td><span class="risk-low">Low</span></td>
+              <td>Resilient NIM at 6.75%. Rand weakness adds pain for import-side borrowers, but FSR's Africa diversification cushions. UK exit speculation (FNB UK) could crystallize value. Strong Q1 volumes confirmed.</td>
+            </tr>
+            <tr>
+              <td><strong>Motus Holdings</strong></td><td><span class="ticker">MTH</span></td><td>JSE/A2X</td><td>Auto/Retail</td>
+              <td><span class="price">~R143</span></td><td><span class="fv">~R175–185</span></td><td><span class="upside-green">+22–29%</span></td>
+              <td>6–12m</td><td><span class="risk-med">Medium</span></td>
+              <td>Hidden: used car inventory cycle + vehicle import margins benefit from higher rand oil prices (people delay new purchases, service existing cars). P/E ~7× vs sector 10×. Analyst target raised to R149. Overlooked in the mining noise.</td>
+            </tr>
+            <tr>
+              <td><strong>Naspers (Prosus)</strong></td><td><span class="ticker">NPN</span></td><td>JSE/A2X</td><td>Tech/Media</td>
+              <td><span class="price">~R1,082</span></td><td><span class="fv">~R1,300–1,400</span></td><td><span class="upside-green">+20–29%</span></td>
+              <td>6–12m</td><td><span class="risk-med">Medium</span></td>
+              <td>Tencent recovery accelerating; analyst target raised to R1,184. Still at NAV discount. Unaffected by SA oil/energy dynamics — a pure offshore proxy and hedge against SA-specific risk. Buyback program ongoing.</td>
+            </tr>
+            <tr>
+              <td><strong>MTN Group</strong></td><td><span class="ticker">MTN</span></td><td>JSE/A2X</td><td>Telecom</td>
+              <td><span class="price">~R164</span></td><td><span class="fv">~R200–215</span></td><td><span class="upside-green">+22–31%</span></td>
+              <td>6–12m</td><td><span class="risk-med">Medium</span></td>
+              <td>MTN up ~5% recently on earnings beat signal. Fintech (MoMo) scaling. Telecom is inflation-resilient — consumers keep data plans. Oil price hurts MTN's African subsidiaries' operating costs, but revenue in local FX partially offsets.</td>
+            </tr>
+            <tr>
+              <td><strong>iOCO Ltd</strong></td><td><span class="ticker">IOC</span></td><td>JSE (AltX)</td><td>IT Services</td>
+              <td><span class="price">~R4.20</span></td><td><span class="fv">~R6.00–7.00</span></td><td><span class="upside-green">+43–67%</span></td>
+              <td>6–12m</td><td><span class="risk-high">High</span></td>
+              <td>Cloud/SaaS turnaround story unaffected by oil or gold dynamics. Recession-resistant IT support. +46% EPS growth in latest results. This week's market noise = buying opportunity for patient holders. Target raised from Apr 1 report.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-caption">Table 1: Top 10 rescreened SA stocks (prices as of Apr 8, 2026 close). 4 new entries vs Apr 1 edition: SOL, DRD, SSW, MTH. Gold assumptions: ~$4,700/oz. ZAR/USD ~16.9. Regime: higher oil, higher inflation near-term, fewer rate cuts.</p>
+    </section>
+
+    <!-- ═══ SECTION 3 — METHODOLOGY ═══ -->
+    <section id="s3">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <h2>Regime-Aware Screening Methodology <span class="free-badge">✓ Free Preview</span></h2>
+      </div>
+      <p>Our multi-factor model is unchanged, but <strong>regime overlays</strong> have been updated to reflect the new macro environment. We now run two passes: the standard factor screen, then a <strong>regime filter</strong> that reweights for the current commodity super-cycle and inflation shock.</p>
+      <ul>
+        <li><strong>Gold Overlay (new weight: HIGH):</strong> At $4,700/oz, any SA gold producer with debt below 1× EBITDA and growing output is aggressively re-rated. We screen for: ZAR gold price per oz vs AISC, net debt, output growth, dividend policy. PAN, DRD qualify clearly. Sibanye qualifies on a risk-adjusted basis.</li>
+        <li><strong>Oil/Energy Pass-Through:</strong> SA is a net oil importer. We now PENALISE companies with high fuel exposure in their COGS (airlines, logistics, plastics). We FAVOUR companies that benefit: Sasol (producer), mining (rand-denominated revenue on falling rand).</li>
+        <li><strong>Rate Path Revision:</strong> Reduced SARB cut probability means banks lose some multiple-expansion tailwind. We keep banks as core but reduce 12m return targets by ~3–5% vs Apr 1. NII support from higher-for-longer partially compensates.</li>
+        <li><strong>Rand Hedge Requirement:</strong> ZAR down ~6% from recent highs. We now require at least 30–40% of barbell to be in rand-hedge names (gold, Naspers, MTN, DRD) or exporters. This is a structural change from Apr 1.</li>
+        <li><strong>Catalyst threshold tightened:</strong> Given regime volatility, we now require catalyst within 3–6m (not 12m) for speculative positions. Extended-horizon plays must have strong quality scores to justify holding through volatility.</li>
+        <li><strong>All other filters unchanged:</strong> Value (P/E, P/B vs peers), Quality (ROE, ROIC, debt), Momentum (3–6m trend, volume), Liquidity (&gt;0.5m avg vol), Insider/institutional signals.</li>
+      </ul>
+      <p><strong>Scoring update:</strong> Gold miners score highest on Catalyst (10/10) and Value (8/10) given current gold price. Sasol scores high on Momentum (9/10) but carries elevated Risk. Banks score high on Quality (9/10) but lose Catalyst points with fewer cuts ahead.</p>
+    </section>
+
+    <!-- ═══ TEASER Section 4 ═══ -->
+    <div class="teaser-section" aria-hidden="true">
+      <div class="teaser-content">
+        <div style="margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid var(--border);display:flex;gap:14px;align-items:baseline;">
+          <span style="font-family:DM Mono,monospace;font-size:12px;color:var(--gold);background:var(--gold-dim);border:1px solid rgba(201,168,76,0.25);padding:3px 8px;border-radius:4px;">04</span>
+          <span style="font-family:Cormorant Garamond,serif;font-size:26px;font-weight:700;color:#fff;">High-Conviction Asymmetric Bets — Regime Rotated</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;">
+            <div style="font-family:DM Mono,monospace;font-size:18px;color:var(--gold);">DRD.JO</div>
+            <div style="font-size:13px;color:var(--text-muted);margin:4px 0 16px;">"Surface Gold at $4,700 — Zero Underground Risk"</div>
+            <div style="display:flex;gap:16px;margin-bottom:12px;">
+              <div><div style="font-size:10px;color:var(--text-faint);text-transform:uppercase;">Entry</div><div style="font-family:DM Mono,monospace;font-size:14px;">R30–33</div></div>
+              <div><div style="font-size:10px;color:var(--text-faint);text-transform:uppercase;">Target</div><div style="font-family:DM Mono,monospace;font-size:14px;color:var(--green);">~R50</div></div>
+              <div><div style="font-size:10px;color:var(--text-faint);text-transform:uppercase;">Return</div><div style="font-family:DM Mono,monospace;font-size:14px;color:var(--green);">+52%</div></div>
+            </div>
+            <div style="font-size:12.5px;color:var(--text-muted);border-top:1px solid var(--border);padding-top:12px;">Hidden Truth: market underestimates the earnings leverage of surface retreatment at $4k+ gold. No shaft sinking capex...</div>
+          </div>
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;">
+            <div style="font-family:DM Mono,monospace;font-size:18px;color:var(--gold);">SOL.JO</div>
+            <div style="font-size:13px;color:var(--text-muted);margin:4px 0 16px;">"Coal-to-Liquids at $80 Brent — Institutional Capitulation"</div>
+            <div style="display:flex;gap:16px;margin-bottom:12px;">
+              <div><div style="font-size:10px;color:var(--text-faint);text-transform:uppercase;">Entry</div><div style="font-family:DM Mono,monospace;font-size:14px;">R175–195</div></div>
+              <div><div style="font-size:10px;color:var(--text-faint);text-transform:uppercase;">Target</div><div style="font-family:DM Mono,monospace;font-size:14px;color:var(--green);">~R260</div></div>
+              <div><div style="font-size:10px;color:var(--text-faint);text-transform:uppercase;">Return</div><div style="font-family:DM Mono,monospace;font-size:14px;color:var(--green);">+37%</div></div>
+            </div>
+            <div style="font-size:12.5px;color:var(--text-muted);border-top:1px solid var(--border);padding-top:12px;">Hidden Truth: JPMorgan upgrade (Underweight→Overweight) marks institutional capitulation. CTL margins at Brent $80+...</div>
+          </div>
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;">
+            <div style="font-family:DM Mono,monospace;font-size:18px;color:var(--gold);">NPN.JO</div>
+            <div style="font-size:13px;color:var(--text-muted);margin:4px 0 16px;">"SA Macro Hedge — Offshore NAV Discount"</div>
+            <div style="display:flex;gap:16px;margin-bottom:12px;">
+              <div><div style="font-size:10px;color:var(--text-faint);text-transform:uppercase;">Entry</div><div style="font-family:DM Mono,monospace;font-size:14px;">R1,020–1,080</div></div>
+              <div><div style="font-size:10px;color:var(--text-faint);text-transform:uppercase;">Target</div><div style="font-family:DM Mono,monospace;font-size:14px;color:var(--green);">~R1,350</div></div>
+              <div><div style="font-size:10px;color:var(--text-faint);text-transform:uppercase;">Return</div><div style="font-family:DM Mono,monospace;font-size:14px;color:var(--green);">+25–32%</div></div>
+            </div>
+            <div style="font-size:12.5px;color:var(--text-muted);border-top:1px solid var(--border);padding-top:12px;">Hidden Truth: NPN is now the cleanest SA macro hedge — ZAR depreciation = rand-priced NAV expansion...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ PAYWALL ═══ -->
+    <div class="paywall-wall" id="paywall">
+      <div class="paywall-block">
+        <span class="pw-lock-icon">🔒</span>
+        <h2>Premium Intelligence Locked</h2>
+        <p class="pw-sub">You've seen the regime-change analysis and the rescreened top 10. The critical edge — <em>exact entry ranges, conviction theses for DRD/SOL/NPN, the new moonshot, portfolio reweighting, and updated stop-losses</em> — is behind the paywall.</p>
+
+        <div class="pw-locked-items">
+          <span class="pw-item">04 · High-Conviction Bets (3 new)</span>
+          <span class="pw-item">05 · Moonshot: PGM Re-rating Play</span>
+          <span class="pw-item">06 · Execution & Instruments</span>
+          <span class="pw-item">07 · Broker Matrix</span>
+          <span class="pw-item">08 · Barbell Reweighting</span>
+          <span class="pw-item">09 · Scenarios: Iran Prolonged vs Short</span>
+          <span class="pw-item">10 · Updated Entry Guidelines</span>
+        </div>
+
+        <div class="pricing-tiers">
+          <div class="tier">
+            <div class="tier-label">Single Report</div>
+            <div class="tier-price"><sub>R</sub>99</div>
+            <div class="tier-period">one-time · this issue only</div>
+            <ul class="tier-features">
+              <li><span class="tf-check">✓</span> Full Apr 9 report</li>
+              <li><span class="tf-check">✓</span> All 10 stock theses</li>
+              <li><span class="tf-check">✓</span> Entry & stop levels</li>
+              <li><span class="tf-check">✓</span> Barbell reweighting</li>
+              <li style="color:var(--text-faint);">✗ Future issues</li>
+              <li style="color:var(--text-faint);">✗ Archive access</li>
+            </ul>
+            <a href="https://payfast.io" target="_blank" class="btn-tier btn-tier-secondary">Unlock This Issue →</a>
+          </div>
+
+          <div class="tier featured">
+            <div class="tier-badge">Most Popular</div>
+            <div class="tier-label">Monthly</div>
+            <div class="tier-price"><sub>R</sub>199</div>
+            <div class="tier-period">per month · cancel anytime</div>
+            <ul class="tier-features">
+              <li><span class="tf-check">✓</span> Every weekly report</li>
+              <li><span class="tf-check">✓</span> Full conviction theses</li>
+              <li><span class="tf-check">✓</span> Entry, target & stops</li>
+              <li><span class="tf-check">✓</span> Broker & instrument guide</li>
+              <li><span class="tf-check">✓</span> Portfolio construction</li>
+              <li><span class="tf-check">✓</span> Bull/base/bear scenarios</li>
+            </ul>
+            <a href="https://payfast.io" target="_blank" class="btn-tier btn-tier-primary">Unlock Full Report (R199) →</a>
+          </div>
+
+          <div class="tier">
+            <div class="tier-label">Annual</div>
+            <div class="tier-price"><sub>R</sub>999</div>
+            <div class="tier-period">per year · 2 months free</div>
+            <ul class="tier-features">
+              <li><span class="tf-check">✓</span> Everything in Monthly</li>
+              <li><span class="tf-check">✓</span> 52 weekly reports/year</li>
+              <li><span class="tf-check">✓</span> Full archive access</li>
+              <li><span class="tf-check">✓</span> Priority email support</li>
+              <li><span class="tf-check">✓</span> Custom watchlist alerts</li>
+              <li><span class="tf-check">✓</span> 2 months free vs monthly</li>
+            </ul>
+            <a href="https://payfast.io" target="_blank" class="btn-tier btn-tier-secondary">Save with Annual →</a>
+          </div>
+        </div>
+
+        <div style="background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.2);border-radius:12px;padding:20px 28px;max-width:500px;margin:0 auto 28px;display:flex;align-items:center;gap:20px;text-align:left;">
+          <div style="font-size:28px;">🏛️</div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;">Institutional — from R5,000/month</div>
+            <div style="font-size:12px;color:var(--text-muted);">Multi-seat, custom sector reports, direct analyst Q&A. For asset managers and family offices.</div>
+          </div>
+          <a href="mailto:research@antifragile-alpha.co.za" style="background:var(--surface2);border:1px solid var(--border);color:var(--gold);font-size:12px;padding:8px 16px;border-radius:8px;text-decoration:none;white-space:nowrap;flex-shrink:0;">Contact Us</a>
+        </div>
+
+        <div>
+          <div class="pf-badge">🔐 Secured by PayFast · All major SA payment methods</div>
+          <div class="pf-methods">
+            <span class="pf-method">💳 Visa / Mastercard</span>
+            <span class="pf-method">⚡ Instant EFT</span>
+            <span class="pf-method">📱 SnapScan QR</span>
+            <span class="pf-method">🏦 Capitec Pay</span>
+            <span class="pf-method">📲 Masterpass</span>
+          </div>
+        </div>
+
+        <p class="pw-note">Already a subscriber? <a href="mailto:research@antifragile-alpha.co.za">Email us</a> for access. · <a href="index.html">← Back to portal</a> · Not financial advice.</p>
+      </div>
+    </div>
+
+  </div><!-- /.content -->
+</main>
+</div><!-- /.layout -->
+</body>
+</html>
