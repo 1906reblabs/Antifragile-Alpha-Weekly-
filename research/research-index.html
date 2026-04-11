@@ -1,1 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Weekly Editions — Antifragile Alpha Research</title>
+<meta name="description" content="Browse all Antifragile Alpha weekly SA equities research reports. Free preview sections 01–03 on every edition. Full reports unlocked with a subscription."/>
+<link rel="canonical" href="https://1906reblabs.github.io/Antifragile-Alpha-Weekly-/research/index.html"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  /* ── Design Tokens ── */
+  :root {
+    --bg: #0b0d12;
+    --surface: #11141c;
+    --surface2: #171b26;
+    --border: #1f2333;
+    --gold: #c9a84c;
+    --gold-light: #e8c76a;
+    --gold-dim: rgba(201,168,76,0.1);
+    --green: #3ecf8e;
+    --red: #f06a6a;
+    --blue: #5c9cf5;
+    --amber: #f0a84c;
+    --purple: #b07ef5;
+    --text: #dde2ef;
+    --text-muted: #7a8299;
+    --text-faint: #353d55;
+    --nav-h: 62px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.7; min-height: 100vh; }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 
+  /* ── NAV ── */
+  header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: var(--nav-h);
+    position: sticky; top: 0; z-index: 200;
+  }
+  .brand { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 700; color: var(--gold); letter-spacing: 0.02em; display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+  .nav-primary { display: flex; align-items: center; gap: 2px; flex: 1; justify-content: center; }
+  .nav-primary a { text-decoration: none; color: var(--text-muted); font-size: 13px; padding: 6px 13px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
+  .nav-primary a:hover, .nav-primary a.active { color: var(--text); background: var(--surface2); }
+  .nav-dropdown { position: relative; }
+  .nav-dropdown > a { display: flex; align-items: center; gap: 4px; }
+  .nav-dropdown > a::after { content: '▾'; font-size: 9px; opacity: 0.5; }
+  .dropdown-menu { display: none; position: absolute; top: calc(100% + 6px); left: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; min-width: 190px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.5); z-index: 300; }
+  .nav-dropdown:hover .dropdown-menu { display: block; }
+  .dropdown-menu a { display: flex; align-items: center; gap: 8px; padding: 10px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+  .dropdown-menu a:last-child { border-bottom: none; }
+  .dropdown-menu a:hover { background: var(--surface2); color: var(--text); }
+  .dropdown-menu a.dm-current { color: var(--gold); }
+  .dropdown-menu .dm-icon { font-size: 12px; opacity: 0.7; }
+  .dropdown-menu .dm-label { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-faint); font-weight: 600; padding: 8px 16px 4px; }
+  .nav-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+  .nav-right a { text-decoration: none; color: var(--text-muted); font-size: 13px; padding: 6px 13px; border-radius: 6px; transition: all 0.2s; }
+  .nav-right a:hover { color: var(--text); background: var(--surface2); }
+  .nav-right .btn-cta { background: var(--gold); color: #0b0d12; font-weight: 600; padding: 7px 18px; border-radius: 7px; }
+  .nav-right .btn-cta:hover { background: var(--gold-light); }
+  .burger { display: none; background: none; border: none; color: var(--text-muted); cursor: pointer; padding: 6px; }
+  .nav-mobile { display: none; position: absolute; top: var(--nav-h); left: 0; right: 0; background: var(--surface); border-bottom: 1px solid var(--border); padding: 12px 20px; flex-direction: column; gap: 4px; z-index: 199; }
+  .nav-mobile.open { display: flex; }
+  .nav-mobile a { text-decoration: none; color: var(--text-muted); font-size: 14px; padding: 9px 12px; border-radius: 6px; transition: all 0.2s; }
+  .nav-mobile a:hover { color: var(--text); background: var(--surface2); }
+  .nav-mobile .mob-cta { background: var(--gold); color: #0b0d12; font-weight: 600; text-align: center; margin-top: 4px; }
+
+  /* ── SUB-NAV (Research tabs) ── */
+  .sub-nav {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    display: flex;
+    gap: 0;
+    align-items: center;
+  }
+  .sub-nav a {
+    font-size: 13px;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 14px 18px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .sub-nav a:hover { color: var(--text); }
+  .sub-nav a.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+  /* ── PAGE HERO ── */
+  .page-hero {
+    padding: 56px 48px 44px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+  .page-hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -80px;
+    width: 420px; height: 420px;
+    background: radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+  .hero-left {}
+  .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 14px; background: var(--gold-dim); border: 1px solid rgba(201,168,76,0.25); padding: 5px 14px; border-radius: 4px; }
+  .page-hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(30px, 4vw, 48px); font-weight: 700; color: #fff; line-height: 1.1; margin-bottom: 10px; letter-spacing: -0.01em; }
+  .page-hero h1 em { color: var(--gold); font-style: normal; }
+  .page-hero p { color: var(--text-muted); font-size: 15px; max-width: 520px; }
+  .hero-right { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; }
+  .hero-stat-row { display: flex; gap: 24px; align-items: center; }
+  .hs { text-align: right; }
+  .hs-val { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 700; color: var(--gold); display: block; }
+  .hs-label { font-size: 10px; color: var(--text-faint); letter-spacing: 0.1em; text-transform: uppercase; }
+  .hs-divider { width: 1px; height: 32px; background: var(--border); }
+
+  /* ── CONTAINER ── */
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+
+  /* ── REGIME ALERT ── */
+  .regime-alert {
+    background: rgba(240,106,106,0.07);
+    border: 1px solid rgba(240,106,106,0.22);
+    border-radius: 10px;
+    padding: 13px 20px;
+    margin: 28px 0 0;
+    display: flex; align-items: flex-start; gap: 12px;
+    font-size: 13px; color: var(--text-muted);
+  }
+  .regime-alert strong { color: var(--red); }
+  .regime-alert a { color: var(--gold); text-decoration: none; font-weight: 600; }
+  .regime-alert a:hover { text-decoration: underline; }
+
+  /* ── FILTER BAR ── */
+  .filter-bar { display: flex; align-items: center; gap: 10px; padding: 28px 0 22px; flex-wrap: wrap; }
+  .search-box { flex: 1; min-width: 200px; max-width: 320px; display: flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 9px 14px; transition: border-color 0.2s; }
+  .search-box:focus-within { border-color: rgba(201,168,76,0.4); }
+  .search-box input { background: none; border: none; outline: none; color: var(--text); font-size: 13px; font-family: 'DM Sans', sans-serif; width: 100%; }
+  .search-box input::placeholder { color: var(--text-faint); }
+  .filter-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+  .chip { background: var(--surface); border: 1px solid var(--border); color: var(--text-muted); font-size: 12px; padding: 5px 13px; border-radius: 20px; cursor: pointer; transition: all 0.2s; user-select: none; }
+  .chip:hover { border-color: var(--gold); color: var(--gold); }
+  .chip.active { background: var(--gold-dim); border-color: rgba(201,168,76,0.4); color: var(--gold); }
+  .filter-meta { margin-left: auto; display: flex; align-items: center; gap: 16px; }
+  .filter-count { font-size: 12px; color: var(--text-faint); }
+  .sort-select { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; color: var(--text-muted); font-size: 12px; padding: 5px 10px; font-family: 'DM Sans', sans-serif; cursor: pointer; outline: none; }
+  .sort-select:focus { border-color: rgba(201,168,76,0.4); }
+
+  /* ── EDITION CARDS ── */
+  .editions-list { display: flex; flex-direction: column; gap: 16px; margin-bottom: 56px; }
+
+  .edition-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    position: relative;
+  }
+  .edition-card:hover { border-color: rgba(201,168,76,0.3); box-shadow: 0 4px 24px rgba(0,0,0,0.2); }
+  .edition-card.is-latest { border-color: rgba(240,106,106,0.3); }
+  .edition-card.is-latest:hover { border-color: rgba(240,106,106,0.5); }
+
+  .edition-card-inner {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 0;
+    align-items: stretch;
+  }
+
+  /* Date column */
+  .ec-date-col {
+    background: var(--surface2);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 12px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .ec-day { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 700; color: var(--gold); line-height: 1; }
+  .ec-month { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-faint); margin-top: 3px; }
+  .ec-year { font-size: 10px; color: var(--text-faint); font-family: 'DM Mono', monospace; }
+
+  /* Body */
+  .ec-body { padding: 20px 24px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+  .ec-header { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .ec-badge { font-size: 10px; padding: 2px 9px; border-radius: 10px; font-weight: 600; white-space: nowrap; }
+  .badge-latest   { background: rgba(240,106,106,0.15); color: var(--red);   border: 1px solid rgba(240,106,106,0.3); }
+  .badge-regime   { background: rgba(240,106,106,0.12); color: var(--red);   border: 1px solid rgba(240,106,106,0.25); }
+  .badge-archived { background: var(--surface2);         color: var(--text-faint); border: 1px solid var(--border); }
+  .badge-upcoming { background: rgba(201,168,76,0.08);   color: var(--gold); border: 1px solid rgba(201,168,76,0.2); }
+  .ec-edition-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text-faint); }
+  .ec-title { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 700; color: var(--text); line-height: 1.3; }
+  .ec-summary { font-size: 13px; color: var(--text-faint); line-height: 1.65; }
+  .ec-meta-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .ec-meta-item { display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--text-faint); }
+  .ec-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 2px; }
+
+  /* Tags */
+  .tag { font-size: 11px; padding: 3px 10px; border-radius: 12px; font-weight: 500; white-space: nowrap; }
+  .tag-banks  { background: rgba(92,156,245,0.12);  color: var(--blue);   border: 1px solid rgba(92,156,245,0.25); }
+  .tag-gold   { background: var(--gold-dim);         color: var(--gold);   border: 1px solid rgba(201,168,76,0.25); }
+  .tag-tech   { background: rgba(62,207,142,0.1);    color: var(--green);  border: 1px solid rgba(62,207,142,0.25); }
+  .tag-reit   { background: rgba(240,106,106,0.1);   color: var(--red);    border: 1px solid rgba(240,106,106,0.25); }
+  .tag-telecom{ background: rgba(150,100,240,0.1);   color: var(--purple); border: 1px solid rgba(150,100,240,0.25); }
+  .tag-retail { background: rgba(240,180,80,0.1);    color: #f0b450;       border: 1px solid rgba(240,180,80,0.25); }
+  .tag-macro  { background: rgba(100,200,240,0.08);  color: #64c8f0;       border: 1px solid rgba(100,200,240,0.2); }
+  .tag-energy { background: rgba(240,106,76,0.1);    color: var(--amber);  border: 1px solid rgba(240,106,76,0.25); }
+  .tag-pgm    { background: rgba(180,100,240,0.1);   color: #d07ef5;       border: 1px solid rgba(180,100,240,0.25); }
+  .tag-iron   { background: rgba(200,140,60,0.12);   color: #d4946a;       border: 1px solid rgba(200,140,60,0.25); }
+
+  /* Action column */
+  .ec-actions {
+    border-left: 1px solid var(--border);
+    padding: 20px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px;
+    min-width: 170px;
+    flex-shrink: 0;
+  }
+  .ec-upside { text-align: right; }
+  .ec-upside-val { font-family: 'DM Mono', monospace; font-size: 22px; font-weight: 500; color: var(--green); display: block; line-height: 1; }
+  .ec-upside-label { font-size: 10px; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+  .ec-btn-group { display: flex; flex-direction: column; gap: 6px; width: 100%; }
+  .btn-preview { display: block; width: 100%; padding: 9px 14px; border-radius: 7px; font-size: 12.5px; font-weight: 600; text-decoration: none; text-align: center; background: var(--gold); color: #0b0d12; transition: all 0.2s; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+  .btn-preview:hover { background: var(--gold-light); }
+  .btn-unlock { display: block; width: 100%; padding: 9px 14px; border-radius: 7px; font-size: 12.5px; font-weight: 600; text-decoration: none; text-align: center; background: var(--surface2); color: var(--text-muted); border: 1px solid var(--border); transition: all 0.2s; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+  .btn-unlock:hover { color: var(--gold); border-color: rgba(201,168,76,0.4); background: var(--gold-dim); }
+  .ec-lock-note { font-size: 11px; color: var(--text-faint); text-align: right; display: flex; align-items: center; gap: 4px; justify-content: flex-end; }
+
+  /* ── UPCOMING EDITIONS ── */
+  .upcoming-section { margin-bottom: 64px; }
+  .upcoming-section .section-row { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+  .upcoming-section .section-row h2 { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: #fff; }
+  .upcoming-list { display: flex; flex-direction: column; gap: 8px; }
+  .upcoming-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    opacity: 0.55;
+  }
+  .ui-date { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text-faint); letter-spacing: 0.08em; width: 88px; flex-shrink: 0; }
+  .ui-title { flex: 1; font-size: 13.5px; color: var(--text-muted); }
+  .ui-badge { font-size: 10px; padding: 2px 9px; border-radius: 10px; font-weight: 600; background: rgba(201,168,76,0.08); color: var(--gold); border: 1px solid rgba(201,168,76,0.2); white-space: nowrap; flex-shrink: 0; }
+
+  /* ── MACRO CONTEXT PANEL ── */
+  .macro-context {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-bottom: 56px;
+  }
+  .mc-title { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: #fff; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+  .mc-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .mc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .mc-item { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; }
+  .mc-key { font-size: 10.5px; color: var(--text-faint); letter-spacing: 0.06em; margin-bottom: 5px; }
+  .mc-val { font-family: 'DM Mono', monospace; font-size: 16px; font-weight: 500; }
+  .mc-val.up { color: var(--green); }
+  .mc-val.warn { color: var(--red); }
+  .mc-val.neutral { color: var(--gold); }
+  .mc-note { font-size: 11px; color: var(--text-faint); margin-top: 3px; }
+
+  /* ── SUBSCRIBE TEASER ── */
+  .subscribe-teaser {
+    background: linear-gradient(135deg, #13161e, #101625);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 40px 48px;
+    margin-bottom: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .subscribe-teaser::before { content: ''; position: absolute; top: -60px; right: -40px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(201,168,76,0.04) 0%, transparent 70%); pointer-events: none; }
+  .st-text h3 { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+  .st-text p { color: var(--text-muted); font-size: 14px; max-width: 420px; margin: 0; }
+  .st-form { display: flex; gap: 8px; flex-shrink: 0; }
+  .st-form input { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: 13px; padding: 10px 14px; font-family: 'DM Sans', sans-serif; outline: none; transition: border-color 0.2s; width: 220px; }
+  .st-form input:focus { border-color: rgba(201,168,76,0.4); }
+  .st-form input::placeholder { color: var(--text-faint); }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px; border-radius: 8px; font-size: 13px; font-weight: 600; text-decoration: none; cursor: pointer; border: none; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+  .btn-primary { background: var(--gold); color: #0b0d12; }
+  .btn-primary:hover { background: var(--gold-light); }
+
+  /* ── EMPTY STATE ── */
+  .empty-state { text-align: center; padding: 64px 32px; color: var(--text-faint); }
+  .empty-state h3 { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--text-muted); margin-bottom: 8px; }
+  .empty-state p { font-size: 14px; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 48px;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 40px;
+  }
+  .footer-brand .brand { margin-bottom: 10px; }
+  .footer-brand p { font-size: 13px; color: var(--text-faint); max-width: 240px; line-height: 1.6; }
+  .footer-col h5 { font-size: 10.5px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 14px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .footer-col ul li a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+  .footer-col ul li a:hover { color: var(--gold); }
+  .footer-bottom { grid-column: 1/-1; border-top: 1px solid var(--border); padding-top: 22px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; font-size: 12px; color: var(--text-faint); }
+  .footer-bottom a { color: var(--text-faint); text-decoration: none; transition: color 0.2s; }
+  .footer-bottom a:hover { color: var(--gold); }
+  .footer-links-row { display: flex; gap: 20px; flex-wrap: wrap; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-in { animation: fadeUp 0.4s ease both; }
+
+  @media (max-width: 900px) {
+    header { padding: 0 20px; }
+    .nav-primary, .nav-right { display: none; }
+    .burger { display: block; }
+    .sub-nav { padding: 0 20px; }
+    .page-hero { padding: 36px 20px 28px; }
+    .hero-inner { flex-direction: column; gap: 20px; align-items: flex-start; }
+    .hero-right { align-items: flex-start; }
+    .container { padding: 0 20px; }
+    .edition-card-inner { grid-template-columns: 64px 1fr; }
+    .ec-actions { display: none; }
+    .ec-body { padding: 16px; }
+    .mc-grid { grid-template-columns: repeat(2, 1fr); }
+    .subscribe-teaser { flex-direction: column; padding: 28px 24px; }
+    .st-form { flex-direction: column; }
+    .st-form input { width: 100%; }
+    footer { grid-template-columns: 1fr 1fr; padding: 32px 20px; gap: 28px; }
+    .footer-brand { grid-column: 1/-1; }
+  }
+  @media (max-width: 600px) {
+    .edition-card-inner { grid-template-columns: 1fr; }
+    .ec-date-col { flex-direction: row; gap: 8px; justify-content: flex-start; border-right: none; border-bottom: 1px solid var(--border); padding: 12px 16px; }
+    .mc-grid { grid-template-columns: 1fr 1fr; }
+    footer { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<header>
+  <a class="brand" href="../index.html">◆ Antifragile Alpha</a>
+  <nav class="nav-primary">
+    <a href="../index.html">Home</a>
+    <a href="../about.html">About</a>
+    <div class="nav-dropdown">
+      <a href="index.html" class="active">Research</a>
+      <div class="dropdown-menu">
+        <span class="dm-label">Research</span>
+        <a href="index.html" class="dm-current"><span class="dm-icon">📅</span> Weekly Editions</a>
+        <a href="archive.html"><span class="dm-icon">🗄️</span> Archive</a>
+      </div>
+    </div>
+    <a href="../methodology.html">Methodology</a>
+    <a href="../pricing.html">Pricing</a>
+    <a href="../subscribe.html">Subscribe</a>
+    <div class="nav-dropdown">
+      <a href="#">More</a>
+      <div class="dropdown-menu">
+        <span class="dm-label">More</span>
+        <a href="../contact.html"><span class="dm-icon">✉️</span> Contact</a>
+        <a href="../search.html"><span class="dm-icon">🔍</span> Search</a>
+        <a href="https://github.com/1906reblabs/Antifragile-Alpha-Weekly-" target="_blank"><span class="dm-icon">🐙</span> GitHub ↗</a>
+      </div>
+    </div>
+  </nav>
+  <div class="nav-right">
+    <a href="../pricing.html" class="btn-cta">Unlock Access →</a>
+  </div>
+  <button class="burger" id="burgerBtn" aria-label="Open menu" onclick="document.getElementById('mobileNav').classList.toggle('open')">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
+</header>
+
+<nav class="nav-mobile" id="mobileNav">
+  <a href="../index.html">Home</a>
+  <a href="../about.html">About</a>
+  <a href="index.html">Weekly Editions</a>
+  <a href="archive.html">Archive</a>
+  <a href="../methodology.html">Methodology</a>
+  <a href="../pricing.html">Pricing</a>
+  <a href="../subscribe.html">Subscribe</a>
+  <a href="../contact.html">Contact</a>
+  <a href="../search.html">Search</a>
+  <a href="../pricing.html" class="mob-cta">Unlock Access →</a>
+</nav>
+
+<!-- ══ SUB-NAV ══ -->
+<div class="sub-nav">
+  <a href="index.html" class="active">Weekly Editions</a>
+  <a href="archive.html">Archive</a>
+</div>
+
+<!-- ══ PAGE HERO ══ -->
+<div class="page-hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="eyebrow">◆ Research</div>
+      <h1>Weekly <em>Editions</em></h1>
+      <p>Every edition screens 600+ SA equities and delivers 10 undervalued picks, 3 conviction bets, and 1 moonshot — updated for the current macro regime. Free preview always available.</p>
+    </div>
+    <div class="hero-right">
+      <div class="hero-stat-row">
+        <div class="hs">
+          <span class="hs-val">4</span>
+          <span class="hs-label">Editions Published</span>
+        </div>
+        <div class="hs-divider"></div>
+        <div class="hs">
+          <span class="hs-val">3</span>
+          <span class="hs-label">Regime Shifts Detected</span>
+        </div>
+        <div class="hs-divider"></div>
+        <div class="hs">
+          <span class="hs-val">+84%</span>
+          <span class="hs-label">Best Pick Upside</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- Regime Alert -->
+  <div class="regime-alert">
+    <span>⚠️</span>
+    <span>
+      <strong>Active Regime (Apr 11):</strong> US-China tariffs at 145% · ZAR R19.2 · ZAR gold R59,500/oz · ALSI −8% on the week · SOL stop-loss executed at R148.
+      The latest edition identifies the critical ZAR/USD gold mispricing and 3 new conviction picks.
+      <a href="../report-apr-11-2026.html">Read now →</a>
+    </span>
+  </div>
+
+  <!-- ══ FILTER BAR ══ -->
+  <div class="filter-bar">
+    <div class="search-box">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" placeholder="Search editions…" id="searchInput" oninput="filterEditions()"/>
+    </div>
+    <div class="filter-chips">
+      <span class="chip active" onclick="setFilter('all',this)">All</span>
+      <span class="chip" onclick="setFilter('gold',this)">Gold</span>
+      <span class="chip" onclick="setFilter('banks',this)">Banks</span>
+      <span class="chip" onclick="setFilter('energy',this)">Energy</span>
+      <span class="chip" onclick="setFilter('tech',this)">Tech</span>
+      <span class="chip" onclick="setFilter('macro',this)">Macro</span>
+      <span class="chip" onclick="setFilter('pgm',this)">PGMs</span>
+    </div>
+    <div class="filter-meta">
+      <span class="filter-count" id="filterCount">4 editions</span>
+      <select class="sort-select" id="sortSelect" onchange="filterEditions()">
+        <option value="newest">Newest first</option>
+        <option value="oldest">Oldest first</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- ══ EDITIONS LIST ══ -->
+  <div class="editions-list" id="editionsList"></div>
+
+  <!-- ══ MACRO CONTEXT ══ -->
+  <div class="macro-context">
+    <div class="mc-title">Current Macro Snapshot</div>
+    <div class="mc-grid">
+      <div class="mc-item">
+        <div class="mc-key">SARB Repo Rate</div>
+        <div class="mc-val neutral">6.75%</div>
+        <div class="mc-note">Hold — 1 cut expected 2026</div>
+      </div>
+      <div class="mc-item">
+        <div class="mc-key">ZAR / USD</div>
+        <div class="mc-val warn">~R19.2 ↑</div>
+        <div class="mc-note">+14% shock from R16.9 (Apr 9)</div>
+      </div>
+      <div class="mc-item">
+        <div class="mc-key">Gold (USD/oz)</div>
+        <div class="mc-val neutral">~$3,100</div>
+        <div class="mc-note">Margin-call liquidation from $4,700</div>
+      </div>
+      <div class="mc-item">
+        <div class="mc-key">ZAR Gold (R/oz)</div>
+        <div class="mc-val up">~R59,500</div>
+        <div class="mc-note">86% margin vs PAN AISC ~R32k/oz</div>
+      </div>
+      <div class="mc-item">
+        <div class="mc-key">Brent Crude</div>
+        <div class="mc-val warn">~$63 ↓</div>
+        <div class="mc-note">Demand shock; SOL stop triggered</div>
+      </div>
+      <div class="mc-item">
+        <div class="mc-key">ALSI (week)</div>
+        <div class="mc-val warn">−8%</div>
+        <div class="mc-note">Worst week since 2022</div>
+      </div>
+      <div class="mc-item">
+        <div class="mc-key">US-China Tariffs</div>
+        <div class="mc-val warn">145%</div>
+        <div class="mc-note">Highest rate since 1930; trade war regime</div>
+      </div>
+      <div class="mc-item">
+        <div class="mc-key">LS-Free Days</div>
+        <div class="mc-val up">315+</div>
+        <div class="mc-note">Eskom stable; macro positive</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ UPCOMING ══ -->
+  <div class="upcoming-section">
+    <div class="section-row">
+      <h2>Upcoming Editions</h2>
+    </div>
+    <div class="upcoming-list">
+      <div class="upcoming-item">
+        <div class="ui-date">18 Apr 2026</div>
+        <div class="ui-title">SA Equities — Apr 18, 2026 · Q1 earnings season opens. Bank results, commodity sector refresh, trade-war portfolio review.</div>
+        <span class="ui-badge">Subscribers Only</span>
+      </div>
+      <div class="upcoming-item">
+        <div class="ui-date">25 Apr 2026</div>
+        <div class="ui-title">SA Equities — Apr 25, 2026 · Post-results update. Fair value revisions and position sizing recommendations based on earnings surprises.</div>
+        <span class="ui-badge">Subscribers Only</span>
+      </div>
+      <div class="upcoming-item">
+        <div class="ui-date">02 May 2026</div>
+        <div class="ui-title">SA Equities — May 2, 2026 · May edition. Barbell monthly review. China stimulus watch. PAN/DRD partial profit assessment.</div>
+        <span class="ui-badge">Subscribers Only</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SUBSCRIBE TEASER ══ -->
+  <div class="subscribe-teaser">
+    <div class="st-text">
+      <h3>Get Every Edition in Your Inbox</h3>
+      <p>Free preview sections 01–03 every Friday. Subscribers receive the full report — all 10 sections unlocked — including exact entry ranges, hard stops, and the conviction thesis.</p>
+    </div>
+    <div class="st-form">
+      <input type="email" placeholder="your@email.com" id="stEmailInput"/>
+      <button class="btn btn-primary" onclick="handleSubscribe()">Subscribe Free →</button>
+    </div>
+  </div>
+
+</div><!-- /.container -->
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-brand">
+    <a class="brand" href="../index.html">◆ Antifragile Alpha</a>
+    <p>Weekly deep-dive research into JSE, A2X, and AltX equities. Barbell-structured, evidence-based, and ruthlessly focused on undervalued asymmetry.</p>
+  </div>
+  <div class="footer-col">
+    <h5>Research</h5>
+    <ul>
+      <li><a href="index.html">Weekly Editions</a></li>
+      <li><a href="archive.html">Archive</a></li>
+      <li><a href="../methodology.html">Methodology</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h5>Site</h5>
+    <ul>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../pricing.html">Pricing</a></li>
+      <li><a href="../subscribe.html">Subscribe</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+      <li><a href="../search.html">Search</a></li>
+      <li><a href="https://github.com/1906reblabs/Antifragile-Alpha-Weekly-" target="_blank">GitHub ↗</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h5>Legal</h5>
+    <ul>
+      <li><a href="../legal/terms.html">Terms of Use</a></li>
+      <li><a href="../legal/privacy.html">Privacy Policy</a></li>
+      <li><a href="../legal/disclaimer.html">Disclaimer</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <span>For informational purposes only · Not financial advice · © 2026 Antifragile Alpha</span>
+    <div class="footer-links-row">
+      <a href="index.html">Reports</a>
+      <a href="../pricing.html">Pricing</a>
+      <a href="../methodology.html">Methodology</a>
+      <a href="https://github.com/1906reblabs/Antifragile-Alpha-Weekly-" target="_blank">GitHub ↗</a>
+      <a href="../legal/terms.html">Terms</a>
+      <a href="../legal/privacy.html">Privacy</a>
+      <a href="../legal/disclaimer.html">Disclaimer</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ══ JAVASCRIPT ══ -->
+<script>
+  /* ── Edition data ── */
+  const editions = [
+    {
+      id: 'apr-11-2026',
+      day: '11', month: 'Apr', year: '2026',
+      num: 'Edition 04',
+      badge: 'badge-latest', badgeText: 'LATEST',
+      title: 'SA Equities — Trade War / Forced Liquidation (Apr 11, 2026)',
+      summary: 'US-China tariffs at 145%. ALSI −8%. ZAR blows to R19.2 — but ZAR gold = R59,500/oz and PAN/DRD are operating at 86% margins. We exit Sasol (stop hit at R148), explain the critical USD vs ZAR gold mispricing, and add Capitec (antifragile banking), Kumba Iron Ore (China stimulus contrarian), and Anglo American Platinum (critical minerals).',
+      tags: ['gold','banks','iron','tech','macro','pgm'],
+      tagLabels: [['Gold Mining','tag-gold'],['Banking (CPI)','tag-banks'],['Iron Ore (KIO)','tag-iron'],['PGMs','tag-pgm'],['Macro','tag-macro']],
+      metrics: { picks: 10, exchanges: 'JSE · A2X · AltX', upside: '+84%', regime: 'Trade War / Risk-Off' },
+      href: '../report-apr-11-2026.html',
+      isLatest: true,
+      hasUnlocked: true
+    },
+    {
+      id: 'apr-10-2026',
+      day: '10', month: 'Apr', year: '2026',
+      num: 'Edition 03',
+      badge: 'badge-regime', badgeText: 'REGIME SHIFT',
+      title: 'SA Equities — Trade War Shock (Apr 10, 2026)',
+      summary: 'Initial US tariff escalation to 145% on China. ALSI hit. SOL stop-loss at R148 introduced. Capitec first flagged as antifragile banking candidate. DRD conviction entry initiated on NYSE-driven JSE mispricing. Rand-hedge mandate raised to ≥45%. Three new entries: DRD (add), Capitec, Kumba Iron Ore.',
+      tags: ['gold','banks','energy','macro','iron'],
+      tagLabels: [['Gold Mining','tag-gold'],['Banking','tag-banks'],['Energy','tag-energy'],['Iron Ore','tag-iron']],
+      metrics: { picks: 10, exchanges: 'JSE · A2X · AltX', upside: '+71%', regime: 'Trade War / Risk-Off' },
+      href: '../report-apr-10-2026.html',
+      isLatest: false,
+      hasUnlocked: false
+    },
+    {
+      id: 'apr-9-2026',
+      day: '09', month: 'Apr', year: '2026',
+      num: 'Edition 02',
+      badge: 'badge-regime', badgeText: 'REGIME SHIFT',
+      title: 'SA Equities — Regime Change: Commodity Bull + Oil Shock (Apr 9, 2026)',
+      summary: 'Gold surges to $4,700 (+141% YTD). SARB revises to 1 cut only. Middle East oil shock reshapes SA macro. Barbell rotated toward gold miners and energy. New conviction picks: DRD Gold, Sasol (SOL), Naspers (NPN). Weaver Fintech moonshot replaced by Southern Palladium (SPD) on critical minerals thesis. SKILLS v3.0 upgrade triggered.',
+      tags: ['gold','energy','banks','tech','macro','pgm'],
+      tagLabels: [['Gold Mining','tag-gold'],['Energy (Sasol)','tag-energy'],['Banks','tag-banks'],['PGM Moonshot','tag-pgm']],
+      metrics: { picks: 10, exchanges: 'JSE · A2X · AltX', upside: '+78%', regime: 'Commodity Bull' },
+      href: '../report-apr-9-2026.html',
+      isLatest: false,
+      hasUnlocked: true
+    },
+    {
+      id: 'apr-2026',
+      day: '01', month: 'Apr', year: '2026',
+      num: 'Edition 01',
+      badge: 'badge-archived', badgeText: 'ARCHIVED',
+      title: 'SA Equities — Original Barbell (Apr 1, 2026)',
+      summary: 'Inaugural edition. 10 undervalued stocks across banks, telecoms, retail, REIT, tech, and gold. 3 high-conviction bets: Standard Bank (SBK), iOCO (IOC), Pan African Resources (PAN). Moonshot: Weaver Fintech (W2J) — BNPL platform misclassified as a retailer. Full broker matrix, entry ranges, and scenario analysis. Pre-regime-detection framework.',
+      tags: ['banks','tech','gold','reit','telecom','retail','macro'],
+      tagLabels: [['Banks','tag-banks'],['Gold (PAN)','tag-gold'],['Tech (IOC)','tag-tech'],['Telecoms','tag-telecom']],
+      metrics: { picks: 10, exchanges: 'JSE · A2X · AltX', upside: '+71%', regime: 'Benign / Rate-Cut Cycle' },
+      href: '../report-apr-2026.html',
+      isLatest: false,
+      hasUnlocked: false
+    }
+  ];
+
+  let activeFilter = 'all';
+  let searchQuery = '';
+
+  function setFilter(tag, el) {
+    activeFilter = tag;
+    document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+    renderEditions();
+  }
+
+  function filterEditions() {
+    searchQuery = document.getElementById('searchInput').value.toLowerCase();
+    renderEditions();
+  }
+
+  function buildCard(ed, index) {
+    const tagHTML = ed.tagLabels.map(([l, cls]) => `<span class="tag ${cls}">${l}</span>`).join('');
+    return `
+      <div class="edition-card ${ed.isLatest ? 'is-latest' : ''} fade-in" style="animation-delay:${index * 0.06}s">
+        <div class="edition-card-inner">
+
+          <div class="ec-date-col">
+            <div class="ec-day">${ed.day}</div>
+            <div class="ec-month">${ed.month}</div>
+            <div class="ec-year">${ed.year}</div>
+          </div>
+
+          <div class="ec-body">
+            <div class="ec-header">
+              <span class="ec-badge ${ed.badge}">${ed.badgeText}</span>
+              <span class="ec-edition-num">${ed.num}</span>
+            </div>
+            <div class="ec-title">${ed.title}</div>
+            <div class="ec-summary">${ed.summary}</div>
+            <div class="ec-meta-row">
+              <span class="ec-meta-item">📄 ${ed.metrics.picks} stocks</span>
+              <span class="ec-meta-item">🏦 ${ed.metrics.exchanges}</span>
+              <span class="ec-meta-item">📈 Top upside ${ed.metrics.upside}</span>
+              <span class="ec-meta-item">⚡ ${ed.metrics.regime}</span>
+            </div>
+            <div class="ec-tags">${tagHTML}</div>
+          </div>
+
+          <div class="ec-actions">
+            <div class="ec-upside">
+              <span class="ec-upside-val">${ed.metrics.upside}</span>
+              <span class="ec-upside-label">Top upside</span>
+            </div>
+            <div class="ec-btn-group">
+              <a href="${ed.href}" class="btn-preview">Read Preview →</a>
+              <a href="../pricing.html" class="btn-unlock">🔓 Unlock (R99)</a>
+            </div>
+            <div class="ec-lock-note">🔒 Sections 04–10 locked</div>
+          </div>
+
+        </div>
+      </div>`;
+  }
+
+  function renderEditions() {
+    const list = document.getElementById('editionsList');
+    const sortVal = document.getElementById('sortSelect').value;
+
+    let filtered = editions.filter(ed => {
+      const matchTag = activeFilter === 'all' || ed.tags.includes(activeFilter);
+      const matchSearch = !searchQuery || ed.title.toLowerCase().includes(searchQuery) || ed.summary.toLowerCase().includes(searchQuery);
+      return matchTag && matchSearch;
+    });
+
+    if (sortVal === 'oldest') filtered = [...filtered].reverse();
+
+    document.getElementById('filterCount').textContent = `${filtered.length} edition${filtered.length !== 1 ? 's' : ''}`;
+
+    if (filtered.length === 0) {
+      list.innerHTML = `<div class="empty-state"><h3>No editions found</h3><p>Try adjusting your filter or search term.</p></div>`;
+      return;
+    }
+
+    list.innerHTML = filtered.map((ed, i) => buildCard(ed, i)).join('');
+  }
+
+  function handleSubscribe() {
+    const input = document.getElementById('stEmailInput');
+    if (!input.value || !input.value.includes('@')) {
+      input.style.borderColor = 'var(--red)';
+      setTimeout(() => { input.style.borderColor = ''; }, 1400);
+      return;
+    }
+    input.value = '';
+    const btn = document.querySelector('.st-form .btn');
+    const orig = btn.textContent;
+    btn.textContent = '✓ You\'re in!';
+    btn.style.background = 'var(--green)';
+    btn.style.color = '#0b0d12';
+    setTimeout(() => { btn.textContent = orig; btn.style.background = ''; btn.style.color = ''; }, 2500);
+  }
+
+  /* ── Init ── */
+  renderEditions();
+</script>
+</body>
+</html>
