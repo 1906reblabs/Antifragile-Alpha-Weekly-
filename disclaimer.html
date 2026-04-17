@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Disclaimer — Antifragile Alpha</title>
+<meta name="description" content="Financial disclaimer for Antifragile Alpha. Not financial advice. Not an FSP. For informational purposes only."/>
+<link rel="canonical" href="https://1906reblabs.github.io/Antifragile-Alpha-Weekly-/legal/disclaimer.html"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg:#0b0d12; --surface:#11141c; --surface2:#171b26; --border:#1f2333;
+    --gold:#c9a84c; --gold-light:#e8c76a; --gold-dim:rgba(201,168,76,0.1);
+    --green:#3ecf8e; --red:#f06a6a; --blue:#5c9cf5; --amber:#f0a84c;
+    --text:#dde2ef; --text-muted:#7a8299; --text-faint:#353d55;
+    --nav-h:62px;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.7;min-height:100vh;}
+  ::-webkit-scrollbar{width:6px;} ::-webkit-scrollbar-track{background:var(--bg);} ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+
+  /* NAV */
+  header{background:var(--surface);border-bottom:1px solid var(--border);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:var(--nav-h);position:sticky;top:0;z-index:200;}
+  .brand{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--gold);text-decoration:none;letter-spacing:0.02em;}
+  .nav-primary{display:flex;align-items:center;gap:2px;flex:1;justify-content:center;}
+  .nav-primary a{text-decoration:none;color:var(--text-muted);font-size:13px;padding:6px 13px;border-radius:6px;transition:all 0.2s;}
+  .nav-primary a:hover{color:var(--text);background:var(--surface2);}
+  .nav-dropdown{position:relative;}
+  .nav-dropdown>a{display:flex;align-items:center;gap:4px;}
+  .nav-dropdown>a::after{content:'▾';font-size:9px;opacity:0.5;}
+  .dropdown-menu{display:none;position:absolute;top:calc(100% + 6px);left:0;background:var(--surface);border:1px solid var(--border);border-radius:10px;min-width:190px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.5);z-index:300;}
+  .nav-dropdown:hover .dropdown-menu{display:block;}
+  .dropdown-menu a{display:flex;align-items:center;gap:8px;padding:10px 16px;font-size:13px;color:var(--text-muted);text-decoration:none;border-bottom:1px solid var(--border);transition:all 0.15s;}
+  .dropdown-menu a:last-child{border-bottom:none;}
+  .dropdown-menu a:hover{background:var(--surface2);color:var(--text);}
+  .dropdown-menu .dm-icon{font-size:12px;opacity:0.7;}
+  .dropdown-menu .dm-label{font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-faint);font-weight:600;padding:8px 16px 4px;}
+  .nav-right{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+  .nav-right a{text-decoration:none;color:var(--text-muted);font-size:13px;padding:6px 13px;border-radius:6px;transition:all 0.2s;}
+  .nav-right .btn-cta{background:var(--gold);color:#0b0d12;font-weight:600;padding:7px 18px;border-radius:7px;}
+  .nav-right .btn-cta:hover{background:var(--gold-light);}
+  .burger{display:none;background:none;border:none;color:var(--text-muted);cursor:pointer;padding:6px;}
+  .nav-mobile{display:none;position:absolute;top:var(--nav-h);left:0;right:0;background:var(--surface);border-bottom:1px solid var(--border);padding:12px 20px;flex-direction:column;gap:4px;z-index:199;}
+  .nav-mobile.open{display:flex;}
+  .nav-mobile a{text-decoration:none;color:var(--text-muted);font-size:14px;padding:9px 12px;border-radius:6px;}
+  .nav-mobile a:hover{color:var(--text);background:var(--surface2);}
+  .nav-mobile .mob-cta{background:var(--gold);color:#0b0d12;font-weight:600;text-align:center;margin-top:4px;}
+
+  /* BREADCRUMB */
+  .breadcrumb{padding:16px 48px;border-bottom:1px solid var(--border);font-size:12.5px;color:var(--text-faint);}
+  .breadcrumb a{color:var(--text-faint);text-decoration:none;transition:color 0.2s;}
+  .breadcrumb a:hover{color:var(--gold);}
+  .breadcrumb span{margin:0 8px;opacity:0.4;}
+
+  /* HERO */
+  .page-hero{padding:52px 48px 40px;border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
+  .page-hero::before{content:'';position:absolute;top:-60px;right:-80px;width:380px;height:380px;background:radial-gradient(circle,rgba(240,106,106,0.04) 0%,transparent 65%);pointer-events:none;}
+  .hero-inner{max-width:800px;margin:0 auto;position:relative;z-index:1;}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);font-weight:600;margin-bottom:16px;background:rgba(240,106,106,0.08);border:1px solid rgba(240,106,106,0.2);padding:5px 14px;border-radius:4px;}
+  .page-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,44px);font-weight:700;color:#fff;margin-bottom:12px;line-height:1.1;}
+  .page-hero .meta{font-size:12px;color:var(--text-faint);font-family:'DM Mono',monospace;}
+
+  /* LAYOUT */
+  .doc-wrap{max-width:800px;margin:0 auto;padding:52px 48px 80px;}
+
+  /* ALERT BOX */
+  .alert-box{background:rgba(240,106,106,0.07);border:1px solid rgba(240,106,106,0.25);border-radius:12px;padding:22px 26px;margin-bottom:40px;display:flex;gap:16px;align-items:flex-start;}
+  .alert-icon{font-size:22px;flex-shrink:0;margin-top:2px;}
+  .alert-text h3{font-size:15px;font-weight:700;color:var(--red);margin-bottom:6px;}
+  .alert-text p{font-size:13.5px;color:var(--text-muted);margin:0;line-height:1.7;}
+
+  /* TYPOGRAPHY */
+  .doc-wrap h2{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:#fff;margin:40px 0 14px;padding-top:40px;border-top:1px solid var(--border);}
+  .doc-wrap h2:first-of-type{border-top:none;padding-top:0;margin-top:0;}
+  .doc-wrap p{color:var(--text-muted);margin-bottom:14px;line-height:1.8;}
+  .doc-wrap strong{color:var(--text);font-weight:600;}
+  .doc-wrap ul{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
+  .doc-wrap ul li{padding-left:20px;position:relative;color:var(--text-muted);font-size:14px;}
+  .doc-wrap ul li::before{content:'›';position:absolute;left:0;color:var(--gold);font-size:16px;line-height:1.75;}
+
+  /* SUMMARY CARDS */
+  .summary-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:20px 0 32px;}
+  .sum-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 20px;text-align:center;}
+  .sum-card .sum-icon{font-size:22px;margin-bottom:8px;}
+  .sum-card .sum-title{font-size:12.5px;font-weight:600;color:var(--text);margin-bottom:4px;}
+  .sum-card .sum-body{font-size:12px;color:var(--text-faint);line-height:1.55;}
+
+  /* LEGAL NAV */
+  .legal-nav{display:flex;gap:8px;margin-bottom:40px;flex-wrap:wrap;}
+  .legal-nav a{font-size:12.5px;color:var(--text-faint);text-decoration:none;padding:6px 14px;border:1px solid var(--border);border-radius:20px;transition:all 0.2s;}
+  .legal-nav a:hover{color:var(--gold);border-color:rgba(201,168,76,0.3);}
+  .legal-nav a.active{color:var(--gold);border-color:rgba(201,168,76,0.4);background:var(--gold-dim);}
+
+  /* FOOTER */
+  footer{border-top:1px solid var(--border);padding:48px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;}
+  .footer-brand p{font-size:13px;color:var(--text-faint);max-width:240px;line-height:1.6;margin-top:8px;}
+  .footer-col h5{font-size:10.5px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-faint);margin-bottom:14px;}
+  .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+  .footer-col ul li a{font-size:13px;color:var(--text-muted);text-decoration:none;transition:color 0.2s;}
+  .footer-col ul li a:hover{color:var(--gold);}
+  .footer-bottom{grid-column:1/-1;border-top:1px solid var(--border);padding-top:22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--text-faint);}
+  .footer-bottom a{color:var(--text-faint);text-decoration:none;} .footer-bottom a:hover{color:var(--gold);}
+  .footer-links-row{display:flex;gap:20px;flex-wrap:wrap;}
+
+  @media(max-width:900px){
+    header{padding:0 20px;} .nav-primary,.nav-right{display:none;} .burger{display:block;}
+    .breadcrumb,.page-hero{padding-left:20px;padding-right:20px;}
+    .doc-wrap{padding:36px 20px 56px;}
+    .summary-grid{grid-template-columns:1fr;}
+    footer{grid-template-columns:1fr 1fr;padding:32px 20px;gap:28px;}
+    .footer-brand{grid-column:1/-1;}
+  }
+  @media(max-width:600px){footer{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="brand" href="../index.html">◆ Antifragile Alpha</a>
+  <nav class="nav-primary">
+    <a href="../index.html">Home</a>
+    <a href="../about.html">About</a>
+    <div class="nav-dropdown">
+      <a href="../research/index.html">Research</a>
+      <div class="dropdown-menu">
+        <span class="dm-label">Research</span>
+        <a href="../research/index.html"><span class="dm-icon">📅</span> Weekly Editions</a>
+        <a href="../research/archive.html"><span class="dm-icon">🗄️</span> Archive</a>
+      </div>
+    </div>
+    <a href="../methodology.html">Methodology</a>
+    <a href="../pricing.html">Pricing</a>
+    <a href="../subscribe.html">Subscribe</a>
+    <div class="nav-dropdown">
+      <a href="#">More</a>
+      <div class="dropdown-menu">
+        <span class="dm-label">More</span>
+        <a href="../contact.html"><span class="dm-icon">✉️</span> Contact</a>
+        <a href="../search.html"><span class="dm-icon">🔍</span> Search</a>
+        <a href="https://github.com/1906reblabs/Antifragile-Alpha-Weekly-" target="_blank"><span class="dm-icon">🐙</span> GitHub ↗</a>
+      </div>
+    </div>
+  </nav>
+  <div class="nav-right">
+    <a href="../pricing.html" class="btn-cta">Unlock Access →</a>
+  </div>
+  <button class="burger" aria-label="Open menu" onclick="document.getElementById('mobileNav').classList.toggle('open')">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
+</header>
+<nav class="nav-mobile" id="mobileNav">
+  <a href="../index.html">Home</a><a href="../about.html">About</a>
+  <a href="../research/index.html">Weekly Editions</a><a href="../research/archive.html">Archive</a>
+  <a href="../methodology.html">Methodology</a><a href="../pricing.html">Pricing</a>
+  <a href="../subscribe.html">Subscribe</a><a href="../contact.html">Contact</a>
+  <a href="../pricing.html" class="mob-cta">Unlock Access →</a>
+</nav>
+
+<div class="breadcrumb">
+  <a href="../index.html">Home</a><span>›</span>Legal<span>›</span>Disclaimer
+</div>
+
+<div class="page-hero">
+  <div class="hero-inner">
+    <div class="eyebrow">⚠ Legal</div>
+    <h1>Financial Disclaimer</h1>
+    <p class="meta">Last updated: April 2026 · Governing law: Republic of South Africa</p>
+  </div>
+</div>
+
+<div class="doc-wrap">
+
+  <div class="legal-nav">
+    <a href="disclaimer.html" class="active">Disclaimer</a>
+    <a href="terms.html">Terms of Use</a>
+    <a href="privacy.html">Privacy Policy</a>
+  </div>
+
+  <div class="alert-box">
+    <div class="alert-icon">⚠️</div>
+    <div class="alert-text">
+      <h3>Not Financial Advice — Read Before Proceeding</h3>
+      <p>Antifragile Alpha is not a Financial Services Provider (FSP) registered with the Financial Sector Conduct Authority (FSCA) of South Africa. Nothing published on this website or in any Antifragile Alpha report constitutes financial advice, investment advice, a solicitation to buy or sell any security, or a recommendation to act in any particular way with respect to any financial instrument. All content is for informational and educational purposes only. You are solely responsible for your own investment decisions.</p>
+    </div>
+  </div>
+
+  <div class="summary-grid">
+    <div class="sum-card">
+      <div class="sum-icon">🏛️</div>
+      <div class="sum-title">Not an FSP</div>
+      <div class="sum-body">Not registered with the FSCA under the Financial Advisory and Intermediary Services Act (FAIS).</div>
+    </div>
+    <div class="sum-card">
+      <div class="sum-icon">📋</div>
+      <div class="sum-title">Information Only</div>
+      <div class="sum-body">All content is informational and educational. It does not constitute advice, a recommendation, or a solicitation.</div>
+    </div>
+    <div class="sum-card">
+      <div class="sum-icon">⚖️</div>
+      <div class="sum-title">Your Responsibility</div>
+      <div class="sum-body">All investment decisions are made solely by you. Consult a licensed financial advisor before acting on any information.</div>
+    </div>
+  </div>
+
+  <h2>No Financial Advice</h2>
+  <p>Antifragile Alpha is a research and information publication. The content published on this website, in weekly report editions, via email, or through any other channel operated by Antifragile Alpha (collectively, the "Content") does not constitute:</p>
+  <ul>
+    <li>Financial advice as defined in the Financial Advisory and Intermediary Services Act 37 of 2002 (FAIS Act)</li>
+    <li>A solicitation, recommendation, or offer to buy or sell any security, financial instrument, or investment product</li>
+    <li>Investment advice, portfolio management advice, or any other regulated advisory service</li>
+    <li>A guarantee of any investment outcome, return, or performance</li>
+    <li>Tax, legal, accounting, or estate planning advice of any kind</li>
+  </ul>
+  <p>All analysis, commentary, stock picks, price targets, entry ranges, stop-loss levels, and position sizing guidance published by Antifragile Alpha are the opinions and research outputs of the publication and are provided solely for informational and educational purposes.</p>
+
+  <h2>Not a Registered Financial Services Provider</h2>
+  <p>Antifragile Alpha is <strong>not registered as a Financial Services Provider (FSP)</strong> with the Financial Sector Conduct Authority (FSCA) of South Africa under the FAIS Act. We are not authorised to provide financial advice or intermediary services as defined under South African financial services law.</p>
+  <p>If you require personalised financial advice tailored to your specific circumstances, risk profile, financial position, and investment objectives, you must consult a licensed FSP registered with the FSCA. You can verify any FSP's registration at <strong>fsca.co.za</strong>.</p>
+
+  <h2>Investment Risk Disclosure</h2>
+  <p>Investing in equities, securities, and financial instruments involves significant risk, including the risk of total loss of capital. Past performance — including any picks referenced in Antifragile Alpha reports or performance tracking tables — is not indicative of future results.</p>
+  <p>Specific risks you should be aware of before acting on any information published by Antifragile Alpha include:</p>
+  <ul>
+    <li><strong>Market risk:</strong> Share prices can decline significantly and rapidly due to market conditions, sentiment, or macroeconomic events entirely beyond any analyst's control or prediction.</li>
+    <li><strong>Liquidity risk:</strong> Certain stocks covered, particularly on AltX, CTSE, or 4AX, may have low trading volumes and wide bid-ask spreads, making entry and exit difficult or costly at published price levels.</li>
+    <li><strong>Concentration risk:</strong> Reports cover a focused list of equities. A concentrated portfolio based on this research carries higher volatility than a diversified portfolio.</li>
+    <li><strong>Currency risk:</strong> ZAR-denominated investments are subject to rand depreciation risk when measured in foreign currency terms, and vice versa.</li>
+    <li><strong>Commodity risk:</strong> Many picks involve commodity-exposed businesses (gold, platinum, iron ore, oil). Commodity prices are volatile and subject to geopolitical and macroeconomic forces outside local control.</li>
+    <li><strong>Small and mid-cap risk:</strong> Smaller companies referenced may have less analyst coverage, higher volatility, less liquid markets, and greater operational risk than large-cap names.</li>
+    <li><strong>Leverage risk:</strong> Any use of Single Stock Futures (SSFs), Contracts for Difference (CFDs), options, or other leveraged instruments multiplies both potential gains and potential losses and may result in losses exceeding your initial capital.</li>
+    <li><strong>Regime change risk:</strong> Macro regime changes — as documented in Antifragile Alpha reports — can render a thesis invalid rapidly. The publication makes no guarantee of thesis validity between weekly editions.</li>
+  </ul>
+
+  <h2>Forward-Looking Statements</h2>
+  <p>Content published by Antifragile Alpha may contain forward-looking statements, including price targets, estimated returns, upside scenarios, and analyst price targets sourced from third parties. These statements are based on assumptions and expectations that may not prove to be accurate. Actual results may differ materially from any forward-looking projections.</p>
+  <p>Forward-looking language such as "target", "upside", "fair value", "thesis", "base case", and "bull case" describes research scenarios — not guaranteed or probable outcomes.</p>
+
+  <h2>Accuracy and Completeness</h2>
+  <p>While Antifragile Alpha makes reasonable efforts to ensure that information published is accurate and current at the time of publication, we make no warranty — express or implied — as to the accuracy, completeness, timeliness, or fitness for purpose of any Content. Financial data, prices, analyst estimates, and macroeconomic figures may change after publication. Market conditions can move against published theses rapidly and without warning.</p>
+  <p>You should independently verify any information before relying on it, particularly prices, corporate announcements, and regulatory filings, using primary sources such as the JSE SENS system, the A2X announcements portal, company investor relations pages, and the SARB website.</p>
+
+  <h2>Third-Party Information</h2>
+  <p>Antifragile Alpha may reference analyst price targets, broker research summaries, and third-party data in its publications. Such references are provided for context only and do not constitute an endorsement of those views or data providers. Antifragile Alpha does not warrant the accuracy of any third-party information referenced.</p>
+
+  <h2>Performance Tracking</h2>
+  <p>Antifragile Alpha publishes a live performance tracking table as part of its research archive. This table records the outcomes of past published ideas for transparency and accountability purposes. It is provided for informational purposes only and does not represent an audited or verified track record. Past publication of winning or losing ideas does not constitute evidence that future ideas will achieve similar results. The performance table should not be used as the sole basis for any investment decision.</p>
+
+  <h2>No Liability</h2>
+  <p>To the maximum extent permitted by applicable South African law, Antifragile Alpha, its publishers, authors, researchers, agents, and contributors shall not be liable for any direct, indirect, incidental, consequential, or punitive loss or damage of any kind — including financial loss, loss of profits, loss of capital, or any other pecuniary or non-pecuniary loss — arising from or in connection with:</p>
+  <ul>
+    <li>Any reliance on Content published by Antifragile Alpha</li>
+    <li>Any investment decision made based on Content published by Antifragile Alpha</li>
+    <li>Any inaccuracy, error, or omission in any published Content</li>
+    <li>Any interruption, delay, or unavailability of the website or its Content</li>
+    <li>Any change in the financial markets or macroeconomic conditions following publication</li>
+  </ul>
+  <p>By accessing and using this website and its Content, you acknowledge and accept this limitation of liability in full.</p>
+
+  <h2>Your Responsibility</h2>
+  <p>You are solely responsible for all investment decisions you make. Before investing, you should carefully consider your personal financial situation, investment objectives, risk tolerance, and time horizon. You should obtain independent, professional financial, tax, and legal advice appropriate to your circumstances before acting on any information published by Antifragile Alpha.</p>
+  <p>The use of stop-loss levels, position sizing guidance, or any other risk management framework published by Antifragile Alpha does not guarantee protection against loss and is provided as research commentary, not as personalised risk management advice.</p>
+
+  <h2>Regulatory Jurisdiction</h2>
+  <p>Antifragile Alpha is published from and governed by the laws of the Republic of South Africa. The primary regulatory frameworks applicable to financial services in South Africa include the Financial Advisory and Intermediary Services Act 37 of 2002 (FAIS), the Financial Markets Act 19 of 2012 (FMA), and the Financial Sector Regulation Act 9 of 2017 (FSRA). Users outside South Africa are responsible for ensuring that their access to and use of this Content complies with the laws and regulations applicable in their jurisdiction. Content published by Antifragile Alpha is not directed at residents of any jurisdiction where its distribution or use would be contrary to local law.</p>
+
+  <h2>Changes to This Disclaimer</h2>
+  <p>Antifragile Alpha reserves the right to update or amend this disclaimer at any time. Any changes will be published on this page with an updated effective date. Your continued use of this website following any amendment constitutes acceptance of the updated disclaimer.</p>
+
+  <h2>Contact</h2>
+  <p>If you have questions about this disclaimer or the nature of the Content published by Antifragile Alpha, you can reach us via the <a href="../contact.html" style="color:var(--gold);text-decoration:none;font-weight:600;">contact page</a>. We will respond within 3 business days.</p>
+
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px 24px;margin-top:40px;font-size:13px;color:var(--text-faint);line-height:1.7;">
+    <strong style="color:var(--text-muted);display:block;margin-bottom:6px;">Related Legal Documents</strong>
+    <a href="terms.html" style="color:var(--gold);text-decoration:none;margin-right:24px;">Terms of Use →</a>
+    <a href="privacy.html" style="color:var(--gold);text-decoration:none;">Privacy Policy (POPIA) →</a>
+  </div>
+
+</div><!-- /.doc-wrap -->
+
+<footer>
+  <div class="footer-brand">
+    <a class="brand" href="../index.html">◆ Antifragile Alpha</a>
+    <p>Weekly deep-dive research into JSE, A2X, and AltX equities. For informational purposes only. Not financial advice.</p>
+  </div>
+  <div class="footer-col">
+    <h5>Research</h5>
+    <ul>
+      <li><a href="../research/index.html">Weekly Editions</a></li>
+      <li><a href="../research/archive.html">Archive</a></li>
+      <li><a href="../methodology.html">Methodology</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h5>Site</h5>
+    <ul>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../pricing.html">Pricing</a></li>
+      <li><a href="../subscribe.html">Subscribe</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h5>Legal</h5>
+    <ul>
+      <li><a href="terms.html">Terms of Use</a></li>
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="disclaimer.html">Disclaimer</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <span>For informational purposes only · Not financial advice · Not an FSP · © 2026 Antifragile Alpha</span>
+    <div class="footer-links-row">
+      <a href="terms.html">Terms</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="disclaimer.html">Disclaimer</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
