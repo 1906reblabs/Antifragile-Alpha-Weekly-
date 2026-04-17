@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Terms of Use — Antifragile Alpha</title>
+<meta name="description" content="Terms of Use for Antifragile Alpha. Governing your access to the research portal and subscription services."/>
+<link rel="canonical" href="https://1906reblabs.github.io/Antifragile-Alpha-Weekly-/legal/terms.html"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg:#0b0d12; --surface:#11141c; --surface2:#171b26; --border:#1f2333;
+    --gold:#c9a84c; --gold-light:#e8c76a; --gold-dim:rgba(201,168,76,0.1);
+    --green:#3ecf8e; --red:#f06a6a; --blue:#5c9cf5; --amber:#f0a84c;
+    --text:#dde2ef; --text-muted:#7a8299; --text-faint:#353d55;
+    --nav-h:62px;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.7;min-height:100vh;}
+  ::-webkit-scrollbar{width:6px;} ::-webkit-scrollbar-track{background:var(--bg);} ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+
+  /* NAV */
+  header{background:var(--surface);border-bottom:1px solid var(--border);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:var(--nav-h);position:sticky;top:0;z-index:200;}
+  .brand{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--gold);text-decoration:none;letter-spacing:0.02em;}
+  .nav-primary{display:flex;align-items:center;gap:2px;flex:1;justify-content:center;}
+  .nav-primary a{text-decoration:none;color:var(--text-muted);font-size:13px;padding:6px 13px;border-radius:6px;transition:all 0.2s;}
+  .nav-primary a:hover{color:var(--text);background:var(--surface2);}
+  .nav-dropdown{position:relative;}
+  .nav-dropdown>a{display:flex;align-items:center;gap:4px;}
+  .nav-dropdown>a::after{content:'▾';font-size:9px;opacity:0.5;}
+  .dropdown-menu{display:none;position:absolute;top:calc(100% + 6px);left:0;background:var(--surface);border:1px solid var(--border);border-radius:10px;min-width:190px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.5);z-index:300;}
+  .nav-dropdown:hover .dropdown-menu{display:block;}
+  .dropdown-menu a{display:flex;align-items:center;gap:8px;padding:10px 16px;font-size:13px;color:var(--text-muted);text-decoration:none;border-bottom:1px solid var(--border);transition:all 0.15s;}
+  .dropdown-menu a:last-child{border-bottom:none;}
+  .dropdown-menu a:hover{background:var(--surface2);color:var(--text);}
+  .dropdown-menu .dm-icon{font-size:12px;opacity:0.7;}
+  .dropdown-menu .dm-label{font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-faint);font-weight:600;padding:8px 16px 4px;}
+  .nav-right{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+  .nav-right a{text-decoration:none;color:var(--text-muted);font-size:13px;padding:6px 13px;border-radius:6px;transition:all 0.2s;}
+  .nav-right .btn-cta{background:var(--gold);color:#0b0d12;font-weight:600;padding:7px 18px;border-radius:7px;}
+  .nav-right .btn-cta:hover{background:var(--gold-light);}
+  .burger{display:none;background:none;border:none;color:var(--text-muted);cursor:pointer;padding:6px;}
+  .nav-mobile{display:none;position:absolute;top:var(--nav-h);left:0;right:0;background:var(--surface);border-bottom:1px solid var(--border);padding:12px 20px;flex-direction:column;gap:4px;z-index:199;}
+  .nav-mobile.open{display:flex;}
+  .nav-mobile a{text-decoration:none;color:var(--text-muted);font-size:14px;padding:9px 12px;border-radius:6px;}
+  .nav-mobile a:hover{color:var(--text);background:var(--surface2);}
+  .nav-mobile .mob-cta{background:var(--gold);color:#0b0d12;font-weight:600;text-align:center;margin-top:4px;}
+
+  /* BREADCRUMB */
+  .breadcrumb{padding:16px 48px;border-bottom:1px solid var(--border);font-size:12.5px;color:var(--text-faint);}
+  .breadcrumb a{color:var(--text-faint);text-decoration:none;transition:color 0.2s;}
+  .breadcrumb a:hover{color:var(--gold);}
+  .breadcrumb span{margin:0 8px;opacity:0.4;}
+
+  /* HERO */
+  .page-hero{padding:52px 48px 40px;border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
+  .page-hero::before{content:'';position:absolute;top:-60px;right:-80px;width:380px;height:380px;background:radial-gradient(circle,rgba(201,168,76,0.04) 0%,transparent 65%);pointer-events:none;}
+  .hero-inner{max-width:800px;margin:0 auto;position:relative;z-index:1;}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:16px;background:var(--gold-dim);border:1px solid rgba(201,168,76,0.25);padding:5px 14px;border-radius:4px;}
+  .page-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,44px);font-weight:700;color:#fff;margin-bottom:12px;line-height:1.1;}
+  .page-hero .meta{font-size:12px;color:var(--text-faint);font-family:'DM Mono',monospace;}
+
+  /* LAYOUT */
+  .doc-wrap{max-width:800px;margin:0 auto;padding:52px 48px 80px;}
+
+  /* LEGAL NAV */
+  .legal-nav{display:flex;gap:8px;margin-bottom:40px;flex-wrap:wrap;}
+  .legal-nav a{font-size:12.5px;color:var(--text-faint);text-decoration:none;padding:6px 14px;border:1px solid var(--border);border-radius:20px;transition:all 0.2s;}
+  .legal-nav a:hover{color:var(--gold);border-color:rgba(201,168,76,0.3);}
+  .legal-nav a.active{color:var(--gold);border-color:rgba(201,168,76,0.4);background:var(--gold-dim);}
+
+  /* TOC */
+  .toc{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:22px 26px;margin-bottom:40px;}
+  .toc-label{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-faint);font-weight:600;margin-bottom:12px;}
+  .toc-links{display:flex;flex-direction:column;gap:6px;}
+  .toc-links a{font-size:13px;color:var(--text-muted);text-decoration:none;display:flex;align-items:center;gap:8px;transition:color 0.2s;}
+  .toc-links a:hover{color:var(--gold);}
+  .toc-links a .toc-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--text-faint);width:22px;flex-shrink:0;}
+
+  /* TYPOGRAPHY */
+  .doc-wrap h2{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:#fff;margin:44px 0 14px;padding-top:44px;border-top:1px solid var(--border);scroll-margin-top:80px;}
+  .doc-wrap h2:first-of-type{border-top:none;padding-top:0;margin-top:0;}
+  .doc-wrap p{color:var(--text-muted);margin-bottom:14px;line-height:1.8;}
+  .doc-wrap strong{color:var(--text);font-weight:600;}
+  .doc-wrap ul{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
+  .doc-wrap ul li{padding-left:20px;position:relative;color:var(--text-muted);font-size:14px;line-height:1.7;}
+  .doc-wrap ul li::before{content:'›';position:absolute;left:0;color:var(--gold);font-size:16px;line-height:1.75;}
+  .doc-wrap a{color:var(--gold);text-decoration:none;}
+  .doc-wrap a:hover{text-decoration:underline;}
+
+  /* HIGHLIGHT BOX */
+  .highlight-box{background:var(--gold-dim);border:1px solid rgba(201,168,76,0.2);border-radius:10px;padding:16px 20px;margin:16px 0 22px;font-size:13.5px;color:var(--text-muted);line-height:1.75;}
+  .highlight-box strong{color:var(--gold);}
+
+  /* RELATED DOCS */
+  .related-docs{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px 24px;margin-top:40px;font-size:13px;color:var(--text-faint);line-height:1.7;}
+  .related-docs strong{color:var(--text-muted);display:block;margin-bottom:8px;}
+
+  /* FOOTER */
+  footer{border-top:1px solid var(--border);padding:48px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;}
+  .footer-brand p{font-size:13px;color:var(--text-faint);max-width:240px;line-height:1.6;margin-top:8px;}
+  .footer-col h5{font-size:10.5px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-faint);margin-bottom:14px;}
+  .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+  .footer-col ul li a{font-size:13px;color:var(--text-muted);text-decoration:none;transition:color 0.2s;}
+  .footer-col ul li a:hover{color:var(--gold);}
+  .footer-bottom{grid-column:1/-1;border-top:1px solid var(--border);padding-top:22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--text-faint);}
+  .footer-bottom a{color:var(--text-faint);text-decoration:none;}
+  .footer-bottom a:hover{color:var(--gold);}
+  .footer-links-row{display:flex;gap:20px;flex-wrap:wrap;}
+
+  @media(max-width:900px){
+    header{padding:0 20px;} .nav-primary,.nav-right{display:none;} .burger{display:block;}
+    .breadcrumb,.page-hero{padding-left:20px;padding-right:20px;}
+    .doc-wrap{padding:36px 20px 56px;}
+    footer{grid-template-columns:1fr 1fr;padding:32px 20px;gap:28px;}
+    .footer-brand{grid-column:1/-1;}
+  }
+  @media(max-width:600px){footer{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="brand" href="../index.html">◆ Antifragile Alpha</a>
+  <nav class="nav-primary">
+    <a href="../index.html">Home</a>
+    <a href="../about.html">About</a>
+    <div class="nav-dropdown">
+      <a href="../research/index.html">Research</a>
+      <div class="dropdown-menu">
+        <span class="dm-label">Research</span>
+        <a href="../research/index.html"><span class="dm-icon">📅</span> Weekly Editions</a>
+        <a href="../research/archive.html"><span class="dm-icon">🗄️</span> Archive</a>
+      </div>
+    </div>
+    <a href="../methodology.html">Methodology</a>
+    <a href="../pricing.html">Pricing</a>
+    <a href="../subscribe.html">Subscribe</a>
+    <div class="nav-dropdown">
+      <a href="#">More</a>
+      <div class="dropdown-menu">
+        <span class="dm-label">More</span>
+        <a href="../contact.html"><span class="dm-icon">✉️</span> Contact</a>
+        <a href="../search.html"><span class="dm-icon">🔍</span> Search</a>
+        <a href="https://github.com/1906reblabs/Antifragile-Alpha-Weekly-" target="_blank"><span class="dm-icon">🐙</span> GitHub ↗</a>
+      </div>
+    </div>
+  </nav>
+  <div class="nav-right">
+    <a href="../pricing.html" class="btn-cta">Unlock Access →</a>
+  </div>
+  <button class="burger" aria-label="Open menu" onclick="document.getElementById('mobileNav').classList.toggle('open')">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
+</header>
+<nav class="nav-mobile" id="mobileNav">
+  <a href="../index.html">Home</a>
+  <a href="../about.html">About</a>
+  <a href="../research/index.html">Weekly Editions</a>
+  <a href="../research/archive.html">Archive</a>
+  <a href="../methodology.html">Methodology</a>
+  <a href="../pricing.html">Pricing</a>
+  <a href="../subscribe.html">Subscribe</a>
+  <a href="../contact.html">Contact</a>
+  <a href="../pricing.html" class="mob-cta">Unlock Access →</a>
+</nav>
+
+<div class="breadcrumb">
+  <a href="../index.html">Home</a><span>›</span>Legal<span>›</span>Terms of Use
+</div>
+
+<div class="page-hero">
+  <div class="hero-inner">
+    <div class="eyebrow">◆ Legal</div>
+    <h1>Terms of Use</h1>
+    <p class="meta">Last updated: April 2026 · Governing law: Republic of South Africa</p>
+  </div>
+</div>
+
+<div class="doc-wrap">
+
+  <div class="legal-nav">
+    <a href="disclaimer.html">Disclaimer</a>
+    <a href="terms.html" class="active">Terms of Use</a>
+    <a href="privacy.html">Privacy Policy</a>
+  </div>
+
+  <div class="highlight-box">
+    <strong>Please read these Terms carefully.</strong> By accessing or using the Antifragile Alpha website, research reports, or any related services, you agree to be bound by these Terms of Use. If you do not agree, you must stop using the site immediately. These Terms are governed by the laws of the Republic of South Africa.
+  </div>
+
+  <div class="toc">
+    <div class="toc-label">Contents</div>
+    <div class="toc-links">
+      <a href="#acceptance"><span class="toc-num">1.</span> Acceptance of Terms</a>
+      <a href="#services"><span class="toc-num">2.</span> Description of Services</a>
+      <a href="#subscriptions"><span class="toc-num">3.</span> Subscriptions &amp; Payments</a>
+      <a href="#ip"><span class="toc-num">4.</span> Intellectual Property</a>
+      <a href="#prohibited"><span class="toc-num">5.</span> Prohibited Conduct</a>
+      <a href="#disclaimer"><span class="toc-num">6.</span> Disclaimer of Warranties</a>
+      <a href="#liability"><span class="toc-num">7.</span> Limitation of Liability</a>
+      <a href="#termination"><span class="toc-num">8.</span> Termination</a>
+      <a href="#governing"><span class="toc-num">9.</span> Governing Law &amp; Disputes</a>
+      <a href="#amendments"><span class="toc-num">10.</span> Amendments</a>
+      <a href="#contact-terms"><span class="toc-num">11.</span> Contact</a>
+    </div>
+  </div>
+
+  <!-- 1 -->
+  <h2 id="acceptance">1. Acceptance of Terms</h2>
+  <p>By accessing the Antifragile Alpha website (the "Site"), reading any research publication, subscribing to any paid tier, or using any feature of the service, you ("User", "you", "your") agree to comply with and be legally bound by these Terms of Use ("Terms"), our <a href="disclaimer.html">Financial Disclaimer</a>, and our <a href="privacy.html">Privacy Policy</a>.</p>
+  <p>These Terms constitute a binding agreement between you and Antifragile Alpha ("we", "us", "our"). If you are accessing the Site on behalf of a company or other legal entity, you represent that you have the authority to bind that entity to these Terms.</p>
+  <p>We reserve the right to modify these Terms at any time. Continued use of the Site after any changes are posted constitutes your acceptance of the revised Terms.</p>
+
+  <!-- 2 -->
+  <h2 id="services">2. Description of Services</h2>
+  <p>Antifragile Alpha provides weekly equity research publications focused on South African and relevant global markets. The services include:</p>
+  <ul>
+    <li><strong>Free preview content:</strong> Sections 01–03 of each weekly edition, accessible on the Site and via the public GitHub repository without payment or registration.</li>
+    <li><strong>Paid research content:</strong> Sections 04–10 of each weekly edition, accessible via a subscription or single-issue purchase. This content includes conviction theses, entry/exit levels, portfolio construction, broker matrices, and scenario analysis.</li>
+    <li><strong>Archive access:</strong> Historical editions and the performance tracking log, accessible to annual and institutional subscribers.</li>
+    <li><strong>Email newsletter:</strong> Free preview summary distributed to subscribers on a weekly basis.</li>
+  </ul>
+  <p>All content is for informational and educational purposes only. Nothing in these services constitutes financial advice, investment advice, or any regulated financial service. Please read the <a href="disclaimer.html">Financial Disclaimer</a> in full before relying on any content.</p>
+
+  <!-- 3 -->
+  <h2 id="subscriptions">3. Subscriptions &amp; Payments</h2>
+  <p><strong>Tiers:</strong> We offer Single Issue (R99 one-time), Monthly (R199/month), Annual (R999/year), and Institutional (R5,000+/month) access tiers. Pricing is displayed in South African Rand (ZAR) and is inclusive of any applicable VAT where required by law.</p>
+  <p><strong>Payment processing:</strong> All payments are processed through PayFast, a third-party payment gateway. By completing a purchase, you agree to PayFast's terms and conditions in addition to these Terms. Antifragile Alpha does not store your payment card details.</p>
+  <p><strong>Recurring billing:</strong> Monthly and Annual subscriptions are billed on a recurring basis. You authorise us to charge your payment method on the same date each billing cycle. You may cancel at any time; cancellation takes effect at the end of the current paid period. No refunds are issued for partial billing periods.</p>
+  <p><strong>Single-issue purchases:</strong> Single-issue purchases are non-refundable once the full report content has been accessed or delivered.</p>
+  <p><strong>Refunds:</strong> We offer refunds at our sole discretion in cases of technical failure that prevents access to paid content. Refund requests must be submitted within 7 days of purchase via email to <a href="mailto:research@antifragile-alpha.co.za">research@antifragile-alpha.co.za</a>.</p>
+  <p><strong>Price changes:</strong> We reserve the right to change subscription prices with 30 days' notice. If you do not cancel before the price change takes effect, you agree to the new pricing.</p>
+  <p><strong>Institutional access:</strong> Institutional tier terms are negotiated separately and governed by a specific agreement entered into at the time of subscription.</p>
+
+  <!-- 4 -->
+  <h2 id="ip">4. Intellectual Property</h2>
+  <p>All content published by Antifragile Alpha — including but not limited to research reports, screening tables, conviction theses, portfolio construction frameworks, the SKILLS methodology file, the MEMORY_LOG, visual design elements, and all written text — is the intellectual property of Antifragile Alpha and is protected by applicable South African and international copyright law.</p>
+  <p><strong>Permitted use:</strong> Subscribers and free users may access and read content for personal, non-commercial use. You may share brief excerpts (not exceeding 150 words per report) with clear attribution to "Antifragile Alpha" and a link back to the source URL.</p>
+  <p><strong>Prohibited use:</strong> You may not, without prior written permission:</p>
+  <ul>
+    <li>Reproduce, republish, or redistribute full or substantial portions of any report or research content</li>
+    <li>Sell, sublicense, or commercially exploit any content to third parties</li>
+    <li>Use content to train, fine-tune, or otherwise develop any artificial intelligence or machine learning model</li>
+    <li>Systematically scrape, crawl, or harvest content from the Site</li>
+    <li>Remove or obscure any copyright notices, attribution, or disclaimers from the content</li>
+    <li>Present Antifragile Alpha content as your own original research</li>
+  </ul>
+  <p>All rights not expressly granted in these Terms are reserved by Antifragile Alpha.</p>
+
+  <!-- 5 -->
+  <h2 id="prohibited">5. Prohibited Conduct</h2>
+  <p>When accessing or using the Site or any associated services, you agree not to:</p>
+  <ul>
+    <li>Use the Site for any unlawful purpose or in violation of any applicable South African or international law</li>
+    <li>Attempt to gain unauthorised access to any paid content, user account, or system component</li>
+    <li>Interfere with or disrupt the Site's infrastructure, servers, or networks</li>
+    <li>Transmit any malicious code, viruses, or harmful data</li>
+    <li>Impersonate Antifragile Alpha, its researchers, or any other person</li>
+    <li>Use the content to engage in market manipulation or any conduct that would constitute a securities offence under the Financial Markets Act 19 of 2012</li>
+    <li>Share subscriber-only content with non-subscribers, including posting paid report content publicly</li>
+    <li>Use automated tools (bots, scrapers, spiders) to access or extract content without express written permission</li>
+  </ul>
+  <p>Violation of any of these prohibited conduct provisions may result in immediate suspension or termination of your access without refund.</p>
+
+  <!-- 6 -->
+  <h2 id="disclaimer">6. Disclaimer of Warranties</h2>
+  <p>The Site and all content are provided on an "as is" and "as available" basis without warranties of any kind, whether express or implied. To the fullest extent permitted by South African law, we disclaim all warranties including but not limited to:</p>
+  <ul>
+    <li>Implied warranties of merchantability, fitness for a particular purpose, and non-infringement</li>
+    <li>Warranties that the Site will be uninterrupted, error-free, or free from viruses or other harmful components</li>
+    <li>Warranties as to the accuracy, completeness, or timeliness of any content</li>
+    <li>Warranties that any investment idea, thesis, or analysis will produce any particular financial result</li>
+  </ul>
+  <p>We are not a Financial Services Provider. Nothing in this Site or in any report constitutes financial advice. Please refer to the <a href="disclaimer.html">Financial Disclaimer</a> for the full risk disclosure.</p>
+
+  <!-- 7 -->
+  <h2 id="liability">7. Limitation of Liability</h2>
+  <p>To the maximum extent permitted by applicable South African law, Antifragile Alpha shall not be liable to you or any third party for any indirect, incidental, consequential, special, or punitive damages, including but not limited to loss of profits, loss of capital, loss of data, or loss of goodwill, arising from:</p>
+  <ul>
+    <li>Your use of or inability to use the Site or any content</li>
+    <li>Any investment decision made in reliance on content published by Antifragile Alpha</li>
+    <li>Any unauthorised access to or alteration of your data</li>
+    <li>Any errors, inaccuracies, or omissions in any content</li>
+    <li>Any market movements adverse to any published thesis</li>
+  </ul>
+  <p>In all cases, our total aggregate liability to you for any claim arising from these Terms or your use of the Site shall not exceed the total amount paid by you to Antifragile Alpha in the 3 months immediately preceding the event giving rise to the claim.</p>
+
+  <!-- 8 -->
+  <h2 id="termination">8. Termination</h2>
+  <p><strong>By you:</strong> You may cancel your subscription at any time via email to <a href="mailto:research@antifragile-alpha.co.za">research@antifragile-alpha.co.za</a>. Cancellation takes effect at the end of the current billing period. You will retain access to paid content until that date.</p>
+  <p><strong>By us:</strong> We may suspend or terminate your access immediately, without notice or refund, if you violate any provision of these Terms, engage in fraudulent or harmful conduct, or if we determine in our sole discretion that continued access is inappropriate. We may also terminate or suspend the service with 30 days' notice for any other reason.</p>
+  <p><strong>Effect of termination:</strong> Upon termination, your right to access paid content ceases immediately. Provisions of these Terms that by their nature should survive termination — including Intellectual Property, Disclaimer of Warranties, Limitation of Liability, and Governing Law — will survive.</p>
+
+  <!-- 9 -->
+  <h2 id="governing">9. Governing Law &amp; Disputes</h2>
+  <p>These Terms are governed by and construed in accordance with the laws of the Republic of South Africa. Any dispute arising from or relating to these Terms or your use of the Site shall be subject to the exclusive jurisdiction of the courts of South Africa.</p>
+  <p>Before initiating any legal proceedings, you agree to contact us in good faith at <a href="mailto:research@antifragile-alpha.co.za">research@antifragile-alpha.co.za</a> and attempt to resolve the dispute informally for a period of at least 30 days.</p>
+  <p>Nothing in this clause prevents either party from seeking urgent or interim relief from a court of competent jurisdiction.</p>
+
+  <!-- 10 -->
+  <h2 id="amendments">10. Amendments</h2>
+  <p>We reserve the right to amend these Terms at any time. Material changes will be notified to active subscribers via email at least 14 days before taking effect. Non-material changes (such as clarifications, corrections, or formatting updates) may be made without notice.</p>
+  <p>The "Last updated" date at the top of this page reflects the date of the most recent revision. Your continued use of the Site after any amendment constitutes acceptance of the updated Terms.</p>
+  <p>If you do not agree to any amendment, you must stop using the Site and cancel your subscription before the amendment takes effect.</p>
+
+  <!-- 11 -->
+  <h2 id="contact-terms">11. Contact</h2>
+  <p>For any questions regarding these Terms of Use, subscription billing, or access issues, contact us at:</p>
+  <p style="font-family:'DM Mono',monospace;font-size:13px;color:var(--gold);padding:12px 16px;background:var(--surface);border:1px solid var(--border);border-radius:8px;display:inline-block;">research@antifragile-alpha.co.za</p>
+  <p>We aim to respond to all enquiries within 3 South African business days.</p>
+
+  <div class="related-docs">
+    <strong>Related Legal Documents</strong>
+    <a href="disclaimer.html" style="color:var(--gold);text-decoration:none;margin-right:24px;">Financial Disclaimer →</a>
+    <a href="privacy.html" style="color:var(--gold);text-decoration:none;">Privacy Policy (POPIA) →</a>
+  </div>
+
+</div><!-- /.doc-wrap -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <a class="brand" href="../index.html">◆ Antifragile Alpha</a>
+    <p>Weekly deep-dive research into JSE, A2X, and AltX equities. For informational purposes only. Not financial advice.</p>
+  </div>
+  <div class="footer-col">
+    <h5>Research</h5>
+    <ul>
+      <li><a href="../research/index.html">Weekly Editions</a></li>
+      <li><a href="../research/archive.html">Archive</a></li>
+      <li><a href="../methodology.html">Methodology</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h5>Site</h5>
+    <ul>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../pricing.html">Pricing</a></li>
+      <li><a href="../subscribe.html">Subscribe</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h5>Legal</h5>
+    <ul>
+      <li><a href="terms.html">Terms of Use</a></li>
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="disclaimer.html">Disclaimer</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <span>For informational purposes only · Not financial advice · Not an FSP · © 2026 Antifragile Alpha</span>
+    <div class="footer-links-row">
+      <a href="terms.html">Terms</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="disclaimer.html">Disclaimer</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
