@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Methodology — Antifragile Alpha Weekly</title>
+<meta name="description" content="How Antifragile Alpha selects JSE stocks: barbell portfolio construction, screening criteria, position sizing, stop-loss discipline, and the rules engine behind every weekly edition."/>
+<meta name="keywords" content="JSE investment methodology, SA equities research process, barbell portfolio, position sizing, stop loss, antifragile investing, JSE stock screening"/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://1906reblabs.github.io/Antifragile-Alpha-Weekly-/methodology.html"/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="https://1906reblabs.github.io/Antifragile-Alpha-Weekly-/methodology.html"/>
+<meta property="og:title" content="Methodology — Antifragile Alpha Weekly"/>
+<meta property="og:description" content="How Antifragile Alpha selects JSE stocks: barbell portfolio construction, screening criteria, position sizing, stop-loss discipline, and the rules engine."/>
+<meta property="og:image" content="https://1906reblabs.github.io/Antifragile-Alpha-Weekly-/assets/og-image.png"/>
+<meta property="og:site_name" content="Antifragile Alpha Weekly"/>
+<meta property="og:locale" content="en_ZA"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content="@AntifragileAlph"/>
+<meta name="twitter:title" content="Methodology — Antifragile Alpha Weekly"/>
+<meta name="twitter:description" content="How we screen, size, and manage JSE positions. The full framework behind Antifragile Alpha Weekly."/>
+<meta name="twitter:image" content="https://1906reblabs.github.io/Antifragile-Alpha-Weekly-/assets/og-image.png"/>
+<meta name="google-site-verification" content="dd09d3fdf11fc4c8"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "@id": "https://1906reblabs.github.io/Antifragile-Alpha-Weekly-/methodology.html",
+  "headline": "Methodology — Antifragile Alpha Weekly",
+  "description": "How Antifragile Alpha selects JSE stocks: barbell portfolio construction, screening criteria, position sizing, stop-loss discipline, and the rules engine.",
+  "url": "https://1906reblabs.github.io/Antifragile-Alpha-Weekly-/methodology.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Antifragile Alpha Weekly",
+    "url": "https://1906reblabs.github.io/Antifragile-Alpha-Weekly-/"
+  },
+  "inLanguage": "en-ZA",
+  "dateModified": "2026-04-18T07:00:00+02:00"
+}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+/* ── Design Tokens ── */
+:root {
+  --bg: #0b0d12;
+  --surface: #11141c;
+  --surface2: #171b26;
+  --border: #1f2333;
+  --gold: #c9a84c;
+  --gold-light: #e8c76a;
+  --gold-dim: rgba(201,168,76,0.1);
+  --gold-dim2: rgba(201,168,76,0.06);
+  --green: #3ecf8e;
+  --red: #f06a6a;
+  --blue: #5c9cf5;
+  --amber: #f0a84c;
+  --purple: #b07ef5;
+  --text: #dde2ef;
+  --text-muted: #7a8299;
+  --text-faint: #353d55;
+  --nav-h: 62px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* ── NAV ── */
+header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--nav-h);
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+.brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.nav-primary {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: 36px;
+  flex: 1;
+}
+.nav-primary a {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.nav-primary a:hover, .nav-primary a.active { color: var(--text); background: var(--surface2); }
+.nav-dropdown { position: relative; }
+.nav-dropdown > a { display: flex; align-items: center; gap: 4px; }
+.nav-dropdown > a::after { content: '▾'; font-size: 9px; opacity: 0.5; }
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px;
+  min-width: 180px;
+  z-index: 300;
+}
+.dropdown-menu a { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-muted); padding: 7px 10px; border-radius: 5px; text-decoration: none; transition: all 0.15s; white-space: nowrap; }
+.dropdown-menu a:hover { color: var(--text); background: var(--surface2); }
+.dm-label { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-faint); padding: 4px 10px 8px; display: block; }
+.dm-icon { font-size: 14px; }
+.nav-dropdown:hover .dropdown-menu { display: block; }
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 20px;
+  flex-shrink: 0;
+}
+.nav-right a {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+.nav-right a:hover { color: var(--text); background: var(--surface2); }
+.nav-right .btn-cta {
+  background: var(--gold);
+  color: #0b0d12;
+  font-weight: 600;
+  padding: 7px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+}
+.nav-right .btn-cta:hover { background: var(--gold-light); }
+.burger {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+/* ── HERO ── */
+.meth-hero {
+  background: linear-gradient(160deg, var(--surface) 0%, var(--bg) 60%);
+  border-bottom: 1px solid var(--border);
+  padding: 72px 48px 56px;
+  position: relative;
+  overflow: hidden;
+}
+.meth-hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.meth-hero-inner {
+  max-width: 760px;
+  position: relative;
+  z-index: 1;
+}
+.page-eyebrow {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.page-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--gold); }
+.meth-hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 5vw, 52px);
+  font-weight: 700;
+  line-height: 1.12;
+  color: var(--text);
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
+}
+.meth-hero h1 em {
+  color: var(--gold);
+  font-style: italic;
+}
+.meth-hero p.lead {
+  font-size: 16px;
+  color: var(--text-muted);
+  max-width: 620px;
+  line-height: 1.75;
+  margin-bottom: 32px;
+}
+.toc-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.toc-pill {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.toc-pill:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ── LAYOUT ── */
+.meth-layout {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 0;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 48px;
+  align-items: start;
+}
+.meth-main {
+  padding: 56px 48px 80px 0;
+  border-right: 1px solid var(--border);
+}
+.meth-sidebar {
+  padding: 56px 0 80px 40px;
+  position: sticky;
+  top: calc(var(--nav-h) + 24px);
+}
+
+/* ── SECTIONS ── */
+.meth-section {
+  margin-bottom: 64px;
+  animation: fadeUp 0.5s ease both;
+}
+.meth-section:nth-child(2) { animation-delay: 0.05s; }
+.meth-section:nth-child(3) { animation-delay: 0.1s; }
+.meth-section:nth-child(4) { animation-delay: 0.15s; }
+.meth-section:nth-child(5) { animation-delay: 0.2s; }
+.meth-section:nth-child(6) { animation-delay: 0.25s; }
+.meth-section:nth-child(7) { animation-delay: 0.3s; }
+
+.section-anchor { scroll-margin-top: calc(var(--nav-h) + 32px); }
+.section-number {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 0.12em;
+  margin-bottom: 6px;
+  display: block;
+}
+.meth-section h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+.meth-section h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.04em;
+  margin: 28px 0 10px;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+.meth-section p {
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 14px;
+}
+.meth-section p:last-child { margin-bottom: 0; }
+.meth-section strong { color: var(--text); font-weight: 600; }
+
+/* ── DIVIDER ── */
+.section-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin-bottom: 64px;
+}
+
+/* ── BARBELL VISUAL ── */
+.barbell-diagram {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 32px;
+  margin: 24px 0;
+}
+.barbell-row {
+  display: grid;
+  grid-template-columns: 1fr 40px 1fr 40px 0.6fr;
+  gap: 0;
+  align-items: stretch;
+}
+.barbell-cell {
+  background: var(--surface2);
+  border-radius: 10px;
+  padding: 22px 18px;
+  text-align: center;
+}
+.barbell-cell.safe { border-top: 3px solid var(--green); }
+.barbell-cell.high { border-top: 3px solid var(--gold); }
+.barbell-cell.moon { border-top: 3px solid var(--purple); }
+.barbell-connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-faint);
+  font-size: 18px;
+}
+.bc-pct {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.barbell-cell.safe .bc-pct { color: var(--green); }
+.barbell-cell.high .bc-pct { color: var(--gold); }
+.barbell-cell.moon .bc-pct { color: var(--purple); }
+.bc-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+.bc-desc {
+  font-size: 12px;
+  color: var(--text-faint);
+  line-height: 1.5;
+}
+.barbell-meta {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+.barbell-meta-item {
+  font-size: 12px;
+  color: var(--text-faint);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.barbell-meta-item span { color: var(--text-muted); }
+
+/* ── CRITERIA GRID ── */
+.criteria-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 20px 0;
+}
+.criteria-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 18px;
+}
+.criteria-card .cc-icon {
+  font-size: 20px;
+  margin-bottom: 10px;
+  display: block;
+}
+.criteria-card h4 {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.criteria-card p {
+  font-size: 12.5px;
+  color: var(--text-faint);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── PROCESS STEPS ── */
+.process-steps {
+  margin: 24px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.process-step {
+  display: flex;
+  gap: 20px;
+  position: relative;
+}
+.process-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 17px;
+  top: 40px;
+  bottom: -12px;
+  width: 1px;
+  background: var(--border);
+}
+.ps-num {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  color: var(--gold);
+  flex-shrink: 0;
+  margin-top: 2px;
+  position: relative;
+  z-index: 1;
+}
+.ps-body {
+  padding-bottom: 28px;
+}
+.ps-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.ps-desc {
+  font-size: 13px;
+  color: var(--text-faint);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ── METRICS TABLE ── */
+.metrics-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 13.5px;
+}
+.metrics-table th {
+  background: var(--surface2);
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  border-bottom: 1px solid var(--border);
+}
+.metrics-table td {
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-muted);
+  vertical-align: top;
+}
+.metrics-table tr:hover td { background: var(--surface2); }
+.metrics-table td:first-child { color: var(--text); font-weight: 500; font-family: 'DM Mono', monospace; font-size: 12px; }
+.val-green { color: var(--green) !important; }
+.val-amber { color: var(--amber) !important; }
+.val-red { color: var(--red) !important; }
+
+/* ── RULES ENGINE ── */
+.rules-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 20px 0;
+}
+.rule-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold-dim);
+  border-radius: 8px;
+  padding: 16px 18px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  align-items: start;
+}
+.rule-item.rule-gold { border-left-color: var(--gold); }
+.rule-item.rule-green { border-left-color: var(--green); }
+.rule-item.rule-blue { border-left-color: var(--blue); }
+.rule-item.rule-amber { border-left-color: var(--amber); }
+.rule-item.rule-purple { border-left-color: var(--purple); }
+.rule-code {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--text-faint);
+  background: var(--surface2);
+  padding: 3px 7px;
+  border-radius: 4px;
+  white-space: nowrap;
+  margin-top: 1px;
+}
+.rule-body h4 { font-size: 13.5px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.rule-body p { font-size: 12.5px; color: var(--text-faint); line-height: 1.6; margin: 0; }
+
+/* ── CALLOUT ── */
+.callout {
+  background: var(--gold-dim2);
+  border: 1px solid rgba(201,168,76,0.2);
+  border-left: 3px solid var(--gold);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin: 20px 0;
+}
+.callout p { font-size: 13.5px; color: var(--text-muted); margin: 0; line-height: 1.7; }
+.callout strong { color: var(--gold); }
+
+.callout.cb-green {
+  background: rgba(62,207,142,0.05);
+  border-color: rgba(62,207,142,0.2);
+  border-left-color: var(--green);
+}
+.callout.cb-green p { color: var(--text-muted); }
+.callout.cb-green strong { color: var(--green); }
+
+.callout.cb-red {
+  background: rgba(240,106,106,0.05);
+  border-color: rgba(240,106,106,0.18);
+  border-left-color: var(--red);
+}
+.callout.cb-red p { color: var(--text-muted); }
+.callout.cb-red strong { color: var(--red); }
+
+/* ── SIDEBAR ── */
+.sidebar-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.sidebar-card h5 {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 14px;
+}
+.sidebar-nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.sidebar-nav-list li a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 6px 8px;
+  border-radius: 6px;
+  transition: all 0.18s;
+}
+.sidebar-nav-list li a:hover { color: var(--text); background: var(--surface2); }
+.sidebar-nav-list li a .sn-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--text-faint);
+  width: 16px;
+  flex-shrink: 0;
+}
+.sidebar-stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.sidebar-stat:last-child { border-bottom: none; padding-bottom: 0; }
+.sidebar-stat .ss-label { color: var(--text-faint); }
+.sidebar-stat .ss-val { color: var(--text); font-weight: 500; font-family: 'DM Mono', monospace; font-size: 12px; }
+.sidebar-cta {
+  background: var(--gold-dim);
+  border: 1px solid rgba(201,168,76,0.25);
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+}
+.sidebar-cta p {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+.sidebar-cta a {
+  display: block;
+  background: var(--gold);
+  color: #0b0d12;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 9px 0;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.sidebar-cta a:hover { background: var(--gold-light); }
+
+/* ── DISCLAIMER BOX ── */
+.disclaimer-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px 28px;
+  margin-top: 16px;
+}
+.disclaimer-box h4 {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.disclaimer-box p {
+  font-size: 12.5px;
+  color: var(--text-faint);
+  line-height: 1.75;
+  margin-bottom: 10px;
+}
+.disclaimer-box p:last-child { margin-bottom: 0; }
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 48px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+.footer-brand .brand { margin-bottom: 10px; }
+.footer-brand p { font-size: 13px; color: var(--text-faint); max-width: 240px; line-height: 1.6; }
+.footer-col h5 {
+  font-size: 10.5px; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--text-faint); margin-bottom: 14px;
+}
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.footer-col ul li a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+.footer-col ul li a:hover { color: var(--gold); }
+.footer-bottom {
+  grid-column: 1/-1;
+  border-top: 1px solid var(--border);
+  padding-top: 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--text-faint);
+}
+.footer-bottom a { color: var(--text-faint); text-decoration: none; transition: color 0.2s; }
+.footer-bottom a:hover { color: var(--gold); }
+.footer-links-row { display: flex; gap: 20px; flex-wrap: wrap; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ── MOBILE NAV ── */
+.nav-mobile {
+  display: none;
+  position: absolute;
+  top: var(--nav-h);
+  left: 0; right: 0;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 20px;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 199;
+}
+.nav-mobile.open { display: flex; }
+.nav-mobile a { text-decoration: none; color: var(--text-muted); font-size: 14px; padding: 9px 12px; border-radius: 6px; transition: all 0.2s; }
+.nav-mobile a:hover { color: var(--text); background: var(--surface2); }
+.nav-mobile .mob-cta { background: var(--gold); color: #0b0d12; font-weight: 600; text-align: center; margin-top: 4px; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  header { padding: 0 20px; }
+  .nav-primary, .nav-right { display: none; }
+  .burger { display: block; }
+  .meth-hero { padding: 48px 20px 40px; }
+  .meth-layout { grid-template-columns: 1fr; padding: 0 20px; }
+  .meth-main { padding: 40px 0 60px; border-right: none; }
+  .meth-sidebar { display: none; }
+  .barbell-row { grid-template-columns: 1fr; gap: 12px; }
+  .barbell-connector { display: none; }
+  .criteria-grid { grid-template-columns: 1fr; }
+  footer { grid-template-columns: 1fr 1fr; padding: 32px 20px; gap: 28px; }
+  .footer-brand { grid-column: 1/-1; }
+}
+@media (max-width: 600px) {
+  footer { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header>
+  <a class="brand" href="index.html">◆ Antifragile Alpha</a>
+
+  <nav class="nav-primary">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <div class="nav-dropdown">
+      <a href="research/index.html">Research</a>
+      <div class="dropdown-menu">
+        <span class="dm-label">Research</span>
+        <a href="research/index.html"><span class="dm-icon">📅</span> Weekly Editions</a>
+        <a href="research/archive.html"><span class="dm-icon">🗄️</span> Archive</a>
+      </div>
+    </div>
+    <a href="methodology.html" class="active">Methodology</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="subscribe.html">Subscribe</a>
+    <div class="nav-dropdown">
+      <a href="#">More</a>
+      <div class="dropdown-menu">
+        <span class="dm-label">More</span>
+        <a href="contact.html"><span class="dm-icon">✉️</span> Contact</a>
+        <a href="search.html"><span class="dm-icon">🔍</span> Search</a>
+        <a href="legal/privacy.html"><span class="dm-icon">🔒</span> Privacy Policy</a>
+        <a href="https://github.com/1906reblabs/Antifragile-Alpha-Weekly-" target="_blank" rel="noopener"><span class="dm-icon">🐙</span> GitHub ↗</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="nav-right">
+    <a href="pricing.html" class="btn-cta">Unlock Access →</a>
+  </div>
+
+  <button class="burger" id="burgerBtn" aria-label="Toggle menu">☰</button>
+</header>
+
+<!-- Mobile nav -->
+<nav class="nav-mobile" id="mobileNav">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="research/index.html">Weekly Editions</a>
+  <a href="research/archive.html">Archive</a>
+  <a href="methodology.html">Methodology</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="subscribe.html">Subscribe</a>
+  <a href="contact.html">Contact</a>
+  <a href="pricing.html" class="mob-cta">Unlock Access →</a>
+</nav>
+
+<!-- HERO -->
+<div class="meth-hero">
+  <div class="meth-hero-inner">
+    <div class="page-eyebrow">The Framework</div>
+    <h1>How We Think About <em>Risk & Return</em></h1>
+    <p class="lead">
+      Every stock in Antifragile Alpha Weekly is selected through a disciplined, repeatable process — macro regime alignment, fundamental stress-testing, and asymmetric position sizing. This page documents that process in full.
+    </p>
+    <div class="toc-strip">
+      <a href="#philosophy" class="toc-pill">1. Philosophy</a>
+      <a href="#barbell" class="toc-pill">2. Barbell Construction</a>
+      <a href="#screening" class="toc-pill">3. Screening Criteria</a>
+      <a href="#sizing" class="toc-pill">4. Position Sizing</a>
+      <a href="#stops" class="toc-pill">5. Stop-Loss Discipline</a>
+      <a href="#process" class="toc-pill">6. Weekly Process</a>
+      <a href="#rules-engine" class="toc-pill">7. Rules Engine</a>
+      <a href="#limitations" class="toc-pill">8. Limitations</a>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN LAYOUT -->
+<div class="meth-layout">
+
+  <!-- ── MAIN CONTENT ── -->
+  <main class="meth-main">
+
+    <!-- §1 PHILOSOPHY -->
+    <section class="meth-section section-anchor" id="philosophy">
+      <span class="section-number">§ 01</span>
+      <h2>Core Philosophy</h2>
+
+      <p>Antifragile Alpha Weekly is built around a single conviction: <strong>the JSE systematically misprices asymmetry</strong>. Most institutional research on South African equities is either consensus-anchored, backward-looking, or constrained by AUM size to only cover large-caps. That creates persistent inefficiencies in mid-cap commodity producers, domestically focused financials, and smaller growth compounders.</p>
+
+      <p>Our framework is not momentum-chasing, nor contrarian for its own sake. It is <strong>regime-aware</strong>: we ask what macroeconomic and geopolitical environment we are actually in, identify which business models benefit most from that regime, then buy the highest-operating-leverage expression of that thesis at a price that gives us asymmetric upside relative to a defined loss scenario.</p>
+
+      <p>The term <em>antifragile</em> — borrowed from Nassim Taleb — does not mean immune to volatility. It means structured to benefit from it. A portfolio with well-sized positions in businesses with convex payoff profiles, combined with disciplined stop losses, gains from volatility in aggregate even when individual positions fail.</p>
+
+      <div class="callout">
+        <p><strong>Core principle:</strong> We are not trying to be right more often than we are wrong. We are trying to ensure that when we are right, we profit significantly more than we lose when we are wrong.</p>
+      </div>
+    </section>
+
+    <hr class="section-divider"/>
+
+    <!-- §2 BARBELL -->
+    <section class="meth-section section-anchor" id="barbell">
+      <span class="section-number">§ 02</span>
+      <h2>Barbell Portfolio Construction</h2>
+
+      <p>Every edition maintains a <strong>three-tier barbell portfolio</strong> across approximately 10–12 JSE positions. The tiers are not arbitrary buckets — they reflect different reward/risk profiles, time horizons, and thesis types.</p>
+
+      <div class="barbell-diagram">
+        <div class="barbell-row">
+
+          <div class="barbell-cell safe">
+            <div class="bc-pct">~55%</div>
+            <div class="bc-label">Safe Core</div>
+            <div class="bc-desc">High-conviction, quality businesses at fair prices. Lower upside, lower drawdown risk. Anchors the portfolio.</div>
+          </div>
+
+          <div class="barbell-connector">—</div>
+
+          <div class="barbell-cell high">
+            <div class="bc-pct">~39%</div>
+            <div class="bc-label">High Upside</div>
+            <div class="bc-desc">Asymmetric opportunities: deep value, macro-driven, or catalyst-led. 2×–4× return potential with thesis-defined downside.</div>
+          </div>
+
+          <div class="barbell-connector">—</div>
+
+          <div class="barbell-cell moon">
+            <div class="bc-pct">~6%</div>
+            <div class="bc-label">Moonshot</div>
+            <div class="bc-desc">1–2 speculative positions. Binary or multi-year thesis. Size capped to limit bleed. 5×–10×+ if correct.</div>
+          </div>
+
+        </div>
+        <div class="barbell-meta">
+          <div class="barbell-meta-item">◆ <span>Max single position: 14%</span></div>
+          <div class="barbell-meta-item">◆ <span>Min position: 5%</span></div>
+          <div class="barbell-meta-item">◆ <span>Cash buffer: ~1% for rebalancing</span></div>
+          <div class="barbell-meta-item">◆ <span>Max simultaneous moonshots: 2</span></div>
+        </div>
+      </div>
+
+      <h3>Tier Promotion & Demotion</h3>
+      <p>Positions are not permanently classified. A <strong>High Upside stock can be promoted to Safe Core</strong> once the original thesis is confirmed and the position has appreciated 30%+, stop has been raised, and remaining upside still justifies the allocation. A Safe Core stock that shows deteriorating fundamentals, missed guidance, or a broken macro thesis is demoted or exited — not held out of inertia.</p>
+
+      <p>Moonshot positions are by definition speculative. They are sized at 5–6% and not added to if they rise without fundamental confirmation. They may be <strong>exited at a total loss</strong> if the thesis timeline expires (typically 18–36 months) without a catalyst.</p>
+    </section>
+
+    <hr class="section-divider"/>
+
+    <!-- §3 SCREENING -->
+    <section class="meth-section section-anchor" id="screening">
+      <span class="section-number">§ 03</span>
+      <h2>Screening Criteria</h2>
+
+      <p>Stocks are sourced from the JSE Main Board, A2X, and AltX. The initial screen runs on two levels: a <strong>quantitative gate</strong> to eliminate structurally weak businesses, and a <strong>qualitative filter</strong> to surface genuine asymmetry.</p>
+
+      <h3>Quantitative Gate</h3>
+
+      <div class="criteria-grid">
+        <div class="criteria-card">
+          <span class="cc-icon">📊</span>
+          <h4>Revenue Trend</h4>
+          <p>Minimum 2 consecutive years of revenue growth, or a documented single-year dip with a credible, data-backed recovery narrative.</p>
+        </div>
+        <div class="criteria-card">
+          <span class="cc-icon">💰</span>
+          <h4>Balance Sheet Solvency</h4>
+          <p>Net debt / EBITDA below 3× for industrials and financials. For miners: preference for net-cash or low-leverage positions — debt amplifies downside in commodity cycles.</p>
+        </div>
+        <div class="criteria-card">
+          <span class="cc-icon">📈</span>
+          <h4>Operating Leverage</h4>
+          <p>In commodity or rate-sensitive theses, we require AISC or cost structure data to calculate revenue sensitivity at multiple price scenarios.</p>
+        </div>
+        <div class="criteria-card">
+          <span class="cc-icon">🔁</span>
+          <h4>Return on Equity</h4>
+          <p>ROE above 15% for financial sector compounders. For cyclicals and commodity plays, ROE is assessed at mid-cycle prices, not at the current peak.</p>
+        </div>
+        <div class="criteria-card">
+          <span class="cc-icon">💵</span>
+          <h4>Free Cash Flow</h4>
+          <p>FCF yield above 3% for Safe Core holdings. High Upside and Moonshot positions may carry negative FCF if the business is pre-inflection or capex-heavy ahead of a step-change in output.</p>
+        </div>
+        <div class="criteria-card">
+          <span class="cc-icon">📉</span>
+          <h4>Liquidity Minimum</h4>
+          <p>Minimum average daily traded value of R500k for High Upside and Safe Core tiers. Moonshots may have lower liquidity with explicit liquidity risk disclosure.</p>
+        </div>
+      </div>
+
+      <h3>Qualitative Filter</h3>
+      <p>Stocks that clear the quantitative gate are then assessed for three qualitative dimensions:</p>
+
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;margin:14px 0;">
+        <li style="display:flex;gap:12px;font-size:13.5px;color:var(--text-muted);">
+          <span style="color:var(--gold);flex-shrink:0;margin-top:2px;">◆</span>
+          <span><strong style="color:var(--text);">Macro Regime Alignment.</strong> Does the current or imminent macro regime (gold price direction, SARB rate trajectory, ZAR trend, China demand cycle, global risk appetite) structurally support this business's earnings growth? We do not fight the macro — we find the businesses best positioned to benefit from it.</span>
+        </li>
+        <li style="display:flex;gap:12px;font-size:13.5px;color:var(--text-muted);">
+          <span style="color:var(--gold);flex-shrink:0;margin-top:2px;">◆</span>
+          <span><strong style="color:var(--text);">Catalyst Visibility.</strong> Is there a near-term, identifiable catalyst — results announcement, production update, policy decision, earnings upgrade cycle — that could close the gap between current price and intrinsic value within 12 months?</span>
+        </li>
+        <li style="display:flex;gap:12px;font-size:13.5px;color:var(--text-muted);">
+          <span style="color:var(--gold);flex-shrink:0;margin-top:2px;">◆</span>
+          <span><strong style="color:var(--text);">Management Track Record.</strong> We heavily discount managements that have a history of capital destruction, empire-building acquisitions at peak multiples, or persistent guidance misses without credible corrective action.</span>
+        </li>
+      </ul>
+
+      <div class="callout cb-green">
+        <p><strong>Current macro regime (Ed. 05, Apr 2026):</strong> Gold recovery confirmed after margin-call flush. ZAR strengthening from R19.2 shock. SARB 2-cut path credible post oil decline. Overweight: ZAR gold miners, big-4 banks, Naspers/Prosus digital assets. Underweight: rand-cost oil-sensitive businesses, high-PE offshore earners.</p>
+      </div>
+    </section>
+
+    <hr class="section-divider"/>
+
+    <!-- §4 SIZING -->
+    <section class="meth-section section-anchor" id="sizing">
+      <span class="section-number">§ 04</span>
+      <h2>Position Sizing</h2>
+
+      <p>Position sizes are determined by three inputs: <strong>conviction level, thesis clarity, and asymmetry ratio</strong>. We do not size equally. Equal weighting ignores that some theses are far more legible — and far more asymmetric — than others.</p>
+
+      <table class="metrics-table">
+        <thead>
+          <tr>
+            <th>Tier</th>
+            <th>Typical Size</th>
+            <th>Max Size</th>
+            <th>Rationale</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Safe Core — Anchor</td>
+            <td class="val-green">12–14%</td>
+            <td>14%</td>
+            <td>Highest conviction, confirmed macro tailwind, strong FCF</td>
+          </tr>
+          <tr>
+            <td>Safe Core — Standard</td>
+            <td>9–11%</td>
+            <td>11%</td>
+            <td>High conviction, catalyst visible within 6 months</td>
+          </tr>
+          <tr>
+            <td>High Upside — Core</td>
+            <td>9–11%</td>
+            <td>11%</td>
+            <td>Clear asymmetry, binary catalyst or cycle play</td>
+          </tr>
+          <tr>
+            <td>High Upside — Satellite</td>
+            <td>6–8%</td>
+            <td>8%</td>
+            <td>Solid thesis, less catalyst clarity or earlier stage</td>
+          </tr>
+          <tr>
+            <td>Moonshot</td>
+            <td class="val-amber">5–6%</td>
+            <td>6%</td>
+            <td>Speculative; sized to limit total bleed if thesis fails</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Sizing on Adds and Reduces</h3>
+      <p>We do <strong>not</strong> average down on losing positions as a default behaviour. If a position moves against us, we first reassess whether the thesis is intact. If the macro has structurally changed against the thesis, we exit. If it is a short-term price dislocation on an intact thesis, we may add — but only within the tier's maximum allocation, and only with a revised stop.</p>
+
+      <p>We <strong>do</strong> add to winning positions when a new catalyst emerges that was not in the original thesis, up to the tier maximum. We never let a single position exceed 14% regardless of how well it is performing — concentration risk in a single name is incompatible with the antifragile framework.</p>
+    </section>
+
+    <hr class="section-divider"/>
+
+    <!-- §5 STOPS -->
+    <section class="meth-section section-anchor" id="stops">
+      <span class="section-number">§ 05</span>
+      <h2>Stop-Loss Discipline</h2>
+
+      <p>Every published position carries an explicit stop-loss price. Stops are not suggestions — they are <strong>pre-defined exit triggers</strong> that are assessed at each weekly edition. Stops serve two purposes: capital protection on new entries, and profit protection on appreciated positions.</p>
+
+      <h3>Stop Setting on Entry</h3>
+      <p>Initial stops are set at a <strong>technical or fundamental level that invalidates the thesis</strong>. For mining stocks this is typically below a key support level and below AISC breakeven at the relevant commodity price. For financials it is typically below the most recent earnings trough or below the 52-week low in a confirmed uptrend.</p>
+
+      <div class="callout cb-red">
+        <p><strong>Rule:</strong> The stop-loss price is published before the position is entered. It is not moved downward after entry under any circumstances. It may only be <strong>raised</strong> as the position appreciates.</p>
+      </div>
+
+      <h3>Stop Ratcheting (Trailing Logic)</h3>
+      <p>Once a position has appreciated by more than 30% from entry, we evaluate whether to raise the stop to protect at least 50% of the unrealised gain. This is the <strong>STOP_RAISE_ON_THESIS_CONFIRMATION</strong> rule encoded in the rules engine. The mechanics are:</p>
+
+      <table class="metrics-table">
+        <thead>
+          <tr><th>Gain from Entry</th><th>Stop Action</th><th>Logic</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>+0% to +20%</td><td>Hold original stop</td><td>Thesis unconfirmed; original risk still valid</td></tr>
+          <tr><td>+20% to +50%</td><td>Evaluate raise</td><td>Raise if thesis confirmed AND macro intact</td></tr>
+          <tr><td class="val-green">+50%+</td><td>Raise to protect 50%+ of gains</td><td>Profit protection mode; let remainder run</td></tr>
+          <tr><td>+100%+</td><td>Raise aggressively</td><td>Re-assess tier classification; consider reduce</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Thesis-Invalidation Stops</h3>
+      <p>Price action alone is not always the right stop trigger for longer-duration theses. For positions where the core driver is a macro variable (e.g. ZAR gold price for miners), we also define <strong>thesis-invalidation conditions</strong> — specific macro outcomes that would render the position untenable regardless of where the price is. These are disclosed in each edition's position commentary.</p>
+    </section>
+
+    <hr class="section-divider"/>
+
+    <!-- §6 PROCESS -->
+    <section class="meth-section section-anchor" id="process">
+      <span class="section-number">§ 06</span>
+      <h2>Weekly Research Process</h2>
+
+      <p>Each edition follows a structured weekly workflow. The sequence matters: macro-first, then sector, then stock — never the reverse. Conviction in a stock without macro alignment is just noise.</p>
+
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="ps-num">01</div>
+          <div class="ps-body">
+            <div class="ps-title">Macro Regime Review</div>
+            <p class="ps-desc">Assess the current week's key macro inputs: spot gold (USD/oz and ZAR/oz), ZAR/USD, Brent crude, ALSI 4-week and 12-month performance, and any SARB guidance or global central bank signals. Update the regime classification (risk-on / risk-off / transitional).</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="ps-num">02</div>
+          <div class="ps-body">
+            <div class="ps-title">Catalyst Calendar Scan</div>
+            <p class="ps-desc">Identify all results announcements, production updates, dividend declarations, SENS filings, and macro events due in the coming 1–4 weeks that affect current or watchlist holdings.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="ps-num">03</div>
+          <div class="ps-body">
+            <div class="ps-title">Portfolio Position Review</div>
+            <p class="ps-desc">Review each active position against its published buy zone, current price, stop, and target. Assess whether thesis is intact, partially confirmed, or broken. Flag any stops that need ratcheting upward.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="ps-num">04</div>
+          <div class="ps-body">
+            <div class="ps-title">Watchlist Screening</div>
+            <p class="ps-desc">Run the watchlist through updated macro and fundamental filters. Any watchlist stock whose entry conditions have been met in the current week is a candidate for portfolio inclusion. Apply the quantitative gate and qualitative filter.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="ps-num">05</div>
+          <div class="ps-body">
+            <div class="ps-title">Scorecard &amp; Rules Engine Update</div>
+            <p class="ps-desc">Update the portfolio scorecard — tracking entry price, current price, and % gain/loss for each position. Run the active rules engine checks to identify any regime-shift signals, forced exit conditions, or new entry triggers.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="ps-num">06</div>
+          <div class="ps-body">
+            <div class="ps-title">Edition Publication</div>
+            <p class="ps-desc">Compile the weekly edition with updated top-10 screen, macro analysis, 3 hidden-truth insights, and 1 featured deep-dive. Publish the paywall version publicly and the unlocked version to subscribers. Update the portfolio scorecard, stops, and targets for any changes made this week.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider"/>
+
+    <!-- §7 RULES ENGINE -->
+    <section class="meth-section section-anchor" id="rules-engine">
+      <span class="section-number">§ 07</span>
+      <h2>The Rules Engine</h2>
+
+      <p>The rules engine is a living set of named, codified decision rules that are derived from past thesis outcomes. Every rule is triggered by a specific, measurable condition and produces a specific portfolio action. Rules are added after an event confirms or refutes a hypothesis — never before. They are documented in each edition's internal report and carried forward permanently.</p>
+
+      <p>As of Edition 05 (April 18, 2026), the active rules are:</p>
+
+      <div class="rules-list">
+
+        <div class="rule-item rule-gold">
+          <div class="rule-code">R-01</div>
+          <div class="rule-body">
+            <h4>GOLD_RECOVERY_VELOCITY</h4>
+            <p>When gold drops more than 15% in fewer than 5 trading days due to apparent forced selling or margin-call dynamics (evidenced by correlation breakdown with USD), treat the dip as a buy signal for net-debt-free ZAR gold miners. Apply only when ZAR gold (R/oz) has not broken its 12-month uptrend. <em>Derived from: Apr 9–10, 2026 gold flush and subsequent recovery to $4,867.</em></p>
+          </div>
+        </div>
+
+        <div class="rule-item rule-green">
+          <div class="rule-code">R-02</div>
+          <div class="rule-body">
+            <h4>CEASEFIRE_OIL_SARB_CASCADE</h4>
+            <p>A confirmed ceasefire in a major oil-producing or transit region that produces a sustained 8%+ decline in Brent crude increases the probability of an additional SARB rate cut within 2 meetings. On this signal: overweight big-4 banks (rate-sensitive NII), reduce or exit rand-cost oil-sensitive industrials. <em>Derived from: Israel-Lebanon ceasefire Apr 17, 2026; Brent -10% to $71.</em></p>
+          </div>
+        </div>
+
+        <div class="rule-item rule-blue">
+          <div class="rule-code">R-03</div>
+          <div class="rule-body">
+            <h4>PRE_RESULTS_DO_NOT_REDUCE</h4>
+            <p>Within 10 calendar days of a results announcement where the company has guided HEPS growth of 15%+ (or where consensus expects this), do not reduce a profitable position regardless of near-term price action. The information asymmetry of a likely beat is greater than the cost of short-term volatility. <em>Applicable to: CPI (Capitec) pre-April 22, 2026 results.</em></p>
+          </div>
+        </div>
+
+        <div class="rule-item rule-amber">
+          <div class="rule-code">R-04</div>
+          <div class="rule-body">
+            <h4>STOP_RAISE_ON_THESIS_CONFIRMATION</h4>
+            <p>When the original thesis for a position is explicitly confirmed (e.g. a production milestone hit, an earnings beat above the guided range, a macro variable crossing the predicted level), raise the stop-loss to protect at least 50% of unrealised profits. Do not wait for the position to give back 25% before acting. <em>Applied to: PAN (stop raised from R50 to R68 after +106% gain).</em></p>
+          </div>
+        </div>
+
+        <div class="rule-item rule-purple">
+          <div class="rule-code">R-05</div>
+          <div class="rule-body">
+            <h4>HIGHEST_OPERATING_LEVERAGE_ENTRY</h4>
+            <p>In commodity super-cycles, when selecting between multiple miners exposed to the same commodity, prioritise the producer with the highest revenue-to-AISC ratio at current spot prices. A lower-cost producer with the same commodity exposure produces exponentially more free cash flow per unit of commodity price increase. <em>Framework used for: PAN selection over HAR at Edition 01 entry; HAR added at Edition 05 as leverage diversifier.</em></p>
+          </div>
+        </div>
+
+      </div>
+
+      <p style="margin-top:20px;">New rules are added as new thesis outcomes accumulate. The full rules engine history is documented in each edition's unlocked subscriber report.</p>
+    </section>
+
+    <hr class="section-divider"/>
+
+    <!-- §8 LIMITATIONS -->
+    <section class="meth-section section-anchor" id="limitations">
+      <span class="section-number">§ 08</span>
+      <h2>Known Limitations</h2>
+
+      <p>No methodology is perfect. We document our known limitations not as disclaimers but as active areas of improvement.</p>
+
+      <div class="criteria-grid">
+        <div class="criteria-card">
+          <span class="cc-icon">⚠️</span>
+          <h4>Survivorship in Rules</h4>
+          <p>Rules are derived from confirmed events. They may overfit to specific market conditions and fail under different regimes. We test each rule before adding it and retire rules that produce false positives across 3+ events.</p>
+        </div>
+        <div class="criteria-card">
+          <span class="cc-icon">🌍</span>
+          <h4>JSE Liquidity Risk</h4>
+          <p>Several positions — particularly AltX and smaller A2X names — carry meaningful bid-ask spread and low daily volume. Theoretical entry zones may be wider in practice. Moonshot positions are particularly exposed to this.</p>
+        </div>
+        <div class="criteria-card">
+          <span class="cc-icon">🔮</span>
+          <h4>Macro Timing Risk</h4>
+          <p>Regime identification is probabilistic. We may correctly identify the direction of a macro trend but be early by 3–9 months. This is managed by sizing into positions across the stated buy zone rather than all-in on a single day.</p>
+        </div>
+        <div class="criteria-card">
+          <span class="cc-icon">📰</span>
+          <h4>Information Lag</h4>
+          <p>This is an independent research publication. We do not have access to management meetings, sell-side model databases, or real-time SENS processing systems. Our research is based on public information only.</p>
+        </div>
+      </div>
+
+      <div class="disclaimer-box" style="margin-top:28px;">
+        <h4>⚠ Not Financial Advice</h4>
+        <p>Antifragile Alpha Weekly is an independent research and educational publication. Nothing published here constitutes financial advice, a solicitation to buy or sell securities, or a recommendation to any specific person. All investments involve risk, including the risk of total loss of capital.</p>
+        <p>Past performance of positions featured in previous editions is no guarantee of future results. Individual circumstances vary. You should consult a qualified financial adviser before making any investment decisions. The author(s) may hold positions in securities discussed.</p>
+        <p>This publication is registered and produced in South Africa. It does not constitute advice regulated under the Financial Advisory and Intermediary Services Act (FAIS).</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="meth-sidebar">
+
+    <div class="sidebar-card">
+      <h5>On This Page</h5>
+      <ul class="sidebar-nav-list">
+        <li><a href="#philosophy"><span class="sn-num">01</span> Philosophy</a></li>
+        <li><a href="#barbell"><span class="sn-num">02</span> Barbell Construction</a></li>
+        <li><a href="#screening"><span class="sn-num">03</span> Screening Criteria</a></li>
+        <li><a href="#sizing"><span class="sn-num">04</span> Position Sizing</a></li>
+        <li><a href="#stops"><span class="sn-num">05</span> Stop-Loss Discipline</a></li>
+        <li><a href="#process"><span class="sn-num">06</span> Weekly Process</a></li>
+        <li><a href="#rules-engine"><span class="sn-num">07</span> Rules Engine</a></li>
+        <li><a href="#limitations"><span class="sn-num">08</span> Limitations</a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-card">
+      <h5>Portfolio At a Glance</h5>
+      <div class="sidebar-stat">
+        <span class="ss-label">Active positions</span>
+        <span class="ss-val">10</span>
+      </div>
+      <div class="sidebar-stat">
+        <span class="ss-label">Safe Core</span>
+        <span class="ss-val">~55%</span>
+      </div>
+      <div class="sidebar-stat">
+        <span class="ss-label">High Upside</span>
+        <span class="ss-val">~39%</span>
+      </div>
+      <div class="sidebar-stat">
+        <span class="ss-label">Moonshot</span>
+        <span class="ss-val">~5%</span>
+      </div>
+      <div class="sidebar-stat">
+        <span class="ss-label">Rules in engine</span>
+        <span class="ss-val">R-01 → R-05</span>
+      </div>
+      <div class="sidebar-stat">
+        <span class="ss-label">Current edition</span>
+        <span class="ss-val">Ed. 05</span>
+      </div>
+    </div>
+
+    <div class="sidebar-cta">
+      <p>Unlock the full weekly screen — buy zones, stops, targets, and the complete rules engine commentary.</p>
+      <a href="pricing.html">Unlock Access →</a>
+    </div>
+
+  </aside>
+
+</div><!-- /meth-layout -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <a class="brand" href="index.html">◆ Antifragile Alpha</a>
+    <p>Independent JSE equities research. Barbell portfolio, asymmetric bets, weekly cadence.</p>
+  </div>
+
+  <div class="footer-col">
+    <h5>Research</h5>
+    <ul>
+      <li><a href="research/index.html">Weekly Editions</a></li>
+      <li><a href="research/archive.html">Archive</a></li>
+      <li><a href="methodology.html">Methodology</a></li>
+      <li><a href="search.html">Search</a></li>
+    </ul>
+  </div>
+
+  <div class="footer-col">
+    <h5>Access</h5>
+    <ul>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="subscribe.html">Subscribe</a></li>
+      <li><a href="pricing.html">Unlock a Report</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+
+  <div class="footer-col">
+    <h5>Company</h5>
+    <ul>
+      <li><a href="about.html">About</a></li>
+      <li><a href="legal/privacy.html">Privacy Policy</a></li>
+      <li><a href="legal/disclaimer.html">Disclaimer</a></li>
+      <li><a href="https://github.com/1906reblabs/Antifragile-Alpha-Weekly-" target="_blank" rel="noopener">GitHub ↗</a></li>
+    </ul>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 Antifragile Alpha Weekly · 1906 Reblabs · Johannesburg, South Africa</span>
+    <div class="footer-links-row">
+      <a href="about.html">About</a>
+      <a href="legal/privacy.html">Privacy</a>
+      <a href="legal/disclaimer.html">Disclaimer</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <span style="font-size:11px;color:var(--text-faint);">Not financial advice. For informational purposes only.</span>
+  </div>
+</footer>
+
+<script>
+/* ── Mobile nav toggle ── */
+const burger = document.getElementById('burgerBtn');
+const mobileNav = document.getElementById('mobileNav');
+burger.addEventListener('click', () => {
+  mobileNav.classList.toggle('open');
+  burger.textContent = mobileNav.classList.contains('open') ? '✕' : '☰';
+});
+document.addEventListener('click', e => {
+  if (!burger.contains(e.target) && !mobileNav.contains(e.target)) {
+    mobileNav.classList.remove('open');
+    burger.textContent = '☰';
+  }
+});
+
+/* ── Active sidebar nav on scroll ── */
+const anchors = document.querySelectorAll('.section-anchor');
+const sideLinks = document.querySelectorAll('.sidebar-nav-list a');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      sideLinks.forEach(l => {
+        l.style.color = l.getAttribute('href') === '#' + id
+          ? 'var(--gold)'
+          : '';
+        l.style.background = l.getAttribute('href') === '#' + id
+          ? 'var(--gold-dim2)'
+          : '';
+      });
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+anchors.forEach(a => observer.observe(a));
+</script>
+</body>
+</html>
